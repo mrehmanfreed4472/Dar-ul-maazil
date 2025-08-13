@@ -23,7 +23,6 @@ import {
   BarChart3,
   Layers
 } from 'lucide-react';
-import { AdminLayout } from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -39,6 +38,7 @@ import { useAdmin } from '@/contexts/AdminContext';
 import { useTranslation } from '@/hooks/use-translation';
 import { useToast } from '@/hooks/use-toast';
 import { Product, productCategories } from '@/data/products';
+import { ImageUpload } from '@/components/ui/image-upload';
 
 interface ProductFormData {
   name: { en: string; ar: string };
@@ -341,15 +341,12 @@ export default function AdminProducts() {
             </div>
           </div>
 
-          <div>
-            <Label htmlFor="image">Product Image URL</Label>
-            <Input
-              id="image"
-              value={formData.image}
-              onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
-              placeholder="Enter image URL"
-            />
-          </div>
+          <ImageUpload
+            value={formData.image}
+            onChange={(value) => setFormData(prev => ({ ...prev, image: value }))}
+            label="Product Image"
+            placeholder="Upload product image or enter URL"
+          />
         </TabsContent>
 
         <TabsContent value="pricing" className="space-y-4">
@@ -500,8 +497,7 @@ export default function AdminProducts() {
   );
 
   return (
-    <AdminLayout>
-      <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -808,7 +804,6 @@ export default function AdminProducts() {
             </div>
           </DialogContent>
         </Dialog>
-      </div>
-    </AdminLayout>
+    </div>
   );
 }

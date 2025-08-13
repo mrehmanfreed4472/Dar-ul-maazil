@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, Lock, Crown, Mail, Eye, EyeOff } from 'lucide-react';
-import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -62,8 +61,7 @@ export default function Login() {
   };
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -137,13 +135,28 @@ export default function Login() {
                 </div>
 
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 20px rgba(59, 130, 246, 0.3)",
+                      "0 0 30px rgba(99, 102, 241, 0.5)",
+                      "0 0 20px rgba(59, 130, 246, 0.3)"
+                    ]
+                  }}
+                  transition={{
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  className="rounded-lg"
                 >
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={isLoading}
-                    className="w-full gap-3 premium-gradient text-white font-bold py-3 premium-shadow-lg neon-border transition-all duration-500"
+                    className="w-full gap-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold py-4 shadow-2xl shadow-blue-500/40 border-2 border-blue-400/50 transition-all duration-500 hover:scale-105 hover:shadow-blue-500/60 relative overflow-hidden"
                   >
                     {isLoading ? (
                       <>
@@ -173,7 +186,6 @@ export default function Login() {
             </CardContent>
           </Card>
         </motion.div>
-      </div>
-    </Layout>
+    </div>
   );
 }

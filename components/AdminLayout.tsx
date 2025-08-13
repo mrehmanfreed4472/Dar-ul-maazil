@@ -174,7 +174,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 </motion.div>
                 <div className="flex flex-col">
                   <motion.span
-                    className="font-bold text-xl bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 bg-clip-text text-transparent"
+                    className="font-bold text-2xl bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 bg-clip-text text-transparent"
                     animate={{
                       backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                     }}

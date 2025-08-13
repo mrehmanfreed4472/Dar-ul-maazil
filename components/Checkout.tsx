@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CreditCard, MapPin, User, Phone, Mail, Shield, Crown, CheckCircle, ArrowLeft, Package, Calendar } from 'lucide-react';
-import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -15,7 +14,8 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useAdmin } from '@/contexts/AdminContext';
 import { useToast } from '@/hooks/use-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface CheckoutForm {
   // Customer Information
@@ -47,7 +47,7 @@ export default function Checkout() {
   const { items, getCartTotal, clearCart } = useCart();
   const { addOrder, addCustomer } = useAdmin();
   const { toast } = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
   const currency = getCurrency();
   const total = getCartTotal();
   
@@ -86,7 +86,7 @@ export default function Checkout() {
     if (!checkoutForm.termsAccepted) {
       toast({
         title: isRTL() ? 'خطأ' : 'Error',
-        description: isRTL() ? 'يجب الموافقة على الشروط والأحكام' : 'You must accept terms and conditions',
+        description: isRTL() ? 'يجب الموافقة عل�� الشروط والأحكام' : 'You must accept terms and conditions',
         variant: 'destructive'
       });
       return;
@@ -273,7 +273,7 @@ export default function Checkout() {
 
       // Clear cart and redirect to order success page
       clearCart();
-      navigate(`/order-success?orderNumber=${orderNumber}`);
+      router.push(`/order-success?orderNumber=${orderNumber}`);
     } catch (error) {
       toast({
         title: isRTL() ? 'خطأ في المعالجة' : 'Processing Error',
@@ -287,8 +287,7 @@ export default function Checkout() {
 
   if (items.length === 0) {
     return (
-      <Layout>
-        <div className="container mx-auto px-4 py-16 text-center">
+      <div className="container mx-auto px-4 py-16 text-center">
           <h1 className="text-2xl font-bold text-foreground mb-4">
             {isRTL() ? 'السلة فارغة' : 'Cart is Empty'}
           </h1>
@@ -300,14 +299,12 @@ export default function Checkout() {
               {isRTL() ? 'العودة للمنتجات' : 'Back to Products'}
             </Link>
           </Button>
-        </div>
-      </Layout>
+      </div>
     );
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -530,7 +527,7 @@ export default function Checkout() {
                                 <div className="text-sm font-medium">{method.label}</div>
                                 {method.featured && (
                                   <div className="text-xs text-green-600 mt-1">
-                                    {isRTL() ? 'آمن وسريع' : 'Secure & Fast'}
+                                    {isRTL() ? 'آمن وسري��' : 'Secure & Fast'}
                                   </div>
                                 )}
                               </CardContent>
@@ -628,7 +625,7 @@ export default function Checkout() {
                           </div>
                           <div>
                             <Label htmlFor="cvv">
-                              {isRTL() ? 'رمز الأمان' : 'CVV'} *
+                              {isRTL() ? 'رمز ال��مان' : 'CVV'} *
                             </Label>
                             <Input
                               id="cvv"
@@ -818,7 +815,6 @@ export default function Checkout() {
             </motion.div>
           </div>
         </form>
-      </div>
-    </Layout>
+    </div>
   );
 }

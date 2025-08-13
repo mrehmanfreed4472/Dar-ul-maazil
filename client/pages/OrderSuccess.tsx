@@ -42,8 +42,8 @@ export default function OrderSuccess() {
 
     receiptElement.innerHTML = `
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="https://cdn.builder.io/api/v1/image/assets%2Fbe317009bb644e719e7cd7d209bca9da%2F67167a1a0cc54f238afbf6ce93798062?format=webp&width=200" 
-             alt="DAM Logo" style="height: 80px; margin-bottom: 20px;" />
+        <img src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=300"
+             alt="DAM - The House of Insulation" style="height: 100px; margin-bottom: 20px;" />
         <h1 style="margin: 0; font-size: 28px; color: #1a365d;">DAM - The House of Insulation</h1>
         <p style="margin: 5px 0 0 0; color: #718096;">Dar Al Muaazil LLC</p>
       </div>
@@ -238,7 +238,7 @@ export default function OrderSuccess() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
                       <Crown className="h-5 w-5 text-primary" />
-                      {isRTL() ? 'تفاصيل الطلب' : 'Order Details'}
+                      {isRTL() ? 'تفاصيل ال��لب' : 'Order Details'}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">

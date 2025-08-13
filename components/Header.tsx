@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Mail, ShoppingCart, User, Crown, Sparkles, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,7 +16,7 @@ export function Header() {
   const { t, isRTL } = useTranslation();
   const { getCartCount } = useCart();
   const { user, isAdmin, logout } = useAuth();
-  const location = useLocation();
+  const pathname = usePathname();
   const cartCount = getCartCount();
 
   const navigation = [
@@ -27,7 +28,7 @@ export function Header() {
   ];
 
   const isActivePage = (href: string) => {
-    return location.pathname === href;
+    return pathname === href;
   };
 
   return (

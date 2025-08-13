@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, Star, Zap, AlertTriangle, CheckCircle, Crown, Calendar, FileText, ShoppingCart } from 'lucide-react';
 import { Layout } from '@/components/Layout';

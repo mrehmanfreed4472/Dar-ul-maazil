@@ -1,6 +1,5 @@
 'use client'
 
-import { Layout } from '@/components/Layout'
 import { Hero } from '@/components/Hero'
 import { StatsSection } from '@/components/StatsSection'
 import { FeaturedCategories } from '@/components/FeaturedCategories'
@@ -11,7 +10,7 @@ import { FAQSection } from '@/components/FAQSection'
 
 export default function HomePage() {
   return (
-    <Layout>
+    <>
       <Hero />
       <StatsSection />
       <FeaturedCategories />
@@ -19,6 +18,6 @@ export default function HomePage() {
       <FeaturedProducts />
       <TestimonialsSection />
       <FAQSection />
-    </Layout>
+    </>
   )
 }

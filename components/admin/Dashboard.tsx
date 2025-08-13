@@ -1,98 +1,78 @@
 import { motion } from 'framer-motion';
-import { 
-  TrendingUp, 
-  Package, 
-  Crown, 
-  ShoppingBag, 
-  Users, 
+import {
+  TrendingUp,
+  Package,
+  Crown,
+  ShoppingBag,
+  Users,
   DollarSign,
   Calendar,
   Star,
   BarChart3,
   PieChart,
-  Activity
+  Activity,
+  MapPin
 } from 'lucide-react';
-import { AdminLayout } from '@/components/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from '@/hooks/use-translation';
+import { useAdmin } from '@/contexts/AdminContext';
+import RevenueChart from './RevenueChart';
+import CustomerLocationMap from './CustomerLocationMap';
 
-// Mock data for demonstration
-const mockStats = {
-  totalRevenue: { usd: 125430, aed: 460579 },
-  totalOrders: 342,
-  totalProducts: 89,
-  totalServices: 15,
-  pendingOrders: 23,
-  completedOrders: 319,
-  newCustomers: 156,
-  returningCustomers: 186
-};
-
-const mockRecentOrders = [
-  {
-    id: 'ORDER-001',
-    customer: 'Ahmed Al Mansouri',
-    type: 'product',
-    items: 3,
-    total: { usd: 450, aed: 1653 },
-    status: 'pending',
-    date: '2024-01-15'
-  },
-  {
-    id: 'ORDER-002',
-    customer: 'Sarah Johnson',
-    type: 'service',
-    items: 1,
-    total: { usd: 120, aed: 441 },
-    status: 'completed',
-    date: '2024-01-14'
-  },
-  {
-    id: 'ORDER-003',
-    customer: 'Mohammed Hassan',
-    type: 'mixed',
-    items: 5,
-    total: { usd: 680, aed: 2498 },
-    status: 'processing',
-    date: '2024-01-14'
-  }
-];
+// Dashboard now uses dynamic data from AdminContext
 
 export default function AdminDashboard() {
   const { isRTL } = useTranslation();
+  const { orders, products, services } = useAdmin();
+
+  // Calculate dynamic stats
+  const totalRevenue = orders.reduce((sum, order) => ({
+    usd: sum.usd + (order.status !== 'cancelled' ? order.total.usd : 0),
+    aed: sum.aed + (order.status !== 'cancelled' ? order.total.aed : 0)
+  }), { usd: 0, aed: 0 });
+
+  const pendingOrders = orders.filter(order => order.status === 'pending').length;
+  const completedOrders = orders.filter(order => order.status === 'delivered').length;
+  const processingOrders = orders.filter(order => order.status === 'processing').length;
+  const totalActiveProducts = products.filter(product => product.availability !== 'out_of_stock').length;
+
+  // Get recent orders (last 5)
+  const recentOrders = orders
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 5);
 
   const statCards = [
     {
       title: isRTL() ? 'إجمالي الإيرادات' : 'Total Revenue',
-      value: `$${mockStats.totalRevenue.usd.toLocaleString()}`,
-      subtitle: `${mockStats.totalRevenue.aed.toLocaleString()} AED`,
+      value: `$${totalRevenue.usd.toLocaleString()}`,
+      subtitle: `${totalRevenue.aed.toLocaleString()} AED`,
       icon: DollarSign,
-      change: '+12.5%',
+      change: orders.length > 0 ? '+12.5%' : '0%',
       color: 'gradient-success'
     },
     {
-      title: isRTL() ? 'إجمالي الطلبات' : 'Total Orders',
-      value: mockStats.totalOrders.toString(),
-      subtitle: isRTL() ? `${mockStats.pendingOrders} قيد الانتظار` : `${mockStats.pendingOrders} pending`,
+      title: isRTL() ? 'إ��مالي الطلبات' : 'Total Orders',
+      value: orders.length.toString(),
+      subtitle: isRTL() ? `${pendingOrders} قيد الانتظار` : `${pendingOrders} pending`,
       icon: ShoppingBag,
-      change: '+8.3%',
+      change: orders.length > 0 ? '+8.3%' : '0%',
       color: 'gradient-primary'
     },
     {
       title: isRTL() ? 'المنتجات' : 'Products',
-      value: mockStats.totalProducts.toString(),
-      subtitle: isRTL() ? 'منتج نشط' : 'active products',
+      value: products.length.toString(),
+      subtitle: isRTL() ? `${totalActiveProducts} منتج نشط` : `${totalActiveProducts} active products`,
       icon: Package,
-      change: '+2.1%',
+      change: products.length > 0 ? '+2.1%' : '0%',
       color: 'gradient-info'
     },
     {
       title: isRTL() ? 'الخدمات' : 'Services',
-      value: mockStats.totalServices.toString(),
+      value: services.length.toString(),
       subtitle: isRTL() ? 'خدمة متاحة' : 'available services',
       icon: Crown,
-      change: '+5.7%',
+      change: services.length > 0 ? '+5.7%' : '0%',
       color: 'gradient-accent'
     }
   ];
@@ -116,8 +96,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <AdminLayout>
-      <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -130,7 +109,7 @@ export default function AdminDashboard() {
                 {isRTL() ? 'لوحة التحكم' : 'Dashboard'}
               </h1>
               <p className="text-muted-foreground mt-1">
-                {isRTL() ? 'نظرة عامة على إحصائيات النشاط التجاري' : 'Overview of your business performance'}
+                {isRTL() ? 'نظ��ة عامة على إحصائيات النشاط التجاري' : 'Overview of your business performance'}
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -209,20 +188,11 @@ export default function AdminDashboard() {
                   {isRTL() ? 'نمو الإيرادات' : 'Revenue Growth'}
                 </CardTitle>
                 <CardDescription>
-                  {isRTL() ? 'إيرادات الشهر الحالي مقارنة بالشه�� السابق' : 'Current month vs previous month revenue'}
+                  {isRTL() ? 'إيرادات الشهر الحالي مقارنة بالشه���� السابق' : 'Current month vs previous month revenue'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-40 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">
-                      📈
-                    </div>
-                    <p className="text-muted-foreground">
-                      {isRTL() ? 'مخطط الإيرادات سيظهر هنا' : 'Revenue chart will appear here'}
-                    </p>
-                  </div>
-                </div>
+                <RevenueChart />
               </CardContent>
             </Card>
           </motion.div>
@@ -255,19 +225,19 @@ export default function AdminDashboard() {
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                       <span className="text-sm">{isRTL() ? 'مكتملة' : 'Completed'}</span>
                     </div>
-                    <span className="font-semibold">{mockStats.completedOrders}</span>
+                    <span className="font-semibold">{completedOrders}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                       <span className="text-sm">{isRTL() ? 'قيد الانتظار' : 'Pending'}</span>
                     </div>
-                    <span className="font-semibold">{mockStats.pendingOrders}</span>
+                    <span className="font-semibold">{pendingOrders}</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
-                    <div 
-                      className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" 
-                      style={{ width: `${(mockStats.completedOrders / mockStats.totalOrders) * 100}%` }}
+                    <div
+                      className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full"
+                      style={{ width: `${orders.length > 0 ? (completedOrders / orders.length) * 100 : 0}%` }}
                     ></div>
                   </div>
                 </div>
@@ -275,6 +245,33 @@ export default function AdminDashboard() {
             </Card>
           </motion.div>
         </div>
+
+        {/* Customer Location Map */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <Card className="glass-card border-border/20 premium-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  className="w-10 h-10 gradient-accent rounded-xl flex items-center justify-center"
+                >
+                  <MapPin className="h-5 w-5 text-white" />
+                </motion.div>
+                {isRTL() ? 'مواقع العملاء' : 'Customer Locations'}
+              </CardTitle>
+              <CardDescription>
+                {isRTL() ? 'آخر 10 عملاء ومواقعهم' : 'Last 10 customers and their locations'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CustomerLocationMap />
+            </CardContent>
+          </Card>
+        </motion.div>
 
         {/* Recent Orders */}
         <motion.div
@@ -299,7 +296,7 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {mockRecentOrders.map((order, index) => (
+                {recentOrders.map((order, index) => (
                   <motion.div
                     key={order.id}
                     initial={{ opacity: 0, x: -20 }}
@@ -313,20 +310,20 @@ export default function AdminDashboard() {
                         className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center"
                       >
                         <span className="text-white font-bold text-sm">
-                          {order.id.split('-')[1]}
+                          {order.orderNumber.split('-')[1] || order.orderNumber.slice(-3)}
                         </span>
                       </motion.div>
                       <div>
-                        <div className="font-medium text-foreground">{order.customer}</div>
+                        <div className="font-medium text-foreground">{order.customerName}</div>
                         <div className="text-sm text-muted-foreground">
-                          {order.items} {isRTL() ? 'عنصر' : 'items'} • {order.date}
+                          {order.items.length} {isRTL() ? 'عنصر' : 'items'} • {new Date(order.createdAt).toLocaleDateString()}
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="text-right">
-                        <div className="font-bold text-foreground">${order.total.usd}</div>
-                        <div className="text-sm text-muted-foreground">{order.total.aed} AED</div>
+                        <div className="font-bold text-foreground">${order.total.usd.toFixed(2)}</div>
+                        <div className="text-sm text-muted-foreground">{order.total.aed.toFixed(2)} AED</div>
                       </div>
                       <Badge className={getStatusColor(order.status)}>
                         {getStatusText(order.status)}
@@ -338,7 +335,6 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </motion.div>
-      </div>
-    </AdminLayout>
+    </div>
   );
 }

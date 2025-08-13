@@ -38,7 +38,7 @@ export function HeaderEnhanced() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`sticky top-0 z-50 shadow-xl backdrop-blur-lg relative overflow-hidden ${isRTL() ? 'rtl' : 'ltr'}`}
+      className={`sticky top-0 z-50 shadow-xl backdrop-blur-xl bg-white/95 border-b border-gray-200/30 relative overflow-hidden ${isRTL() ? 'rtl' : 'ltr'}`}
     >
       {/* Enhanced floating particles background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -274,7 +274,7 @@ export function HeaderEnhanced() {
                   ]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="rounded-full"
+                className="rounded-full bg-white/20 border border-white/30 backdrop-blur-sm"
               >
                 <LanguageToggle />
               </motion.div>
@@ -284,18 +284,18 @@ export function HeaderEnhanced() {
       </motion.div>
 
       {/* Main navigation */}
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto px-4 bg-white/80 backdrop-blur-sm">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <motion.div
             whileHover={{
-              scale: 1.08,
-              filter: "drop-shadow(0 0 25px rgba(34, 197, 94, 0.8))"
+              scale: 1.05,
+              filter: "drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))"
             }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="relative"
           >
-            <Link href="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2">
               <motion.div
                 whileHover={{
                   scale: 1.05,
@@ -310,21 +310,21 @@ export function HeaderEnhanced() {
                 className="flex items-center relative"
               >
                 <motion.div
-                  className="absolute inset-0 bg-green-400/30 rounded-xl blur-xl"
+                  className="absolute inset-0 bg-green-400/20 rounded-xl blur-lg"
                   animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.1, 1],
+                    opacity: [0.2, 0.4, 0.2],
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 />
                 <motion.img
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fbe317009bb644e719e7cd7d209bca9da%2F36ff582146184a53971e36b118d53fc5?format=webp&width=800"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=800"
                   alt="DAM - The House of Insulation - Dar Al Muaazil LLC"
-                  className="h-12 w-auto object-contain relative z-10 filter drop-shadow-lg"
+                  className="h-14 w-auto object-contain relative z-10 filter drop-shadow-lg"
                   animate={{
                     filter: [
                       "brightness(1) saturate(1)",
@@ -343,7 +343,7 @@ export function HeaderEnhanced() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4">
             {navigation.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -362,10 +362,10 @@ export function HeaderEnhanced() {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-3 px-6 py-3 rounded-xl font-bold transition-all duration-300 relative overflow-hidden group border-2 ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 relative overflow-hidden group border ${
                       isActivePage(item.href)
-                        ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-xl shadow-green-500/40 border-green-500 scale-105'
-                        : 'text-gray-800 bg-gray-100/80 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 hover:shadow-xl hover:shadow-green-500/30 border-gray-300 hover:border-green-500 hover:scale-105'
+                        ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30 border-green-500 scale-105'
+                        : 'text-gray-800 bg-white/90 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 hover:shadow-lg hover:shadow-green-500/20 border-gray-200 hover:border-green-500 hover:scale-105'
                     }`}
                   >
                     <motion.div
@@ -384,7 +384,7 @@ export function HeaderEnhanced() {
                         transition: { duration: 0.2 }
                       }}
                     >
-                      <Icon className="h-5 w-5 transition-all duration-300 drop-shadow-lg" />
+                      <Icon className="h-4 w-4 transition-all duration-300 drop-shadow-lg" />
                     </motion.div>
                     <motion.span
                       whileHover={{
@@ -454,7 +454,7 @@ export function HeaderEnhanced() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
 
             {/* User Actions */}
             {user ? (
@@ -464,11 +464,11 @@ export function HeaderEnhanced() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="glass-card hover:bg-primary/10 border-primary/30"
+                      className="glass-card hover:bg-primary/10 border-primary/30 px-3 py-1.5 text-sm"
                     >
-                      <User className="h-4 w-4 mr-2" />
+                      <User className="h-3 w-3 mr-1.5" />
                       {user.name}
-                      {isAdmin() && <Crown className="h-4 w-4 ml-2 text-accent" />}
+                      {isAdmin() && <Crown className="h-3 w-3 ml-1.5 text-accent" />}
                     </Button>
                   </motion.div>
                 </DropdownMenuTrigger>
@@ -494,11 +494,11 @@ export function HeaderEnhanced() {
               <motion.div whileHover={{ scale: 1.05 }}>
                 <Link href="/login">
                   <Button
-                    variant="outline"
+                    variant="default"
                     size="sm"
-                    className="glass-card hover:bg-primary/10 border-primary/30"
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-4 py-2 text-sm shadow-lg shadow-blue-500/30 border border-blue-400/50 transition-all duration-300 hover:shadow-xl hover:scale-105"
                   >
-                    <User className="h-4 w-4 mr-2" />
+                    <User className="h-3 w-3 mr-1.5" />
                     {isRTL() ? 'تسجيل الدخول' : 'Login'}
                   </Button>
                 </Link>
@@ -506,7 +506,7 @@ export function HeaderEnhanced() {
             )}
 
             {/* Primary Action Buttons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               {/* Go to Cart Button */}
               <motion.div
                 whileHover={{
@@ -517,7 +517,7 @@ export function HeaderEnhanced() {
                 whileTap={{ scale: 0.92 }}
               >
                 <Link href="/cart">
-                  <Button className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-6 shadow-lg shadow-green-900/30 border border-green-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-green-900/40 relative overflow-hidden group">
+                  <Button className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-4 py-2 text-sm shadow-lg shadow-green-900/30 border border-green-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-green-900/40 relative overflow-hidden group">
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"
                       animate={{
@@ -541,7 +541,7 @@ export function HeaderEnhanced() {
                         repeatDelay: 2
                       }}
                     >
-                      <ShoppingCart className="h-4 w-4 mr-2 transition-transform group-hover:scale-110" />
+                      <ShoppingCart className="h-4 w-4 mr-1.5 transition-transform group-hover:scale-110" />
                     </motion.div>
                     {isRTL() ? 'عرض السلة' : 'View Cart'}
                     {cartCount > 0 && (
@@ -576,8 +576,8 @@ export function HeaderEnhanced() {
               >
                 <Link href="/order">
                   <Button
-                    variant="outline"
-                    className="border-green-400/30 hover:bg-green-500/10 text-green-100 hover:text-white transition-all duration-300 relative overflow-hidden group"
+                    variant="default"
+                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold transition-all duration-300 relative overflow-hidden group px-4 py-2 text-sm shadow-lg shadow-orange-500/30 border border-orange-400/50 hover:shadow-xl hover:scale-105"
                   >
                     <motion.div
                       animate={{
@@ -589,7 +589,7 @@ export function HeaderEnhanced() {
                         ease: "easeInOut"
                       }}
                     >
-                      <FileText className="h-4 w-4 mr-2 transition-transform group-hover:rotate-6" />
+                      <FileText className="h-4 w-4 mr-1.5 transition-transform group-hover:rotate-6" />
                     </motion.div>
                     {isRTL() ? 'طلب مخصص' : 'Custom Order'}
                     <motion.div
@@ -652,10 +652,10 @@ export function HeaderEnhanced() {
                     >
                       <Link
                         href={item.href}
-                        className={`flex items-center gap-4 px-6 py-4 rounded-xl font-bold transition-all duration-300 border-2 ${
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 border ${
                           isActivePage(item.href)
-                            ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-xl shadow-green-500/40 border-green-500'
-                            : 'text-gray-800 bg-gray-100/80 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 hover:shadow-xl hover:shadow-green-500/30 border-gray-300 hover:border-green-500'
+                            ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30 border-green-500'
+                            : 'text-gray-800 bg-gray-100/80 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 hover:shadow-lg hover:shadow-green-500/20 border-gray-300 hover:border-green-500'
                         }`}
                         onClick={() => setIsMenuOpen(false)}
                       >
@@ -663,7 +663,7 @@ export function HeaderEnhanced() {
                           whileHover={{ rotate: 15, scale: 1.1 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <Icon className="h-5 w-5" />
+                          <Icon className="h-4 w-4" />
                         </motion.div>
                         <motion.span
                           whileHover={{ x: 2 }}
@@ -693,9 +693,9 @@ export function HeaderEnhanced() {
                   ) : (
                     <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                       <Button
-                        variant="outline"
+                        variant="default"
                         size="sm"
-                        className="w-full glass-card"
+                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-blue-500/30"
                       >
                         <User className="h-4 w-4 mr-2" />
                         {isRTL() ? 'دخول' : 'Login'}
@@ -719,8 +719,8 @@ export function HeaderEnhanced() {
 
                   <Link href="/order" onClick={() => setIsMenuOpen(false)}>
                     <Button
-                      variant="outline"
-                      className="w-full border-2 border-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 text-green-600 hover:text-white font-semibold py-4 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
+                      variant="default"
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
                     >
                       <FileText className="h-5 w-5 mr-2" />
                       {isRTL() ? 'طلب مخصص' : 'Custom Order'}

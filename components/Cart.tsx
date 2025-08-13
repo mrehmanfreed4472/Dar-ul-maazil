@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Plus, Minus, Trash2, Crown, Star, Clock, Zap, AlertTriangle, Package, ArrowRight } from 'lucide-react';
-import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,8 +34,7 @@ export default function Cart() {
 
   if (items.length === 0) {
     return (
-      <Layout>
-        <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,14 +80,12 @@ export default function Cart() {
               </motion.div>
             </div>
           </motion.div>
-        </div>
-      </Layout>
+      </div>
     );
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -362,7 +358,6 @@ export default function Cart() {
             </Card>
           </motion.div>
         </div>
-      </div>
-    </Layout>
+    </div>
   );
 }

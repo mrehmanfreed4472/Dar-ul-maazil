@@ -4,7 +4,6 @@ import { ShoppingCart, MessageCircle, Mail, Plus, Minus, Trash2, Calculator, Pac
 import emailjs from '@emailjs/browser';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -334,7 +333,7 @@ export default function Order() {
     orderForm.items.forEach((item, index) => {
       message += `\n${index + 1}. *${item.productName}*\n`;
       message += `   📊 ${isRTL() ? 'الكمية' : 'Quantity'}: ${item.quantity}\n`;
-      if (item.selectedSize) message += `   📏 ${isRTL() ? 'الحجم' : 'Size'}: ${item.selectedSize}\n`;
+      if (item.selectedSize) message += `   📏 ${isRTL() ? 'الح��م' : 'Size'}: ${item.selectedSize}\n`;
       message += `   💰 ${isRTL() ? 'السعر' : 'Unit Price'}: $${item.priceUsd} USD / ${item.priceAed} AED\n`;
       if (item.laborServices) {
         message += `   👷 ${isRTL() ? 'خدمات العمالة: ✅ نعم' : 'Labor Services: ✅ YES'}\n`;
@@ -381,7 +380,7 @@ export default function Order() {
         toast({
           title: isRTL() ? 'كيفية مشاركة PDF عبر الواتساب' : 'How to Share PDF via WhatsApp',
           description: isRTL()
-            ? '��م فتح الواتساب وتحميل ملف PDF. في الواتساب، اضغط على أيقونة المرفق (📎) ثم اختر "المستند" وارفق الملف المحمل'
+            ? '��م فتح الواتساب ��تحميل ملف PDF. في الواتساب، اضغط على أيقونة المرفق (📎) ثم اختر "المستند" وارفق الملف المحمل'
             : 'WhatsApp opened and PDF downloaded. In WhatsApp, click the attachment icon (📎), select "Document" and attach the downloaded file',
         });
       }, 2000);
@@ -423,7 +422,7 @@ export default function Order() {
         console.warn('EmailJS not configured properly. Skipping email sending.');
         toast({
           title: isRTL() ? 'إشعار' : 'Notice',
-          description: isRTL() ? 'سيتم إرسال تفاصيل الطلب عبر ال��اتساب ف��ط' : 'Order details will be sent via WhatsApp only',
+          description: isRTL() ? 'سيت�� إرسال تفاصيل الطلب عبر ال��اتساب ف��ط' : 'Order details will be sent via WhatsApp only',
           variant: 'destructive'
         });
         return;
@@ -499,7 +498,7 @@ export default function Order() {
       let successMessage = '';
       if (orderForm.contactMethod === 'whatsapp') {
         successMessage = isRTL()
-          ? 'تم فتح الواتساب وتحميل ملف PDF للمشاركة. سنتواصل ��عك قريباً'
+          ? 'تم فتح الواتساب ��تحميل ملف PDF للمشاركة. سنتواصل ��عك قريباً'
           : 'WhatsApp opened and PDF downloaded for sharing. We will contact you soon.';
       } else if (orderForm.contactMethod === 'email') {
         successMessage = isRTL()
@@ -554,8 +553,7 @@ export default function Order() {
   };
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -714,7 +712,7 @@ export default function Order() {
 
                 <div>
                   <Label htmlFor="projectLocation">
-                    {isRTL() ? 'موقع المشروع' : 'Project Location'}
+                    {isRTL() ? 'موقع ال��شروع' : 'Project Location'}
                   </Label>
                   <Input
                     id="projectLocation"
@@ -1258,7 +1256,6 @@ export default function Order() {
           onSendWhatsApp={confirmAndSendOrder}
           isSubmitting={isSubmitting}
         />
-      </div>
-    </Layout>
+    </div>
   );
 }

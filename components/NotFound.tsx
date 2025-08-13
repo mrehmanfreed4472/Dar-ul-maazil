@@ -1,19 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect } from "react";
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/use-translation';
 
 const NotFound = () => {
-  const location = useLocation();
+  const pathname = usePathname();
   const { isRTL } = useTranslation();
 
   useEffect(() => {
     console.error(
       "404 Error: User attempted to access non-existent route:",
-      location.pathname,
+      pathname,
     );
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <Layout>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { CheckCircle, Download, Home, Package, Phone, Mail, Calendar, Crown, ArrowRight } from 'lucide-react';
-import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,11 +13,11 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 export default function OrderSuccess() {
-  const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams();
   const orderNumber = searchParams.get('orderNumber');
   const { isRTL } = useTranslation();
   const { orders } = useAdmin();
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState<any>(null);
 
   useEffect(() => {
     if (orderNumber) {
@@ -42,8 +42,8 @@ export default function OrderSuccess() {
 
     receiptElement.innerHTML = `
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="https://cdn.builder.io/api/v1/image/assets%2Fbe317009bb644e719e7cd7d209bca9da%2F67167a1a0cc54f238afbf6ce93798062?format=webp&width=200" 
-             alt="DAM Logo" style="height: 80px; margin-bottom: 20px;" />
+        <img src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=300"
+             alt="DAM - The House of Insulation" style="height: 100px; margin-bottom: 20px;" />
         <h1 style="margin: 0; font-size: 28px; color: #1a365d;">DAM - The House of Insulation</h1>
         <p style="margin: 5px 0 0 0; color: #718096;">Dar Al Muaazil LLC</p>
       </div>
@@ -171,8 +171,7 @@ export default function OrderSuccess() {
 
   if (!orderNumber) {
     return (
-      <Layout>
-        <div className="container mx-auto px-4 py-16 text-center">
+      <div className="container mx-auto px-4 py-16 text-center">
           <h1 className="text-2xl font-bold text-foreground mb-4">
             {isRTL() ? 'لم يتم العثور على الطلب' : 'Order not found'}
           </h1>
@@ -181,14 +180,12 @@ export default function OrderSuccess() {
               {isRTL() ? 'العودة للرئيسية' : 'Back to Home'}
             </Link>
           </Button>
-        </div>
-      </Layout>
+      </div>
     );
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
         {/* Success Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -489,7 +486,6 @@ export default function OrderSuccess() {
             </CardContent>
           </Card>
         </motion.div>
-      </div>
-    </Layout>
+    </div>
   );
 }

@@ -67,12 +67,14 @@ export const OrderSummaryPDF = React.forwardRef<HTMLDivElement, OrderSummaryPDFP
           <div className="flex justify-between items-start">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">دم</span>
-                </div>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=300"
+                  alt="DAM - The House of Insulation"
+                  className="h-16 w-auto object-contain"
+                />
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-800">Dar Al Muaazil</h1>
-                  <p className="text-gray-600">{isRTL() ? 'دار المعازل للمواد العازلة' : 'Construction Materials'}</p>
+                  <h1 className="text-2xl font-bold text-gray-800">DAM - The House of Insulation</h1>
+                  <p className="text-gray-600">{isRTL() ? 'دار المعازل ذ.م.م' : 'Dar Al Muaazil LLC'}</p>
                 </div>
               </div>
               <div className="text-sm text-gray-600 mt-2">
