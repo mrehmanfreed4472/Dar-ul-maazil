@@ -12,7 +12,6 @@ import {
   PieChart,
   Activity
 } from 'lucide-react';
-import { AdminLayout } from '@/components/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from '@/hooks/use-translation';
@@ -116,7 +115,6 @@ export default function AdminDashboard() {
   };
 
   return (
-    <AdminLayout>
       <div className="p-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -339,6 +337,5 @@ export default function AdminDashboard() {
           </Card>
         </motion.div>
       </div>
-    </AdminLayout>
   );
 }

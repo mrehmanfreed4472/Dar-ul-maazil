@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Crown, 
-  Search, 
-  Filter, 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Eye, 
-  Download, 
+import {
+  Crown,
+  Search,
+  Filter,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  Download,
   Upload,
   MoreVertical,
   Star,
@@ -25,7 +25,7 @@ import {
   Calendar,
   Users
 } from 'lucide-react';
-import { AdminLayout } from '@/components/AdminLayout';
+import { ImageUpload } from '@/components/ImageUpload';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -383,12 +383,23 @@ export default function AdminServices() {
           </div>
 
           <div>
-            <Label htmlFor="image">Service Image URL</Label>
+            <Label htmlFor="image">Service Image</Label>
+            <ImageUpload
+              value={formData.image}
+              onChange={(url) => setFormData(prev => ({ ...prev, image: url }))}
+              onRemove={() => setFormData(prev => ({ ...prev, image: '' }))}
+              placeholder="Upload service image"
+              acceptedFormats={['image/jpeg', 'image/png', 'image/webp']}
+              maxSize={5}
+            />
+            <p className="text-xs text-muted-foreground mt-2">
+              Upload a high-quality service image or provide a URL below
+            </p>
             <Input
-              id="image"
               value={formData.image}
               onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
-              placeholder="Enter image URL"
+              placeholder="Or enter image URL directly"
+              className="mt-2"
             />
           </div>
         </TabsContent>
@@ -580,7 +591,6 @@ export default function AdminServices() {
   );
 
   return (
-    <AdminLayout>
       <div className="p-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -893,6 +903,5 @@ export default function AdminServices() {
           </DialogContent>
         </Dialog>
       </div>
-    </AdminLayout>
   );
 }

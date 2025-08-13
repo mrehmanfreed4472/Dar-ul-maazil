@@ -27,7 +27,6 @@ import {
   TrendingUp,
   BarChart3
 } from 'lucide-react';
-import { AdminLayout } from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -125,8 +124,8 @@ export default function AdminOrders() {
   const handleDeleteOrder = (orderId: string) => {
     deleteOrder(orderId);
     toast({
-      title: isRTL() ? 'تم حذف الطلب' : 'Order Deleted',
-      description: isRTL() ? 'تم حذف ال��لب بنجاح' : 'Order has been deleted successfully'
+      title: isRTL() ? 'تم حذف ا��طلب' : 'Order Deleted',
+      description: isRTL() ? 'تم حذف الطلب بنجاح' : 'Order has been deleted successfully'
     });
   };
 
@@ -155,7 +154,6 @@ export default function AdminOrders() {
   };
 
   return (
-    <AdminLayout>
       <div className="p-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -166,7 +164,7 @@ export default function AdminOrders() {
         >
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {isRTL() ? 'إدارة الطلبات' : 'Order Management'}
+              {isRTL() ? 'إ��ارة الطلبات' : 'Order Management'}
             </h1>
             <p className="text-muted-foreground mt-1">
               {isRTL() ? 'عرض ومعالجة وإدارة طلبات العملاء' : 'View, process, and manage customer orders'}
@@ -266,7 +264,7 @@ export default function AdminOrders() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">{isRTL() ? 'جميع الحالات' : 'All Statuses'}</SelectItem>
-                    <SelectItem value="pending">{isRTL() ? 'قيد الانتظار' : 'Pending'}</SelectItem>
+                    <SelectItem value="pending">{isRTL() ? 'قيد ��لانتظار' : 'Pending'}</SelectItem>
                     <SelectItem value="processing">{isRTL() ? 'قيد المعالجة' : 'Processing'}</SelectItem>
                     <SelectItem value="shipped">{isRTL() ? 'تم الشحن' : 'Shipped'}</SelectItem>
                     <SelectItem value="delivered">{isRTL() ? 'تم التسليم' : 'Delivered'}</SelectItem>
@@ -394,7 +392,7 @@ export default function AdminOrders() {
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, 'delivered')}>
                                   <CheckCircle className="h-4 w-4 mr-2" />
-                                  {isRTL() ? 'تم ��لتسليم' : 'Mark Delivered'}
+                                  {isRTL() ? 'تم التسليم' : 'Mark Delivered'}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem 
@@ -420,7 +418,7 @@ export default function AdminOrders() {
                       {isRTL() ? 'لا توجد طلبات' : 'No Orders Found'}
                     </h3>
                     <p className="text-muted-foreground">
-                      {isRTL() ? 'لم يتم العثور ��لى طلبات مطابقة للبحث' : 'No orders match your search criteria'}
+                      {isRTL() ? 'لم يتم العثور على طلبات مطابقة للبحث' : 'No orders match your search criteria'}
                     </p>
                   </div>
                 )}
@@ -626,6 +624,5 @@ export default function AdminOrders() {
           </DialogContent>
         </Dialog>
       </div>
-    </AdminLayout>
   );
 }

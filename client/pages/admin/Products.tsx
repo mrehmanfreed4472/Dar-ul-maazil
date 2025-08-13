@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Package, 
-  Search, 
-  Filter, 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Eye, 
-  Download, 
+import {
+  Package,
+  Search,
+  Filter,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  Download,
   Upload,
   MoreVertical,
   Star,
@@ -23,7 +23,7 @@ import {
   BarChart3,
   Layers
 } from 'lucide-react';
-import { AdminLayout } from '@/components/AdminLayout';
+import { ImageUpload } from '@/components/ImageUpload';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -342,12 +342,23 @@ export default function AdminProducts() {
           </div>
 
           <div>
-            <Label htmlFor="image">Product Image URL</Label>
+            <Label htmlFor="image">Product Image</Label>
+            <ImageUpload
+              value={formData.image}
+              onChange={(url) => setFormData(prev => ({ ...prev, image: url }))}
+              onRemove={() => setFormData(prev => ({ ...prev, image: '' }))}
+              placeholder="Upload product image"
+              acceptedFormats={['image/jpeg', 'image/png', 'image/webp']}
+              maxSize={5}
+            />
+            <p className="text-xs text-muted-foreground mt-2">
+              Upload a high-quality product image or provide a URL below
+            </p>
             <Input
-              id="image"
               value={formData.image}
               onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
-              placeholder="Enter image URL"
+              placeholder="Or enter image URL directly"
+              className="mt-2"
             />
           </div>
         </TabsContent>
@@ -500,7 +511,6 @@ export default function AdminProducts() {
   );
 
   return (
-    <AdminLayout>
       <div className="p-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -809,6 +819,5 @@ export default function AdminProducts() {
           </DialogContent>
         </Dialog>
       </div>
-    </AdminLayout>
   );
 }
