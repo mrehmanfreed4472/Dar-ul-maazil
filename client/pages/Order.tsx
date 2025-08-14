@@ -141,11 +141,11 @@ export default function Order() {
       };
     }).filter(Boolean);
 
-    setOrderForm(prev => ({
-      ...prev,
-      items: [...prev.items, ...newItems]
-    }));
-
+    //setOrderForm(prev => ({
+     // ...prev,
+      //items: [...prev.items, ...newItems]
+    //}));
+//*
     if (showBulkSelector) {
       setShowBulkSelector(false);
     }
