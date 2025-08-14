@@ -138,7 +138,7 @@ export default function Order() {
         laborServices: false,
         selectedSize: product.sizes ? product.sizes[0] : undefined
       };
-    }).filter(Boolean);
+    }).filter(Boolean) as OrderItem[];
 
     setOrderForm(prev => ({
       ...prev,

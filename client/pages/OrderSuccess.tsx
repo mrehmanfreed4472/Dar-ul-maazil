@@ -17,7 +17,7 @@ export default function OrderSuccess() {
   const orderNumber = searchParams.get('orderNumber');
   const { isRTL } = useTranslation();
   const { orders } = useAdmin();
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState<any>(null);
 
   useEffect(() => {
     if (orderNumber) {

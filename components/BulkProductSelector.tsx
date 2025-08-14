@@ -254,7 +254,7 @@ export function BulkProductSelector({ onAddProducts, existingProductIds }: BulkP
                     : `Add ${selectedProducts.size} Product${selectedProducts.size > 1 ? 's' : ''}`
                   }
                 </span>
-                <Crown className="h-5 w-5 group-hover:animate-bounce" />
+                <Package className="h-5 w-5 group-hover:animate-bounce" />
               </Button>
             </motion.div>
           </motion.div>

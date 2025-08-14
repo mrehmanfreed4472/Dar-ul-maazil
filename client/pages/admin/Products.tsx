@@ -187,7 +187,7 @@ export default function AdminProducts() {
       category: product.category,
       pricing: product.pricing,
       image: product.image,
-      featured: product.featured,
+      featured: product.featured || false,
       specifications: product.specifications || [],
       sizes: product.sizes || [],
       availability: (product as any).availability || 'in_stock',
