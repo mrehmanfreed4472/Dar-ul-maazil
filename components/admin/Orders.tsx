@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ShoppingBag, 
-  Search, 
-  Filter, 
-  Download, 
-  Eye, 
-  Edit, 
-  Trash2, 
+import {
+  ShoppingBag,
+  Search,
+  Filter,
+  Download,
+  Eye,
+  Trash2,
   MoreVertical,
   Calendar,
   DollarSign,
@@ -24,7 +23,6 @@ import {
   CreditCard,
   FileText,
   RefreshCw,
-  TrendingUp,
   BarChart3
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -118,7 +116,7 @@ export default function AdminOrders() {
     updateOrder(orderId, { status: newStatus });
     toast({
       title: isRTL() ? 'تم تحديث الطلب' : 'Order Updated',
-      description: isRTL() ? `تم تحديث حالة الطلب إلى ${newStatus}` : `Order status updated to ${newStatus}`
+      description: isRTL() ? `تم تحدي�� حالة الطلب إلى ${newStatus}` : `Order status updated to ${newStatus}`
     });
   };
 

@@ -42,6 +42,12 @@ import { ImageUpload } from '@/components/ui/image-upload';
 import { DAMLogo } from '@/components/DAMLogo';
 import { PersistenceNotification } from './PersistenceNotification';
 
+interface ExtendedProduct extends Product {
+  availability?: 'in_stock' | 'low_stock' | 'out_of_stock';
+  stockQuantity?: number;
+  minStockLevel?: number;
+}
+
 interface ProductFormData {
   name: { en: string; ar: string };
   description: { en: string; ar: string };
@@ -88,8 +94,9 @@ export default function AdminProducts() {
       product.name.ar.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
-    const matchesAvailability = availabilityFilter === 'all' || 
-      (product as any).availability === availabilityFilter;
+    const extendedProduct = product as ExtendedProduct;
+    const matchesAvailability = availabilityFilter === 'all' ||
+      extendedProduct.availability === availabilityFilter;
     
     return matchesSearch && matchesCategory && matchesAvailability;
   });
@@ -192,9 +199,9 @@ export default function AdminProducts() {
       featured: product.featured,
       specifications: product.specifications || [],
       sizes: product.sizes || [],
-      availability: (product as any).availability || 'in_stock',
-      stockQuantity: (product as any).stockQuantity || 0,
-      minStockLevel: (product as any).minStockLevel || 10
+      availability: (product as ExtendedProduct).availability || 'in_stock',
+      stockQuantity: (product as ExtendedProduct).stockQuantity || 0,
+      minStockLevel: (product as ExtendedProduct).minStockLevel || 10
     });
     setIsEditModalOpen(true);
   };
@@ -414,7 +421,7 @@ export default function AdminProducts() {
             <Label htmlFor="availability">Availability Status</Label>
             <Select 
               value={formData.availability} 
-              onValueChange={(value: any) => setFormData(prev => ({ ...prev, availability: value }))}
+              onValueChange={(value: 'in_stock' | 'low_stock' | 'out_of_stock') => setFormData(prev => ({ ...prev, availability: value }))}
             >
               <SelectTrigger>
                 <SelectValue />
@@ -723,8 +730,8 @@ export default function AdminProducts() {
                             {product.pricing.aed} AED
                           </div>
                         </div>
-                        <Badge className={getAvailabilityColor((product as any).availability || 'in_stock')}>
-                          {(product as any).availability || 'in_stock'}
+                        <Badge className={getAvailabilityColor((product as ExtendedProduct).availability || 'in_stock')}>
+                          {(product as ExtendedProduct).availability || 'in_stock'}
                         </Badge>
                       </div>
 

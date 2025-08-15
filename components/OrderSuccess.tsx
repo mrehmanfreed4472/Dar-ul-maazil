@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useTranslation } from '@/hooks/use-translation';
-import { useAdmin } from '@/contexts/AdminContext';
+import { useAdmin, Order } from '@/contexts/AdminContext';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -17,7 +17,7 @@ export default function OrderSuccess() {
   const orderNumber = searchParams.get('orderNumber');
   const { isRTL } = useTranslation();
   const { orders } = useAdmin();
-  const [order, setOrder] = useState<any>(null);
+  const [order, setOrder] = useState<Order | null>(null);
 
   useEffect(() => {
     if (orderNumber) {

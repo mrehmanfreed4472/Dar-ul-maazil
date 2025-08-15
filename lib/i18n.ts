@@ -104,12 +104,16 @@ export class I18n {
 
   t(key: string): string {
     const keys = key.split('.');
-    let value: any = translations[this.currentLanguage];
-    
+    let value: string | Translation = translations[this.currentLanguage];
+
     for (const k of keys) {
-      value = value?.[k];
+      if (typeof value === 'object' && value !== null && k in value) {
+        value = value[k];
+      } else {
+        return key;
+      }
     }
-    
+
     return typeof value === 'string' ? value : key;
   }
 
