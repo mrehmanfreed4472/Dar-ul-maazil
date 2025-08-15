@@ -102,6 +102,7 @@ interface AdminContextType {
   // Utilities
   exportData: (type: 'orders' | 'products' | 'services' | 'customers') => void;
   importData: (type: 'products' | 'services', data: any[]) => void;
+  resetData: (type: 'products' | 'services') => void;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
@@ -206,7 +207,9 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const savedOrders = localStorage.getItem('admin_orders');
     const savedCustomers = localStorage.getItem('admin_customers');
-    
+    const savedProducts = localStorage.getItem('admin_products');
+    const savedServices = localStorage.getItem('admin_services');
+
     if (savedOrders) {
       setOrders(JSON.parse(savedOrders));
     } else {
@@ -223,8 +226,23 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('admin_customers', JSON.stringify(mockCustomers));
     }
 
-    setProducts(getAllProducts());
-    setServices(getAllServices());
+    // Load products from localStorage if available, otherwise use default data
+    if (savedProducts) {
+      setProducts(JSON.parse(savedProducts));
+    } else {
+      const defaultProducts = getAllProducts();
+      setProducts(defaultProducts);
+      localStorage.setItem('admin_products', JSON.stringify(defaultProducts));
+    }
+
+    // Load services from localStorage if available, otherwise use default data
+    if (savedServices) {
+      setServices(JSON.parse(savedServices));
+    } else {
+      const defaultServices = getAllServices();
+      setServices(defaultServices);
+      localStorage.setItem('admin_services', JSON.stringify(defaultServices));
+    }
   }, []);
 
   // Auto-save data
@@ -239,6 +257,18 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('admin_customers', JSON.stringify(customers));
     }
   }, [customers]);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      localStorage.setItem('admin_products', JSON.stringify(products));
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (services.length > 0) {
+      localStorage.setItem('admin_services', JSON.stringify(services));
+    }
+  }, [services]);
 
   // Calculate stats
   const refreshStats = () => {
@@ -410,8 +440,22 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   const importData = (type: 'products' | 'services', data: any[]) => {
     if (type === 'products') {
       setProducts(data);
+      localStorage.setItem('admin_products', JSON.stringify(data));
     } else if (type === 'services') {
       setServices(data);
+      localStorage.setItem('admin_services', JSON.stringify(data));
+    }
+  };
+
+  const resetData = (type: 'products' | 'services') => {
+    if (type === 'products') {
+      const defaultProducts = getAllProducts();
+      setProducts(defaultProducts);
+      localStorage.setItem('admin_products', JSON.stringify(defaultProducts));
+    } else if (type === 'services') {
+      const defaultServices = getAllServices();
+      setServices(defaultServices);
+      localStorage.setItem('admin_services', JSON.stringify(defaultServices));
     }
   };
 
@@ -436,7 +480,8 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       stats,
       refreshStats,
       exportData,
-      importData
+      importData,
+      resetData
     }}>
       {children}
     </AdminContext.Provider>

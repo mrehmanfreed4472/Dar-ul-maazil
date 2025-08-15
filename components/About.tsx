@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from '@/hooks/use-translation';
 
-export default function About() {
+export function About() {
   const { t, isRTL } = useTranslation();
 
   const stats = [
@@ -123,7 +123,7 @@ export default function About() {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {isRTL() 
-              ? 'نحن شركة رائدة في توفير مواد البناء والعزل عالية الجودة في دولة الإمارات العربية المتحدة، نخدم صناعة البناء بخبرة تزيد عن 15 عامًا'
+              ? 'نحن شركة رائدة في توفير مواد البناء والعزل عالي�� الجودة في دولة الإمارات العربية المتحدة، نخدم صناعة البناء بخبرة تزيد عن 15 عامًا'
               : 'We are a leading company in providing high-quality construction and insulation materials in the United Arab Emirates, serving the construction industry with over 15 years of experience'
             }
           </p>

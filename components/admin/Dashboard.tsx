@@ -19,6 +19,7 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useAdmin } from '@/contexts/AdminContext';
 import RevenueChart from './RevenueChart';
 import CustomerLocationMap from './CustomerLocationMap';
+import { DataManagement } from './DataManagement';
 
 // Dashboard now uses dynamic data from AdminContext
 
@@ -44,7 +45,7 @@ export default function AdminDashboard() {
 
   const statCards = [
     {
-      title: isRTL() ? 'إجمالي الإيرادات' : 'Total Revenue',
+      title: isRTL() ? 'إج��الي الإيرادات' : 'Total Revenue',
       value: `$${totalRevenue.usd.toLocaleString()}`,
       subtitle: `${totalRevenue.aed.toLocaleString()} AED`,
       icon: DollarSign,
@@ -334,6 +335,16 @@ export default function AdminDashboard() {
               </div>
             </CardContent>
           </Card>
+        </motion.div>
+
+        {/* Data Management Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-8"
+        >
+          <DataManagement />
         </motion.div>
     </div>
   );

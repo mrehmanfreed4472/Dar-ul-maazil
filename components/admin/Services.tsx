@@ -42,6 +42,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Service, serviceCategories } from '@/data/services';
 import { ImageUpload } from '@/components/ui/image-upload';
 import { DAMLogo } from '@/components/DAMLogo';
+import { PersistenceNotification } from './PersistenceNotification';
 
 interface ServiceFormData {
   name: { en: string; ar: string };
@@ -206,7 +207,7 @@ export default function AdminServices() {
   const handleDeleteService = (serviceId: string, serviceName: string) => {
     deleteService(serviceId);
     toast({
-      title: isRTL() ? 'تم حذف الخدمة' : 'Service Deleted',
+      title: isRTL() ? 'تم حذ�� الخدمة' : 'Service Deleted',
       description: `${serviceName} has been deleted successfully`
     });
   };
@@ -579,7 +580,13 @@ export default function AdminServices() {
 
   return (
     <div className="p-6 space-y-6">
-        {/* Header */}
+      {/* Persistence Notification */}
+      <PersistenceNotification
+        type="services"
+        hasChanges={services.length > 0}
+      />
+
+      {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

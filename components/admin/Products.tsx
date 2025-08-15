@@ -40,6 +40,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Product, productCategories } from '@/data/products';
 import { ImageUpload } from '@/components/ui/image-upload';
 import { DAMLogo } from '@/components/DAMLogo';
+import { PersistenceNotification } from './PersistenceNotification';
 
 interface ProductFormData {
   name: { en: string; ar: string };
@@ -499,7 +500,13 @@ export default function AdminProducts() {
 
   return (
     <div className="p-6 space-y-6">
-        {/* Header */}
+      {/* Persistence Notification */}
+      <PersistenceNotification
+        type="products"
+        hasChanges={products.length > 0}
+      />
+
+      {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -167,7 +167,7 @@ export default function ProductDetail() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {product.specifications.map((spec, index) => (
-                      <Badge key={index}>
+                      <Badge key={index} variant="outline">
                         {spec}
                       </Badge>
                     ))}
@@ -294,23 +294,24 @@ export default function ProductDetail() {
                 <div className="space-y-3">
                   <Button
                     onClick={handleAddToCart}
-                    className="w-full gap-2 premium-gradient text-white font-bold premium-shadow-lg hover:premium-shadow-xl transition-all duration-300 hover:scale-105 h-12 text-base"
+                    size="lg"
+                    className="w-full gap-2 premium-gradient text-white font-bold premium-shadow-lg hover:premium-shadow-xl transition-all duration-300 hover:scale-105"
                   >
                     <ShoppingCart className="h-5 w-5" />
                     {isRTL() ? 'إضافة إلى السلة' : 'Add to Cart'}
                   </Button>
                   <div className="grid grid-cols-3 gap-3">
-                    <Button asChild className="gap-2">
+                    <Button asChild variant="outline" size="lg" className="gap-2">
                       <Link href="/order">
                         <Package className="h-4 w-4" />
                         {isRTL() ? 'طلب مباشر' : 'Quick Order'}
                       </Link>
                     </Button>
-                    <Button className="gap-2 outline">
+                    <Button variant="outline" size="lg" className="gap-2">
                       <Heart className="h-4 w-4" />
                       {isRTL() ? 'حفظ' : 'Save'}
                     </Button>
-                    <Button className="gap-2 outline px-6 py-3 text-base">
+                    <Button variant="outline" size="lg" className="gap-2">
                       <Share2 className="h-4 w-4" />
                       {isRTL() ? 'مشاركة' : 'Share'}
                     </Button>
@@ -363,7 +364,7 @@ export default function ProductDetail() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <Button className="gap-2 outline" asChild>
+          <Button variant="outline" asChild className="gap-2">
             <Link href="/products">
               {isRTL() ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
               {isRTL() ? 'العودة للمنتجات' : 'Back to Products'}
