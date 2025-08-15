@@ -39,6 +39,7 @@ import { Separator } from '@/components/ui/separator';
 import { useAdmin, Order } from '@/contexts/AdminContext';
 import { useTranslation } from '@/hooks/use-translation';
 import { useToast } from '@/hooks/use-toast';
+import { DAMLogo } from '@/components/DAMLogo';
 
 export default function AdminOrders() {
   const { isRTL } = useTranslation();
@@ -125,7 +126,7 @@ export default function AdminOrders() {
     deleteOrder(orderId);
     toast({
       title: isRTL() ? 'تم حذف الطلب' : 'Order Deleted',
-      description: isRTL() ? 'تم حذف ال��لب بنجاح' : 'Order has been deleted successfully'
+      description: isRTL() ? 'تم حذف ال���لب بنجاح' : 'Order has been deleted successfully'
     });
   };
 
@@ -241,9 +242,12 @@ export default function AdminOrders() {
         >
           <Card className="glass-card border-accent/20 premium-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Filter className="h-5 w-5" />
-                {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Filter className="h-5 w-5" />
+                  {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+                </div>
+                <DAMLogo size="sm" animated={false} interactive={false} href="" />
               </CardTitle>
             </CardHeader>
             <CardContent>

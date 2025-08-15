@@ -13,6 +13,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getAllServices, getServicesByCategory, serviceCategories, Service } from '@/data/services';
 import Link from 'next/link';
+import { DAMLogo } from '@/components/DAMLogo';
 
 const iconMap = {
   Droplets,
@@ -180,9 +181,12 @@ export default function Services() {
         >
           <Card className="glass-card border-accent/20 premium-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Filter className="h-5 w-5" />
-                {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Filter className="h-5 w-5" />
+                  {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+                </div>
+                <DAMLogo size="sm" animated={false} interactive={false} href="" />
               </CardTitle>
             </CardHeader>
             <CardContent>

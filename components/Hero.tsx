@@ -6,6 +6,7 @@ import { ArrowRight, Shield, Award, Truck, Sparkles, Star, Crown, HardHat, Build
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/use-translation';
 import { useState, useEffect } from 'react';
+import { DAMLogo } from '@/components/DAMLogo';
 
 const constructionImages = [
   // Construction workers and insulation work
@@ -395,10 +396,12 @@ export function Hero() {
                     }}
                     className="mb-4"
                   >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2Fbe317009bb644e719e7cd7d209bca9da%2F8fc69e01b48e40bbb764d940bdc35dba?format=webp&width=800"
-                      alt="DAM - The House of Insulation - Dar Al Muaazil LLC"
-                      className="h-20 w-auto object-contain drop-shadow-2xl"
+                    <DAMLogo
+                      size="xl"
+                      animated={true}
+                      interactive={false}
+                      href=""
+                      className="drop-shadow-2xl"
                     />
                   </motion.div>
 

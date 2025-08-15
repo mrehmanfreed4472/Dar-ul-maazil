@@ -12,6 +12,7 @@ import { LanguageToggle } from '@/components/LanguageToggle';
 import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { DAMLogo } from '@/components/DAMLogo';
 
 export function HeaderEnhanced() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -287,60 +288,12 @@ export function HeaderEnhanced() {
       <div className="container mx-auto px-4 bg-white/80 backdrop-blur-sm">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <motion.div
-            whileHover={{
-              scale: 1.05,
-              filter: "drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))"
-            }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative"
-          >
-            <Link href="/" className="flex items-center gap-2">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  rotate: [0, -3, 3, 0],
-                  y: [-2, 2, -2, 0],
-                }}
-                transition={{
-                  duration: 0.4,
-                  rotate: { duration: 0.6, ease: "easeInOut" },
-                  y: { duration: 0.8, ease: "easeInOut" }
-                }}
-                className="flex items-center relative"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-green-400/20 rounded-xl blur-lg"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.2, 0.4, 0.2],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=800"
-                  alt="DAM - The House of Insulation - Dar Al Muaazil LLC"
-                  className="h-14 w-auto object-contain relative z-10 filter drop-shadow-lg"
-                  animate={{
-                    filter: [
-                      "brightness(1) saturate(1)",
-                      "brightness(1.1) saturate(1.2)",
-                      "brightness(1) saturate(1)"
-                    ]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              </motion.div>
-            </Link>
-          </motion.div>
+          <DAMLogo
+            size="lg"
+            animated={true}
+            interactive={true}
+            href="/"
+          />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-4">

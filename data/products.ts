@@ -17,6 +17,7 @@ export interface Product {
   sizes?: string[];
   image: string;
   featured?: boolean;
+  availability?: 'in_stock' | 'out_of_stock' | 'limited';
 }
 
 export interface ProductCategory {
@@ -124,7 +125,7 @@ export const allProducts: Product[] = [
     name: { en: 'Bitumen Primer', ar: 'برايمر البيتومين' },
     description: {
       en: 'High-performance bitumen primer for excellent surface preparation and adhesion enhancement. Essential for waterproofing applications.',
-      ar: 'برايمر بيتومين عالي الأداء لتحضير ممتاز للسطح وتعزيز الالتصاق. ضروري لتطبيقات مقاومة الماء.'
+      ar: 'برايمر بيتومي�� عالي الأداء لتحضير ممتاز للسطح وتعزيز الالتصاق. ضروري لتطبيقات مقاومة الماء.'
     },
     pricing: { usd: 25, aed: 92 },
     specifications: ['Fast drying', 'Excellent penetration', 'UV resistant'],
@@ -209,7 +210,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dimpled Drainage Membrane', ar: 'غشاء التصريف المنقط' },
     description: {
       en: 'Dimpled HDPE membrane providing protection and drainage in foundation applications.',
-      ar: 'غشاء HDPE منقط يوفر الحماية والصرف في تطبيقات الأساسات.'
+      ar: 'غشاء HDPE منقط يوفر الح��اية والصرف في تطبيقات الأساسات.'
     },
     pricing: { usd: 35, aed: 129 },
     specifications: ['Drainage channels', 'Root resistant', 'Easy installation'],
@@ -237,7 +238,7 @@ export const allProducts: Product[] = [
     name: { en: 'XPS Polystyrene Board', ar: 'لوح البوليستيرين XPS' },
     description: {
       en: 'Extruded polystyrene insulation board with excellent thermal properties and moisture resistance.',
-      ar: 'لوح عزل البوليستيرين المبثوق بخصائص حرارية ممتازة ومقاومة للرطوبة.'
+      ar: 'لوح عزل البوليستي��ين المبثوق بخصائص حرارية ممتازة ومقاومة للرطوبة.'
     },
     pricing: { usd: 25, aed: 92 },
     specifications: ['Thermal insulation', 'Moisture resistant', 'Compressive strength'],

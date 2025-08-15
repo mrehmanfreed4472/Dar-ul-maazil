@@ -353,7 +353,7 @@ export default function Order() {
 
     message += `*📄 ${isRTL() ? 'ملف PDF مفصل' : 'DETAILED PDF ATTACHMENT'}:*\n`;
     message += `${isRTL()
-      ? '📎 ملف PDF شامل لتفاصيل الطلب تم تحميله تلقائ��اً على جهازك\n🔗 يرجى إرفاق الملف المحمل مع هذه الرسالة'
+      ? '📎 ملف PDF شامل لتفاصيل الطلب تم تحميله تلقائ��اً على جهازك\n🔗 يرج�� إرفاق الملف المحمل مع هذه الرسالة'
       : '📎 Complete PDF order summary automatically downloaded to your device\n🔗 Please attach the downloaded file to this message'}\n\n`;
 
     message += `✅ ${isRTL() ? 'شكراً لاختياركم دار المعازل!' : 'Thank you for choosing Dar Al Muaazil!'}\n`;
@@ -392,9 +392,9 @@ export default function Order() {
   const sendEmailOrder = async (pdfBase64: string) => {
     try {
       // EmailJS configuration
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
       const templateParams = {
         to_email: 'orders@damgcc.com', // Company email
@@ -742,7 +742,7 @@ export default function Order() {
                           {isRTL() ? 'البريد الإلكتروني فقط' : 'Email Only'}
                         </SelectItem>
                         <SelectItem value="both">
-                          {isRTL() ? 'كلاهما' : 'Both'}
+                          {isRTL() ? 'كلا��ما' : 'Both'}
                         </SelectItem>
                       </SelectContent>
                     </Select>

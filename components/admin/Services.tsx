@@ -41,6 +41,7 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useToast } from '@/hooks/use-toast';
 import { Service, serviceCategories } from '@/data/services';
 import { ImageUpload } from '@/components/ui/image-upload';
+import { DAMLogo } from '@/components/DAMLogo';
 
 interface ServiceFormData {
   name: { en: string; ar: string };
@@ -663,9 +664,12 @@ export default function AdminServices() {
         >
           <Card className="glass-card border-accent/20 premium-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Filter className="h-5 w-5" />
-                {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Filter className="h-5 w-5" />
+                  {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+                </div>
+                <DAMLogo size="sm" animated={false} interactive={false} href="" />
               </CardTitle>
             </CardHeader>
             <CardContent>

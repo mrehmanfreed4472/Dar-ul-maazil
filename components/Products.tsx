@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useTranslation } from '@/hooks/use-translation';
 import { getAllProducts, getProductsByCategory, productCategories } from '@/data/products';
+import { DAMLogo } from '@/components/DAMLogo';
 
 export default function Products() {
   const { t, language, isRTL } = useTranslation();
@@ -97,6 +98,15 @@ export default function Products() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="glass-effect rounded-2xl border-border/30 p-8 mb-8 premium-shadow"
         >
+          {/* Search Header with Logo */}
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <Filter className="h-5 w-5" />
+              {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+            </h3>
+            <DAMLogo size="sm" animated={false} interactive={false} href="" />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="relative">
@@ -171,7 +181,7 @@ export default function Products() {
           {/* Results count */}
           <div className="mt-4 text-sm text-muted-foreground">
             {isRTL() 
-              ? `عرض ${filteredProducts.length} من ${allProducts.length} منتج`
+              ? `��رض ${filteredProducts.length} من ${allProducts.length} منتج`
               : `Showing ${filteredProducts.length} of ${allProducts.length} products`
             }
           </div>
