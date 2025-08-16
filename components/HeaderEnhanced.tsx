@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail, ShoppingCart, User, Crown, Sparkles, Star, LogOut, Settings, FileText } from 'lucide-react';
+import { Menu, X, Phone, Mail, ShoppingCart, User, Crown, Home, Package, Star, LogOut, Settings, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -23,11 +23,11 @@ export function HeaderEnhanced() {
   const cartCount = getCartCount();
 
   const navigation = [
-    { href: '/', label: t('nav.home'), icon: Sparkles },
-    { href: '/products', label: t('nav.products'), icon: Star },
-    { href: '/services', label: isRTL() ? 'الخدمات' : 'Services', icon: Crown },
+    { href: '/', label: t('nav.home'), icon: Home },
+    { href: '/products', label: t('nav.products'), icon: Package },
+    { href: '/services', label: isRTL() ? 'الخدمات' : 'Services', icon: Star },
     { href: '/about', label: t('nav.about'), icon: Star },
-    { href: '/contact', label: t('nav.contact'), icon: Star },
+    { href: '/contact', label: t('nav.contact'), icon: Mail },
   ];
 
   const isActivePage = (href: string) => {
@@ -39,254 +39,42 @@ export function HeaderEnhanced() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`sticky top-0 z-50 shadow-xl backdrop-blur-xl bg-white/95 border-b border-gray-200/30 relative overflow-hidden ${isRTL() ? 'rtl' : 'ltr'}`}
+      className={`sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200 ${isRTL() ? 'rtl' : 'ltr'}`}
     >
-      {/* Enhanced floating particles background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full ${
-              i % 4 === 0
-                ? "w-1 h-1 bg-green-300/40"
-                : i % 4 === 1
-                ? "w-2 h-2 bg-emerald-300/30"
-                : i % 4 === 2
-                ? "w-1.5 h-1.5 bg-green-200/25"
-                : "w-0.5 h-0.5 bg-green-400/50"
-            }`}
-            animate={{
-              x: [0, 180 + (i % 4) * 40, 0],
-              y: [0, -100 + (i % 3) * 30, 0],
-              opacity: [0.1, 0.9, 0.1],
-              scale: [0.5, 2.2, 0.5],
-              rotate: [0, 720, 0],
-            }}
-            transition={{
-              duration: 5 + i * 0.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.2,
-            }}
-            style={{
-              left: `${3 + i * 6.5}%`,
-              top: `${5 + (i % 5) * 18}%`,
-            }}
-          />
-        ))}
-
-        {/* Enhanced wave effects */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/8 to-transparent"
-          animate={{
-            x: ["-120%", "120%"],
-            opacity: [0, 0.7, 0],
-            scaleY: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Secondary wave effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-l from-transparent via-emerald-400/6 to-transparent"
-          animate={{
-            x: ["120%", "-120%"],
-            opacity: [0, 0.4, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-
-        {/* Sparkle effects */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`sparkle-${i}`}
-            className="absolute w-1 h-1 bg-white/60 rounded-full"
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1.5, 0],
-              rotate: [0, 180, 360],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              delay: i * 0.3,
-              ease: "easeOut",
-            }}
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${15 + (i % 3) * 25}%`,
-            }}
-          />
-        ))}
-      </div>
-      {/* Enhanced Top bar with color changing effects */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          background: [
-            "linear-gradient(90deg, #059669, #10b981, #34d399, #10b981, #059669)",
-            "linear-gradient(90deg, #7c3aed, #a855f7, #c084fc, #a855f7, #7c3aed)",
-            "linear-gradient(90deg, #dc2626, #ef4444, #f87171, #ef4444, #dc2626)",
-            "linear-gradient(90deg, #ea580c, #f97316, #fb923c, #f97316, #ea580c)",
-            "linear-gradient(90deg, #059669, #10b981, #34d399, #10b981, #059669)"
-          ]
-        }}
-        transition={{
-          opacity: { duration: 0.8, delay: 0.2 },
-          background: {
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          }
-        }}
-        className="border-b border-white/20 relative overflow-hidden"
-      >
-        {/* Animated background overlay */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-            ]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Floating light effects */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/30 rounded-full"
-            animate={{
-              x: [0, 100 + i * 20, 0],
-              y: [0, -10 + i * 2, 0],
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 3 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.4,
-            }}
-            style={{
-              left: `${10 + i * 20}%`,
-              top: `50%`,
-            }}
-          />
-        ))}
-
-        <div className="container mx-auto px-4 py-3 relative z-10">
+      {/* Top bar with contact info */}
+      <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white">
+        <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-6 text-white">
+            <div className="flex items-center gap-6">
               <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  y: -2,
-                  textShadow: "0 0 8px rgba(255,255,255,0.8)"
-                }}
-                transition={{ duration: 0.2 }}
+                whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-2 cursor-pointer group"
               >
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                >
-                  <Phone className="h-4 w-4" />
-                </motion.div>
-                <motion.span
-                  className="font-medium group-hover:text-yellow-200 transition-colors"
-                  animate={{
-                    textShadow: [
-                      "0 0 0px rgba(255,255,255,0)",
-                      "0 0 5px rgba(255,255,255,0.5)",
-                      "0 0 0px rgba(255,255,255,0)"
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
+                <Phone className="h-4 w-4 text-blue-400" />
+                <span className="font-medium group-hover:text-blue-300 transition-colors">
                   +971502342218
-                </motion.span>
+                </span>
               </motion.div>
 
               <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  y: -2,
-                  textShadow: "0 0 8px rgba(255,255,255,0.8)"
-                }}
-                transition={{ duration: 0.2 }}
+                whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-2 cursor-pointer group"
               >
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotateY: [0, 180, 360]
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Mail className="h-4 w-4" />
-                </motion.div>
-                <motion.span
-                  className="font-medium group-hover:text-yellow-200 transition-colors"
-                  animate={{
-                    textShadow: [
-                      "0 0 0px rgba(255,255,255,0)",
-                      "0 0 5px rgba(255,255,255,0.5)",
-                      "0 0 0px rgba(255,255,255,0)"
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                >
+                <Mail className="h-4 w-4 text-blue-400" />
+                <span className="font-medium group-hover:text-blue-300 transition-colors">
                   info@damgcc.com
-                </motion.span>
+                </span>
               </motion.div>
             </div>
 
-            {/* Enhanced Language Toggle */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative"
-            >
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    "0 0 0px rgba(255,255,255,0)",
-                    "0 0 20px rgba(255,255,255,0.3)",
-                    "0 0 0px rgba(255,255,255,0)"
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="rounded-full bg-white/20 border border-white/30 backdrop-blur-sm"
-              >
-                <LanguageToggle />
-              </motion.div>
-            </motion.div>
+            <LanguageToggle />
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main navigation */}
-      <div className="container mx-auto px-4 bg-white/80 backdrop-blur-sm">
-        <div className="flex items-center justify-between h-14">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <DAMLogo
             size="lg"
@@ -296,7 +84,7 @@ export function HeaderEnhanced() {
           />
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-1">
             {navigation.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -304,102 +92,20 @@ export function HeaderEnhanced() {
                   key={item.href}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                  whileHover={{
-                    scale: 1.08,
-                    y: -4,
-                    rotateX: 5,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.92, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 + (index * 0.1) }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 relative overflow-hidden group border ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
                       isActivePage(item.href)
-                        ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30 border-green-500 scale-105'
-                        : 'text-gray-800 bg-white/90 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 hover:shadow-lg hover:shadow-green-500/20 border-gray-200 hover:border-green-500 hover:scale-105'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
                     }`}
                   >
-                    <motion.div
-                      animate={{
-                        rotate: isActivePage(item.href) ? [0, 8, -8, 0] : 0,
-                        scale: isActivePage(item.href) ? [1, 1.1, 1] : 1,
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: isActivePage(item.href) ? Infinity : 0,
-                        ease: "easeInOut"
-                      }}
-                      whileHover={{
-                        rotate: 15,
-                        scale: 1.2,
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <Icon className="h-4 w-4 transition-all duration-300 drop-shadow-lg" />
-                    </motion.div>
-                    <motion.span
-                      whileHover={{
-                        x: 3,
-                        textShadow: "0 0 8px rgba(255,255,255,0.8)",
-                        transition: { duration: 0.2 }
-                      }}
-                      animate={{
-                        textShadow: isActivePage(item.href)
-                          ? ["0 0 0px rgba(255,255,255,0)", "0 0 10px rgba(255,255,255,0.6)", "0 0 0px rgba(255,255,255,0)"]
-                          : "0 0 0px rgba(255,255,255,0)"
-                      }}
-                      transition={{
-                        textShadow: {
-                          duration: 2,
-                          repeat: isActivePage(item.href) ? Infinity : 0,
-                          ease: "easeInOut"
-                        }
-                      }}
-                      className="relative z-10 font-bold"
-                    >
-                      {item.label}
-                    </motion.span>
-
-                    {/* Enhanced background effects */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 opacity-0 group-hover:opacity-100"
-                      animate={{
-                        x: ["-100%", "100%"],
-                        opacity: [0, 0.7, 0]
-                      }}
-                      transition={{
-                        duration: 1.2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        repeatDelay: 2
-                      }}
-                    />
-
-                    {/* Active state glow */}
-                    {isActivePage(item.href) && (
-                      <motion.div
-                        className="absolute inset-0 bg-white/10 rounded-xl"
-                        animate={{
-                          opacity: [0.3, 0.6, 0.3],
-                          scale: [1, 1.02, 1]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    )}
-
-                    {/* Border glow effect */}
-                    <motion.div
-                      className="absolute inset-0 rounded-xl border-2 border-white/30 opacity-0 group-hover:opacity-100"
-                      initial={{ scale: 0.95 }}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <Icon className="h-4 w-4" />
+                    <span>{item.label}</span>
                   </Link>
                 </motion.div>
               );
@@ -408,7 +114,6 @@ export function HeaderEnhanced() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
-
             {/* User Actions */}
             {user ? (
               <DropdownMenu>
@@ -417,15 +122,15 @@ export function HeaderEnhanced() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="glass-card hover:bg-primary/10 border-primary/30 px-3 py-1.5 text-sm"
+                      className="border-gray-300 hover:border-blue-400 hover:bg-blue-50"
                     >
-                      <User className="h-3 w-3 mr-1.5" />
+                      <User className="h-4 w-4 mr-2" />
                       {user.name}
-                      {isAdmin() && <Crown className="h-3 w-3 ml-1.5 text-accent" />}
+                      {isAdmin() && <Crown className="h-4 w-4 ml-2 text-yellow-500" />}
                     </Button>
                   </motion.div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="glass-card border-primary/30">
+                <DropdownMenuContent align="end" className="border-gray-200">
                   {isAdmin() && (
                     <>
                       <DropdownMenuItem>
@@ -447,115 +152,46 @@ export function HeaderEnhanced() {
               <motion.div whileHover={{ scale: 1.05 }}>
                 <Link href="/login">
                   <Button
-                    variant="default"
+                    variant="outline"
                     size="sm"
-                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-4 py-2 text-sm shadow-lg shadow-blue-500/30 border border-blue-400/50 transition-all duration-300 hover:shadow-xl hover:scale-105"
+                    className="border-blue-300 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
                   >
-                    <User className="h-3 w-3 mr-1.5" />
+                    <User className="h-4 w-4 mr-2" />
                     {isRTL() ? 'تسجيل الدخول' : 'Login'}
                   </Button>
                 </Link>
               </motion.div>
             )}
 
-            {/* Primary Action Buttons */}
+            {/* Action Buttons */}
             <div className="flex items-center gap-2">
-              {/* Go to Cart Button */}
-              <motion.div
-                whileHover={{
-                  scale: 1.08,
-                  y: -2,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.92 }}
-              >
+              {/* Cart Button */}
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/cart">
-                  <Button className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-4 py-2 text-sm shadow-lg shadow-green-900/30 border border-green-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-green-900/40 relative overflow-hidden group">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"
-                      animate={{
-                        x: ["-100%", "100%"],
-                        opacity: [0, 1, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        repeatDelay: 1
-                      }}
-                    />
-                    <motion.div
-                      animate={{
-                        rotate: cartCount > 0 ? [0, 10, -10, 0] : 0,
-                      }}
-                      transition={{
-                        duration: 0.5,
-                        repeat: cartCount > 0 ? Infinity : 0,
-                        repeatDelay: 2
-                      }}
-                    >
-                      <ShoppingCart className="h-4 w-4 mr-1.5 transition-transform group-hover:scale-110" />
-                    </motion.div>
-                    {isRTL() ? 'عرض السلة' : 'View Cart'}
+                  <Button 
+                    size="sm"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
+                  >
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    {isRTL() ? 'السلة' : 'Cart'}
                     {cartCount > 0 && (
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 5, -5, 0],
-                        }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <Badge className="ml-2 bg-yellow-400 text-black">
-                          {cartCount}
-                        </Badge>
-                      </motion.div>
+                      <Badge className="ml-2 bg-orange-500 text-white text-xs">
+                        {cartCount}
+                      </Badge>
                     )}
                   </Button>
                 </Link>
               </motion.div>
 
-              {/* Quick Order (Secondary) */}
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  y: -1,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
+              {/* Order Button */}
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/order">
                   <Button
-                    variant="default"
-                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold transition-all duration-300 relative overflow-hidden group px-4 py-2 text-sm shadow-lg shadow-orange-500/30 border border-orange-400/50 hover:shadow-xl hover:scale-105"
+                    size="sm"
+                    className="bg-orange-600 hover:bg-orange-700 text-white shadow-md"
                   >
-                    <motion.div
-                      animate={{
-                        y: [0, -1, 1, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <FileText className="h-4 w-4 mr-1.5 transition-transform group-hover:rotate-6" />
-                    </motion.div>
-                    {isRTL() ? 'طلب مخصص' : 'Custom Order'}
-                    <motion.div
-                      className="absolute inset-0 border border-green-400/50 rounded opacity-0 group-hover:opacity-100"
-                      animate={{
-                        scale: [1, 1.05, 1],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
+                    <FileText className="h-4 w-4 mr-2" />
+                    {isRTL() ? 'طلب' : 'Order'}
                   </Button>
                 </Link>
               </motion.div>
@@ -563,14 +199,11 @@ export function HeaderEnhanced() {
           </div>
 
           {/* Mobile menu button */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Button
               variant="outline"
               size="sm"
-              className="md:hidden border-2 border-gray-300 hover:border-green-500 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 transition-all duration-300"
+              className="md:hidden border-gray-300 hover:border-blue-400"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <motion.div
@@ -591,9 +224,9 @@ export function HeaderEnhanced() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden border-t border-gray-200 py-6 bg-gradient-to-b from-white to-gray-50"
+              className="md:hidden border-t border-gray-200 py-4 bg-gray-50"
             >
-              <nav className="flex flex-col gap-4 px-4">
+              <nav className="flex flex-col gap-2">
                 {navigation.map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -605,36 +238,26 @@ export function HeaderEnhanced() {
                     >
                       <Link
                         href={item.href}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 border ${
+                        className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg font-medium text-sm transition-all duration-200 ${
                           isActivePage(item.href)
-                            ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30 border-green-500'
-                            : 'text-gray-800 bg-gray-100/80 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-600 hover:shadow-lg hover:shadow-green-500/20 border-gray-300 hover:border-green-500'
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
                         }`}
                         onClick={() => setIsMenuOpen(false)}
                       >
-                        <motion.div
-                          whileHover={{ rotate: 15, scale: 1.1 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Icon className="h-4 w-4" />
-                        </motion.div>
-                        <motion.span
-                          whileHover={{ x: 2 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          {item.label}
-                        </motion.span>
+                        <Icon className="h-4 w-4" />
+                        <span>{item.label}</span>
                       </Link>
                     </motion.div>
                   );
                 })}
                 
-                <div className="flex gap-3 px-4 pt-2">
+                <div className="px-2 pt-4 space-y-2">
                   {user ? (
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full glass-card"
+                      className="w-full"
                       onClick={() => {
                         logout();
                         setIsMenuOpen(false);
@@ -646,24 +269,22 @@ export function HeaderEnhanced() {
                   ) : (
                     <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                       <Button
-                        variant="default"
+                        variant="outline"
                         size="sm"
-                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-blue-500/30"
+                        className="w-full border-blue-300 text-blue-600 hover:bg-blue-600 hover:text-white"
                       >
                         <User className="h-4 w-4 mr-2" />
                         {isRTL() ? 'دخول' : 'Login'}
                       </Button>
                     </Link>
                   )}
-                </div>
-                
-                <div className="px-4 space-y-3">
+                  
                   <Link href="/cart" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold shadow-lg shadow-green-900/30 border border-green-400/30 transition-all duration-300 hover:scale-105">
+                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      {isRTL() ? 'عرض السلة' : 'View Cart'}
+                      {isRTL() ? 'السلة' : 'Cart'}
                       {cartCount > 0 && (
-                        <Badge className="ml-2 bg-yellow-400 text-black animate-pulse">
+                        <Badge className="ml-2 bg-orange-500 text-white">
                           {cartCount}
                         </Badge>
                       )}
@@ -671,11 +292,8 @@ export function HeaderEnhanced() {
                   </Link>
 
                   <Link href="/order" onClick={() => setIsMenuOpen(false)}>
-                    <Button
-                      variant="default"
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
-                    >
-                      <FileText className="h-5 w-5 mr-2" />
+                    <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
+                      <FileText className="h-4 w-4 mr-2" />
                       {isRTL() ? 'طلب مخصص' : 'Custom Order'}
                     </Button>
                   </Link>
