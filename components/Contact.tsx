@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from '@/hooks/use-translation';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const { t, isRTL } = useTranslation();
@@ -61,15 +62,38 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Here you would implement email sending logic
-      // For now, we'll just show a success message
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      // Initialize EmailJS (only needs to be done once)
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: contactForm.name,
+        from_email: contactForm.email,
+        phone: contactForm.phone,
+        subject: contactForm.subject,
+        message: contactForm.message,
+        to_name: 'DAM Team',
+        to_email: 'info@damgcc.com',
+        reply_to: contactForm.email,
+      };
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams
+      );
+
+      console.log('EmailJS response:', response);
 
       toast({
-        title: isRTL() ? 'تم إرسال الرسالة' : 'Message Sent',
-        description: isRTL() ? 'شكراً لتواصلك معنا. سنرد عليك قريباً' : 'Thank you for contacting us. We will get back to you soon.'
+        title: isRTL() ? 'تم إرسال الرسالة' : 'Message Sent Successfully',
+        description: isRTL() 
+          ? 'شكراً لتواصلك معنا. سنرد عليك قريباً عبر البريد الإلكتروني'
+          : 'Thank you for contacting us. We will get back to you soon via email.'
       });
 
+      // Reset form
       setContactForm({
         name: '',
         email: '',
@@ -77,10 +101,15 @@ export default function Contact() {
         subject: '',
         message: ''
       });
+
     } catch (error) {
+      console.error('EmailJS error:', error);
+      
       toast({
-        title: isRTL() ? 'خطأ في الإرسال' : 'Sending Error',
-        description: isRTL() ? 'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى' : 'Failed to send message. Please try again.',
+        title: isRTL() ? 'خطأ في الإرسال' : 'Failed to Send Message',
+        description: isRTL() 
+          ? 'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب'
+          : 'Failed to send message. Please try again or contact us via WhatsApp.',
         variant: 'destructive'
       });
     } finally {
@@ -105,7 +134,7 @@ export default function Contact() {
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {isRTL() 
-              ? 'ت��اصل معنا للحصول على استشارة مجانية أو لطلب منتجاتك المطلوبة'
+              ? 'تواصل معنا للحصول على استشارة مجانية أو لطلب منتجاتك المطلوبة'
               : 'Get in touch with us for a free consultation or to order your required products'
             }
           </p>

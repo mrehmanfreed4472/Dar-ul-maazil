@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { Hero } from '@/components/Hero'
 import { StatsSection } from '@/components/StatsSection'
 import { FeaturedCategories } from '@/components/FeaturedCategories'

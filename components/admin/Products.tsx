@@ -42,7 +42,7 @@ import { ImageUpload } from '@/components/ui/image-upload';
 import { DAMLogo } from '@/components/DAMLogo';
 import { PersistenceNotification } from './PersistenceNotification';
 
-interface ExtendedProduct extends Product {
+interface ExtendedProduct extends Omit<Product, 'availability'> {
   availability?: 'in_stock' | 'low_stock' | 'out_of_stock';
   stockQuantity?: number;
   minStockLevel?: number;
