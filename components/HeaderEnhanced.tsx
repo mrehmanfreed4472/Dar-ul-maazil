@@ -42,7 +42,7 @@ export function HeaderEnhanced() {
       className={`sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200 ${isRTL() ? 'rtl' : 'ltr'}`}
     >
       {/* Top bar with contact info */}
-      <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white">
+      <div className="navbar-gradient text-white">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-6">
@@ -50,8 +50,8 @@ export function HeaderEnhanced() {
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-2 cursor-pointer group"
               >
-                <Phone className="h-4 w-4 text-blue-400" />
-                <span className="font-medium group-hover:text-blue-300 transition-colors">
+                <Phone className="h-4 w-4 text-orange-200 animate-pulse" />
+                <span className="font-medium group-hover:text-orange-100 transition-colors">
                   +971502342218
                 </span>
               </motion.div>
@@ -60,8 +60,8 @@ export function HeaderEnhanced() {
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-2 cursor-pointer group"
               >
-                <Mail className="h-4 w-4 text-blue-400" />
-                <span className="font-medium group-hover:text-blue-300 transition-colors">
+                <Mail className="h-4 w-4 text-green-200 animate-pulse" />
+                <span className="font-medium group-hover:text-green-100 transition-colors">
                   info@damgcc.com
                 </span>
               </motion.div>
@@ -100,8 +100,8 @@ export function HeaderEnhanced() {
                     href={item.href}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
                       isActivePage(item.href)
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                        ? 'gradient-orange-green text-white shadow-md neon-orange-green'
+                        : 'text-gray-700 hover:text-orange-400 hover:bg-orange-50'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -136,7 +136,7 @@ export function HeaderEnhanced() {
                       <DropdownMenuItem>
                         <Link href="/admin" className="flex items-center">
                           <Settings className="h-4 w-4 mr-2" />
-                          {isRTL() ? 'لوحة الإدارة' : 'Admin Panel'}
+                          {isRTL() ? '��وحة الإدارة' : 'Admin Panel'}
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -154,7 +154,7 @@ export function HeaderEnhanced() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-blue-300 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
+                    className="button-orange border-orange-300 text-white hover:text-white transition-colors shadow-md"
                   >
                     <User className="h-4 w-4 mr-2" />
                     {isRTL() ? 'تسجيل الدخول' : 'Login'}
@@ -170,7 +170,7 @@ export function HeaderEnhanced() {
                 <Link href="/cart">
                   <Button 
                     size="sm"
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
+                    className="button-green text-white shadow-md animate-green-glow neon-green"
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     {isRTL() ? 'السلة' : 'Cart'}
@@ -188,7 +188,7 @@ export function HeaderEnhanced() {
                 <Link href="/order">
                   <Button
                     size="sm"
-                    className="bg-orange-600 hover:bg-orange-700 text-white shadow-md"
+                    className="button-orange hover:button-green text-white shadow-md animate-orange-green-glow"
                   >
                     <FileText className="h-4 w-4 mr-2" />
                     {isRTL() ? 'طلب' : 'Order'}
@@ -203,7 +203,7 @@ export function HeaderEnhanced() {
             <Button
               variant="outline"
               size="sm"
-              className="md:hidden border-gray-300 hover:border-blue-400"
+              className="md:hidden border-gray-300 hover:border-orange-400 hover:bg-orange-50"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <motion.div
@@ -240,8 +240,8 @@ export function HeaderEnhanced() {
                         href={item.href}
                         className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg font-medium text-sm transition-all duration-200 ${
                           isActivePage(item.href)
-                            ? 'bg-blue-600 text-white shadow-md'
-                            : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                            ? 'gradient-orange-green text-white shadow-md neon-orange-green'
+                            : 'text-gray-700 hover:text-green-400 hover:bg-green-50'
                         }`}
                         onClick={() => setIsMenuOpen(false)}
                       >
@@ -271,7 +271,7 @@ export function HeaderEnhanced() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-blue-300 text-blue-600 hover:bg-blue-600 hover:text-white"
+                        className="w-full button-orange border-orange-300 text-white hover:text-white shadow-md"
                       >
                         <User className="h-4 w-4 mr-2" />
                         {isRTL() ? 'دخول' : 'Login'}
@@ -280,7 +280,7 @@ export function HeaderEnhanced() {
                   )}
                   
                   <Link href="/cart" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                    <Button className="w-full button-green text-white animate-green-glow neon-green">
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       {isRTL() ? 'السلة' : 'Cart'}
                       {cartCount > 0 && (
@@ -292,7 +292,7 @@ export function HeaderEnhanced() {
                   </Link>
 
                   <Link href="/order" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
+                    <Button className="w-full button-orange hover:button-green text-white animate-orange-green-glow">
                       <FileText className="h-4 w-4 mr-2" />
                       {isRTL() ? 'طلب مخصص' : 'Custom Order'}
                     </Button>
