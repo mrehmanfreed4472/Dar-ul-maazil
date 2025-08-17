@@ -16,17 +16,21 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getProductById } from '@/data/products';
+import { useAdmin } from '@/contexts/AdminContext';
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const { t, language, getCurrency, isRTL } = useTranslation();
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const { products } = useAdmin();
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [addLaborServices, setAddLaborServices] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  
-  const product = getProductById(id || '');
+
+  // Use admin products if available, fallback to static data
+  const allProducts = products.length > 0 ? products : [];
+  const product = allProducts.find(p => p.id === id) || getProductById(id || '');
   const currency = getCurrency();
 
   if (!product) {

@@ -9,32 +9,35 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useTranslation } from '@/hooks/use-translation';
 import { getAllProducts, getProductsByCategory, productCategories } from '@/data/products';
+import { useAdmin } from '@/contexts/AdminContext';
 import { DAMLogo } from '@/components/DAMLogo';
 
 export default function Products() {
   const { t, language, isRTL } = useTranslation();
+  const { products } = useAdmin(); // Use admin products data
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'name' | 'price-low' | 'price-high'>('name');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
-  const allProducts = getAllProducts();
+  // Use admin products if available, fallback to static data
+  const allProducts = products.length > 0 ? products : getAllProducts();
 
   const filteredProducts = useMemo(() => {
-    let products = selectedCategory === 'all' 
-      ? allProducts 
-      : getProductsByCategory(selectedCategory);
+    let filteredProducts = selectedCategory === 'all'
+      ? allProducts
+      : allProducts.filter(product => product.category === selectedCategory);
 
     // Search filter
     if (searchQuery) {
-      products = products.filter(product =>
+      filteredProducts = filteredProducts.filter(product =>
         product.name[language].toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.description[language].toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
     // Sort products
-    products.sort((a, b) => {
+    filteredProducts.sort((a, b) => {
       switch (sortBy) {
         case 'price-low':
           return a.pricing.usd - b.pricing.usd;
@@ -46,7 +49,7 @@ export default function Products() {
       }
     });
 
-    return products;
+    return filteredProducts;
   }, [allProducts, selectedCategory, searchQuery, sortBy, language]);
 
   const containerVariants = {

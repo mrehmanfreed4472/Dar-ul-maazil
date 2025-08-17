@@ -14,6 +14,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   isAdmin: () => boolean;
+  hasAdminAccess: () => boolean;
   isLoading: boolean;
 }
 
@@ -80,7 +81,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const isAdmin = () => {
-    return user?.role === 'admin';
+    return user?.role === 'admin' && user?.email === 'admin@damgcc.com';
+  };
+
+  const hasAdminAccess = () => {
+    const isValidAdmin = isAdmin();
+    const hasValidSession = user && Date.now() - new Date(user.lastLogin || 0).getTime() < 24 * 60 * 60 * 1000; // 24 hours
+    return isValidAdmin && hasValidSession;
   };
 
   return (
@@ -89,6 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       login,
       logout,
       isAdmin,
+      hasAdminAccess,
       isLoading
     }}>
       {children}

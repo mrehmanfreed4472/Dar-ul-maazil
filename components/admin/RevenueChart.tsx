@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { useAdmin } from '@/contexts/AdminContext';
 import { useTranslation } from '@/hooks/use-translation';
+import { ChartWrapper } from './ChartWrapper';
 
 export default function RevenueChart() {
   const { stats, orders } = useAdmin();
@@ -68,56 +69,64 @@ export default function RevenueChart() {
   };
 
   return (
-    <div className="h-80">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
-          data={revenueData}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <defs>
-            <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.5} />
-          <XAxis 
-            dataKey="month" 
-            stroke="#64748b"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-          />
-          <YAxis 
-            stroke="#64748b"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-            tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Area
-            type="monotone"
-            dataKey="revenue"
-            stroke="#3b82f6"
-            strokeWidth={3}
-            fill="url(#revenueGradient)"
-            dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-            activeDot={{ 
-              r: 6, 
-              stroke: '#3b82f6', 
-              strokeWidth: 2, 
-              fill: 'white',
-              filter: 'drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))'
+    <ChartWrapper>
+      <div className="h-80">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart
+            data={revenueData}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 20,
+              bottom: 5,
             }}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
+          >
+            <defs>
+              <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.5} />
+            <XAxis
+              dataKey="month"
+              stroke="#64748b"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+              tick={{ fontSize: 12 }}
+              interval="preserveStartEnd"
+              orientation="bottom"
+            />
+            <YAxis
+              stroke="#64748b"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+              tick={{ fontSize: 12 }}
+              orientation="left"
+              width={80}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Area
+              type="monotone"
+              dataKey="revenue"
+              stroke="#3b82f6"
+              strokeWidth={3}
+              fill="url(#revenueGradient)"
+              dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
+              activeDot={{
+                r: 6,
+                stroke: '#3b82f6',
+                strokeWidth: 2,
+                fill: 'white',
+                filter: 'drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))'
+              }}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+    </ChartWrapper>
   );
 }

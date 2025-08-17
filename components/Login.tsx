@@ -172,8 +172,8 @@ export default function Login() {
                   </Button>
                 </motion.div>
               </form>
-                 {/* Demo Credentials */}
-            {/* 
+
+              {/* Demo Credentials 
               <div className="mt-6 p-4 bg-muted/50 rounded-lg">
                 <h4 className="font-semibold mb-2 text-sm">
                   {isRTL() ? 'بيانات تجريبية:' : 'Demo Credentials:'}

@@ -15,18 +15,22 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getServiceById } from '@/data/services';
+import { useAdmin } from '@/contexts/AdminContext';
 
 export default function ServiceDetail() {
   const { id } = useParams<{ id: string }>();
   const { language, isRTL } = useTranslation();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  
+  const { services } = useAdmin();
+
   const [selectedUrgency, setSelectedUrgency] = useState<'normal' | 'urgent' | 'emergency'>('normal');
   const [scheduledDate, setScheduledDate] = useState('');
   const [specialRequirements, setSpecialRequirements] = useState('');
 
-  const service = getServiceById(id || '');
+  // Use admin services if available, fallback to static data
+  const allServices = services.length > 0 ? services : [];
+  const service = allServices.find(s => s.id === id) || getServiceById(id || '');
 
   if (!service) {
     return (

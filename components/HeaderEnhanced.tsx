@@ -101,7 +101,7 @@ export function HeaderEnhanced() {
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
                       isActivePage(item.href)
                         ? 'gradient-orange-green text-white shadow-md neon-orange-green'
-                        : 'text-gray-700 hover:text-orange-400 hover:bg-orange-50'
+                        : 'text-gray-700 hover:text-green-600 hover:bg-green-50'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -154,7 +154,7 @@ export function HeaderEnhanced() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="button-orange border-orange-300 text-white hover:text-white transition-colors shadow-md"
+                    className="button-green border-green-300 text-white hover:text-white transition-colors shadow-md"
                   >
                     <User className="h-4 w-4 mr-2" />
                     {isRTL() ? 'تسجيل الدخول' : 'Login'}
@@ -188,7 +188,7 @@ export function HeaderEnhanced() {
                 <Link href="/order">
                   <Button
                     size="sm"
-                    className="button-orange hover:button-green text-white shadow-md animate-orange-green-glow"
+                    className="button-green hover:gradient-green text-white shadow-md animate-green-glow"
                   >
                     <FileText className="h-4 w-4 mr-2" />
                     {isRTL() ? 'طلب' : 'Order'}
@@ -203,7 +203,7 @@ export function HeaderEnhanced() {
             <Button
               variant="outline"
               size="sm"
-              className="md:hidden border-gray-300 hover:border-orange-400 hover:bg-orange-50"
+              className="md:hidden border-gray-300 hover:border-green-400 hover:bg-green-50"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <motion.div
@@ -271,7 +271,7 @@ export function HeaderEnhanced() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full button-orange border-orange-300 text-white hover:text-white shadow-md"
+                        className="w-full button-green border-green-300 text-white hover:text-white shadow-md"
                       >
                         <User className="h-4 w-4 mr-2" />
                         {isRTL() ? 'دخول' : 'Login'}
@@ -292,7 +292,7 @@ export function HeaderEnhanced() {
                   </Link>
 
                   <Link href="/order" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full button-orange hover:button-green text-white animate-orange-green-glow">
+                    <Button className="w-full button-green hover:gradient-green text-white animate-green-glow">
                       <FileText className="h-4 w-4 mr-2" />
                       {isRTL() ? 'طلب مخصص' : 'Custom Order'}
                     </Button>

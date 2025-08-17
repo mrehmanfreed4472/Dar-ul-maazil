@@ -12,6 +12,7 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getAllServices, getServicesByCategory, serviceCategories, Service } from '@/data/services';
+import { useAdmin } from '@/contexts/AdminContext';
 import Link from 'next/link';
 import { DAMLogo } from '@/components/DAMLogo';
 
@@ -26,11 +27,13 @@ export default function Services() {
   const { language, isRTL } = useTranslation();
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const { services } = useAdmin(); // Use admin services data
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('featured');
 
-  const allServices = getAllServices();
+  // Use admin services if available, fallback to static data
+  const allServices = services.length > 0 ? services : getAllServices();
 
   const filteredServices = allServices.filter(service => {
     const matchesSearch = searchQuery === '' ||
@@ -117,7 +120,7 @@ export default function Services() {
             className="text-lg text-muted-foreground max-w-3xl mx-auto"
           >
             {isRTL() 
-              ? 'نقدم خدمات تركيب وصيانة العزل المائي والحراري بأعلى معايير الجودة مع خيارات الأولوية المختلفة'
+              ? 'نقدم خدمات تركيب وصيانة العزل المائي والحراري بأعلى م��ايير الجودة مع خيارات الأولوية المختلفة'
               : 'We provide installation and maintenance services for waterproofing and thermal insulation with the highest quality standards and various priority options'
             }
           </motion.p>
