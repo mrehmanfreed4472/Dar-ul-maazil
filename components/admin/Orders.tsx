@@ -271,7 +271,9 @@ export default function AdminOrders() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                    <DAMLogo size="sm" animated={false} interactive={false} href="" />
+                  </div>
                   <Input
                     placeholder={isRTL() ? 'البحث في الطلبات...' : 'Search orders...'}
                     value={searchQuery}
@@ -279,7 +281,7 @@ export default function AdminOrders() {
                       setSearchQuery(e.target.value);
                       resetPagination();
                     }}
-                    className="pl-10"
+                    className="pl-12"
                   />
                 </div>
                 
@@ -305,7 +307,7 @@ export default function AdminOrders() {
                   resetPagination();
                 }}>
                   <SelectTrigger>
-                    <SelectValue placeholder={isRTL() ? 'جميع الأولويات' : 'All Priorities'} />
+                    <SelectValue placeholder={isRTL() ? 'جمي�� الأولويات' : 'All Priorities'} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">{isRTL() ? 'جميع الأولويات' : 'All Priorities'}</SelectItem>
@@ -444,12 +446,12 @@ export default function AdminOrders() {
 
                 {filteredOrders.length === 0 && (
                   <div className="text-center py-12">
-                    <div className="text-4xl mb-4">��</div>
+                    <div className="text-4xl mb-4">📦</div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {isRTL() ? 'لا توجد طلبات' : 'No Orders Found'}
                     </h3>
                     <p className="text-muted-foreground">
-                      {isRTL() ? 'لم يتم العثور ��لى طلبات مطابقة للبحث' : 'No orders match your search criteria'}
+                      {isRTL() ? 'لم يتم العثور ��لى طلبات مطابقة ل��بحث' : 'No orders match your search criteria'}
                     </p>
                   </div>
                 )}
