@@ -23,7 +23,11 @@ import {
   CreditCard,
   FileText,
   RefreshCw,
-  BarChart3
+  BarChart3,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,18 +53,34 @@ export default function AdminOrders() {
   const [priorityFilter, setPriorityFilter] = useState<string>('all');
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [isOrderDetailOpen, setIsOrderDetailOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ordersPerPage, setOrdersPerPage] = useState(20);
+  const [showAllOrders, setShowAllOrders] = useState(false);
 
   const filteredOrders = orders.filter(order => {
-    const matchesSearch = searchQuery === '' || 
+    const matchesSearch = searchQuery === '' ||
       order.orderNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
       order.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       order.email.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesStatus = statusFilter === 'all' || order.status === statusFilter;
     const matchesPriority = priorityFilter === 'all' || order.priority === priorityFilter;
-    
+
     return matchesSearch && matchesStatus && matchesPriority;
   }).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+  // Pagination logic
+  const totalOrders = filteredOrders.length;
+  const totalPages = Math.ceil(totalOrders / ordersPerPage);
+  const startIndex = (currentPage - 1) * ordersPerPage;
+  const endIndex = startIndex + ordersPerPage;
+  const paginatedOrders = showAllOrders ? filteredOrders : filteredOrders.slice(startIndex, endIndex);
+
+  // Reset page when filters change
+  const resetPagination = () => {
+    setCurrentPage(1);
+    setShowAllOrders(false);
+  };
 
   const getStatusColor = (status: Order['status']) => {
     switch (status) {
@@ -255,12 +275,18 @@ export default function AdminOrders() {
                   <Input
                     placeholder={isRTL() ? 'البحث في الطلبات...' : 'Search orders...'}
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      resetPagination();
+                    }}
                     className="pl-10"
                   />
                 </div>
                 
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <Select value={statusFilter} onValueChange={(value) => {
+                  setStatusFilter(value);
+                  resetPagination();
+                }}>
                   <SelectTrigger>
                     <SelectValue placeholder={isRTL() ? 'جميع الحالات' : 'All Statuses'} />
                   </SelectTrigger>
@@ -274,7 +300,10 @@ export default function AdminOrders() {
                   </SelectContent>
                 </Select>
 
-                <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+                <Select value={priorityFilter} onValueChange={(value) => {
+                  setPriorityFilter(value);
+                  resetPagination();
+                }}>
                   <SelectTrigger>
                     <SelectValue placeholder={isRTL() ? 'جميع الأولويات' : 'All Priorities'} />
                   </SelectTrigger>
@@ -314,7 +343,7 @@ export default function AdminOrders() {
             <CardContent>
               <div className="space-y-4">
                 <AnimatePresence>
-                  {filteredOrders.map((order, index) => (
+                  {paginatedOrders.map((order, index) => (
                     <motion.div
                       key={order.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -394,7 +423,7 @@ export default function AdminOrders() {
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, 'delivered')}>
                                   <CheckCircle className="h-4 w-4 mr-2" />
-                                  {isRTL() ? 'تم ��لتسليم' : 'Mark Delivered'}
+                                  {isRTL() ? 'تم ����لتسليم' : 'Mark Delivered'}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem 
@@ -415,7 +444,7 @@ export default function AdminOrders() {
 
                 {filteredOrders.length === 0 && (
                   <div className="text-center py-12">
-                    <div className="text-4xl mb-4">📦</div>
+                    <div className="text-4xl mb-4">��</div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {isRTL() ? 'لا توجد طلبات' : 'No Orders Found'}
                     </h3>
@@ -428,6 +457,138 @@ export default function AdminOrders() {
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* Pagination Controls */}
+        {filteredOrders.length > 0 && !showAllOrders && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <Card className="glass-card border-border/20 premium-shadow">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="text-sm text-muted-foreground">
+                      {isRTL()
+                        ? `عرض ${startIndex + 1}-${Math.min(endIndex, totalOrders)} من ${totalOrders} طلب`
+                        : `Showing ${startIndex + 1}-${Math.min(endIndex, totalOrders)} of ${totalOrders} orders`
+                      }
+                    </div>
+                    <Select
+                      value={ordersPerPage.toString()}
+                      onValueChange={(value) => {
+                        setOrdersPerPage(Number(value));
+                        setCurrentPage(1);
+                      }}
+                    >
+                      <SelectTrigger className="w-20">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="10">10</SelectItem>
+                        <SelectItem value="20">20</SelectItem>
+                        <SelectItem value="50">50</SelectItem>
+                        <SelectItem value="100">100</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <span className="text-sm text-muted-foreground">
+                      {isRTL() ? 'طلب لكل صفحة' : 'per page'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowAllOrders(true)}
+                      className="gap-2"
+                    >
+                      <BarChart3 className="h-4 w-4" />
+                      {isRTL() ? 'عرض الكل' : 'Show All'}
+                    </Button>
+
+                    <div className="flex items-center gap-1">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(1)}
+                        disabled={currentPage === 1}
+                      >
+                        <ChevronsLeft className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                        disabled={currentPage === 1}
+                      >
+                        <ChevronLeft className="h-4 w-4" />
+                      </Button>
+
+                      <div className="flex items-center gap-1 px-3">
+                        <span className="text-sm">
+                          {isRTL() ? `صفحة ${currentPage} من ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+                        </span>
+                      </div>
+
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                        disabled={currentPage === totalPages}
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(totalPages)}
+                        disabled={currentPage === totalPages}
+                      >
+                        <ChevronsRight className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
+        {/* Show All Orders Controls */}
+        {showAllOrders && filteredOrders.length > ordersPerPage && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <Card className="glass-card border-border/20 premium-shadow">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-muted-foreground">
+                    {isRTL()
+                      ? `عرض جميع ${totalOrders} طلب`
+                      : `Showing all ${totalOrders} orders`
+                    }
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setShowAllOrders(false);
+                      setCurrentPage(1);
+                    }}
+                    className="gap-2"
+                  >
+                    <BarChart3 className="h-4 w-4" />
+                    {isRTL() ? 'عرض مقسم' : 'Show Paginated'}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
 
         {/* Order Detail Modal */}
         <Dialog open={isOrderDetailOpen} onOpenChange={setIsOrderDetailOpen}>

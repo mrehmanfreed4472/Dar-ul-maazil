@@ -68,7 +68,7 @@ export const OrderSummaryPDF = React.forwardRef<HTMLDivElement, OrderSummaryPDFP
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=300"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F16221c591b05447eb0dabdf05112b7b9%2Fe66e00ff226d45b58e3563b1a1168c9f?format=webp&width=800"
                   alt="DAM - The House of Insulation"
                   className="h-16 w-auto object-contain"
                 />

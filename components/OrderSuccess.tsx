@@ -42,7 +42,7 @@ export default function OrderSuccess() {
 
     receiptElement.innerHTML = `
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F4551cf54f8504ccaa05505322826a1fb?format=webp&width=300"
+        <img src="https://cdn.builder.io/api/v1/image/assets%2F16221c591b05447eb0dabdf05112b7b9%2Fe66e00ff226d45b58e3563b1a1168c9f?format=webp&width=800"
              alt="DAM - The House of Insulation" style="height: 100px; margin-bottom: 20px;" />
         <h1 style="margin: 0; font-size: 28px; color: #1a365d;">DAM - The House of Insulation</h1>
         <p style="margin: 5px 0 0 0; color: #718096;">Dar Al Muaazil LLC</p>

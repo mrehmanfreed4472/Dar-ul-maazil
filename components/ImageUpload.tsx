@@ -56,30 +56,33 @@ export function ImageUpload({
     })
   }
 
-  // Simulate upload progress for better UX
+  // Optimized upload progress simulation to prevent hanging
   const simulateUpload = async (fileData: UploadedFile): Promise<void> => {
     return new Promise((resolve) => {
-      const steps = [0, 25, 50, 75, 100]
-      let currentStep = 0
-      
-      const interval = setInterval(() => {
-        if (currentStep < steps.length - 1) {
-          currentStep++
-          setFiles(prev => prev.map(f => 
-            f.id === fileData.id 
-              ? { ...f, progress: steps[currentStep] }
-              : f
-          ))
-        } else {
-          clearInterval(interval)
-          setFiles(prev => prev.map(f => 
-            f.id === fileData.id 
+      // Use requestAnimationFrame instead of setInterval for better performance
+      let progress = 0
+      const updateProgress = () => {
+        progress += 20
+
+        setFiles(prev => prev.map(f =>
+          f.id === fileData.id
+            ? { ...f, progress: Math.min(progress, 100) }
+            : f
+        ))
+
+        if (progress >= 100) {
+          setFiles(prev => prev.map(f =>
+            f.id === fileData.id
               ? { ...f, progress: 100, uploaded: true }
               : f
           ))
           resolve()
+        } else {
+          setTimeout(() => requestAnimationFrame(updateProgress), 100)
         }
-      }, 200)
+      }
+
+      requestAnimationFrame(updateProgress)
     })
   }
 
@@ -117,53 +120,61 @@ export function ImageUpload({
     }
 
     setUploading(true)
-    
-    for (const file of fileArray) {
-      const error = validateFile(file)
-      if (error) {
-        toast({
-          title: 'Invalid file',
-          description: error,
-          variant: 'destructive'
-        })
-        continue
-      }
 
-      try {
-        const dataURL = await convertFileToDataURL(file)
-        const fileData: UploadedFile = {
-          id: Date.now().toString() + Math.random().toString(36),
-          file,
-          url: dataURL,
-          progress: 0,
-          uploaded: false
+    // Process files asynchronously to prevent UI blocking
+    const processFiles = async () => {
+      for (const file of fileArray) {
+        const error = validateFile(file)
+        if (error) {
+          toast({
+            title: 'Invalid file',
+            description: error,
+            variant: 'destructive'
+          })
+          continue
         }
 
-        setFiles(prev => [...prev, fileData])
-        
-        // Simulate upload process
-        await simulateUpload(fileData)
-        
-        // For single file mode, immediately set the value
-        if (!multiple) {
-          onChange(dataURL)
+        try {
+          const dataURL = await convertFileToDataURL(file)
+          const fileData: UploadedFile = {
+            id: Date.now().toString() + Math.random().toString(36),
+            file,
+            url: dataURL,
+            progress: 0,
+            uploaded: false
+          }
+
+          setFiles(prev => [...prev, fileData])
+
+          // Process upload simulation in background
+          simulateUpload(fileData).then(() => {
+            // For single file mode, set the value after upload completes
+            if (!multiple) {
+              onChange(dataURL)
+            }
+
+            toast({
+              title: 'Upload successful',
+              description: `${file.name} has been uploaded successfully`
+            })
+          })
+
+        } catch (error) {
+          toast({
+            title: 'Upload failed',
+            description: `Failed to upload ${file.name}`,
+            variant: 'destructive'
+          })
         }
-        
-        toast({
-          title: 'Upload successful',
-          description: `${file.name} has been uploaded successfully`
-        })
-        
-      } catch (error) {
-        toast({
-          title: 'Upload failed',
-          description: `Failed to upload ${file.name}`,
-          variant: 'destructive'
-        })
+
+        // Add small delay between file processing to prevent blocking
+        await new Promise(resolve => setTimeout(resolve, 50))
       }
+
+      setUploading(false)
     }
-    
-    setUploading(false)
+
+    processFiles()
   }, [files.length, maxFiles, multiple, onChange, toast, acceptedFormats, maxSize])
 
   const handleDrop = useCallback((e: React.DragEvent) => {

@@ -31,9 +31,37 @@ const nextConfig = {
   swcMinify: true,
   poweredByHeader: false,
 
-  // Simplified configuration for Netlify
+  // Fix development server and hot reloading issues
   experimental: {
     serverComponentsExternalPackages: ['three'],
+    // Improve hot reloading stability
+    optimizeCss: false,
+    optimizeServerReact: false,
+  },
+
+  // Development server configuration
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
+      // Fix hot reloading issues
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization.splitChunks,
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            default: false,
+            vendors: false,
+          },
+        },
+      };
+    }
+    return config;
+  },
+
+  // Prevent fetch errors during development
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
   },
 }
 
