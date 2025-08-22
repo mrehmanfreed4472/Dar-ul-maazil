@@ -5,9 +5,6 @@ import { usePathname } from 'next/navigation'
 import { useTranslation } from '@/hooks/use-translation'
 import { HeaderEnhanced } from '@/components/HeaderEnhanced'
 import { Footer } from '@/components/Footer'
-import { ErrorBoundary } from '@/components/ErrorBoundary'
-// Initialize fetch handler for development
-import '@/lib/fetchHandler'
 
 interface RootLayoutClientProps {
   children: React.ReactNode
@@ -30,23 +27,19 @@ export function RootLayoutClient({ children }: RootLayoutClientProps) {
   // For admin pages, don't render HeaderEnhanced and Footer as AdminLayout handles its own layout
   if (isAdminPage) {
     return (
-      <ErrorBoundary>
-        <div className={`min-h-screen ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
-          {children}
-        </div>
-      </ErrorBoundary>
+      <div className={`min-h-screen ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
+        {children}
+      </div>
     )
   }
 
   return (
-    <ErrorBoundary>
-      <div className={`min-h-screen flex flex-col ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
-        <HeaderEnhanced />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </ErrorBoundary>
+    <div className={`min-h-screen flex flex-col ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
+      <HeaderEnhanced />
+      <main className="flex-1">
+        {children}
+      </main>
+      <Footer />
+    </div>
   )
 }

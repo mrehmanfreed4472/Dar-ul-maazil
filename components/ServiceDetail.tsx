@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Layout } from '@/components/Layout';
 import { ArrowLeft, Clock, Star, Zap, AlertTriangle, CheckCircle, Crown, Calendar, FileText, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -39,7 +38,7 @@ export default function ServiceDetail() {
           {isRTL() ? 'الخدمة غير موجودة' : 'Service Not Found'}
         </h1>
         <p className="text-muted-foreground mt-2">
-          {isRTL() ? 'الخدمة التي تب��ث عنها غير متوفرة' : 'The service you are looking for is not available'}
+          {isRTL() ? 'الخدمة التي تبحث عنها غير متوفرة' : 'The service you are looking for is not available'}
         </p>
         <Button asChild className="mt-4">
           <Link href="/services">
@@ -89,7 +88,8 @@ export default function ServiceDetail() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <Layout>
+      <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -376,5 +376,6 @@ export default function ServiceDetail() {
           </motion.div>
         </div>
       </div>
+    </Layout>
   );
 }

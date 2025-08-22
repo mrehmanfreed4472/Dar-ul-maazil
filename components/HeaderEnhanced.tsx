@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail, ShoppingCart, User, Crown, Home, Package, Star, LogOut, Settings, FileText } from 'lucide-react';
+import { Menu, X, Phone, Mail, ShoppingCart, User, Crown, Home, Package, Star, LogOut, Settings, FileText, Briefcase, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -25,10 +25,11 @@ export function HeaderEnhanced() {
   const navigation = [
     { href: '/', label: t('nav.home'), icon: Home },
     { href: '/products', label: t('nav.products'), icon: Package },
-    { href: '/services', label: isRTL() ? 'الخدمات' : 'Services', icon: Star },
-    { href: '/about', label: t('nav.about'), icon: Star },
+    { href: '/services', label: isRTL() ? 'الخدمات' : 'Services', icon: Briefcase },
+    { href: '/about', label: t('nav.about'), icon: Info },
     { href: '/contact', label: t('nav.contact'), icon: Mail },
   ];
+
 
   const isActivePage = (href: string) => {
     return pathname === href;
@@ -46,7 +47,10 @@ export function HeaderEnhanced() {
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-6">
-              <motion.div
+              <motion.a
+                href="https://wa.me/971502342218"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-2 cursor-pointer group"
               >
@@ -54,9 +58,10 @@ export function HeaderEnhanced() {
                 <span className="font-medium group-hover:text-orange-100 transition-colors">
                   +971502342218
                 </span>
-              </motion.div>
+              </motion.a>
 
-              <motion.div
+              <motion.a
+                href="mailto:info@damgcc.com"
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-2 cursor-pointer group"
               >
@@ -64,7 +69,7 @@ export function HeaderEnhanced() {
                 <span className="font-medium group-hover:text-green-100 transition-colors">
                   info@damgcc.com
                 </span>
-              </motion.div>
+              </motion.a>
             </div>
 
             <LanguageToggle />
@@ -110,6 +115,7 @@ export function HeaderEnhanced() {
                 </motion.div>
               );
             })}
+
           </nav>
 
           {/* Desktop Actions */}
@@ -251,7 +257,8 @@ export function HeaderEnhanced() {
                     </motion.div>
                   );
                 })}
-                
+
+
                 <div className="px-2 pt-4 space-y-2">
                   {user ? (
                     <Button

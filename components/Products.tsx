@@ -101,26 +101,23 @@ export default function Products() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="glass-effect rounded-2xl border-border/30 p-8 mb-8 premium-shadow"
         >
-          {/* Search Header with Logo */}
-          <div className="flex items-center justify-between mb-6">
+          {/* Search Header */}
+          <div className="mb-6">
             <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
               <Filter className="h-5 w-5" />
               {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
             </h3>
-            <DAMLogo size="sm" animated={false} interactive={false} href="" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <DAMLogo size="sm" animated={false} interactive={false} href="" />
-              </div>
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder={isRTL() ? 'البحث عن المنتجات...' : 'Search products...'}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12"
+                className="pl-10"
               />
             </div>
 

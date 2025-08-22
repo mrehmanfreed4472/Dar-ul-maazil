@@ -9,7 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useTranslation } from '@/hooks/use-translation';
 import { getAllProducts, productCategories, Product } from '@/data/products';
-import { DAMLogo } from '@/components/DAMLogo';
 
 interface BulkProductSelectorProps {
   onAddProducts: (productIds: string[]) => void;
@@ -104,14 +103,12 @@ export function BulkProductSelector({ onAddProducts, existingProductIds }: BulkP
         {/* Search and Filter */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="relative">
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <DAMLogo size="sm" animated={false} interactive={false} href="" />
-            </div>
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
               placeholder={isRTL() ? 'البحث عن المنتجات...' : 'Search products...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12"
+              className="pl-10"
             />
           </div>
           

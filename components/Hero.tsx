@@ -26,7 +26,7 @@ const laborIcons = [HardHat, Building, Wrench, Settings, Shield];
 export function Hero() {
   const { t, isRTL } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentIconIndex, setCurrentIconIndex] = useState(0);
+  const [currentIconIndex, setCurrentIconIndex] = useState(0); // Static icon (HardHat)
 
   // Rotate images every 2 seconds
   useEffect(() => {
@@ -37,14 +37,14 @@ export function Hero() {
     return () => clearInterval(imageInterval);
   }, []);
 
-  // Rotate labor icons every 1.5 seconds
-  useEffect(() => {
-    const iconInterval = setInterval(() => {
-      setCurrentIconIndex((prev) => (prev + 1) % laborIcons.length);
-    }, 1500);
+  // Icons are now static (rotation disabled)
+  // useEffect(() => {
+  //   const iconInterval = setInterval(() => {
+  //     setCurrentIconIndex((prev) => (prev + 1) % laborIcons.length);
+  //   }, 1500);
 
-    return () => clearInterval(iconInterval);
-  }, []);
+  //   return () => clearInterval(iconInterval);
+  // }, []);
 
   const CurrentLaborIcon = laborIcons[currentIconIndex];
 

@@ -184,25 +184,20 @@ export default function Services() {
         >
           <Card className="glass-card border-accent/20 premium-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Filter className="h-5 w-5" />
-                  {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
-                </div>
-                <DAMLogo size="sm" animated={false} interactive={false} href="" />
+              <CardTitle className="flex items-center gap-2">
+                <Filter className="h-5 w-5" />
+                {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="relative">
-                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                    <DAMLogo size="sm" animated={false} interactive={false} href="" />
-                  </div>
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
                     placeholder={isRTL() ? 'البحث في الخدمات...' : 'Search services...'}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-12"
+                    className="pl-10"
                   />
                 </div>
                 

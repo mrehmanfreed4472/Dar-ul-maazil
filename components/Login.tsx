@@ -173,7 +173,7 @@ export default function Login() {
                 </motion.div>
               </form>
 
-              {/* Demo Credentials 
+              {/* Demo Credentials */}
               <div className="mt-6 p-4 bg-muted/50 rounded-lg">
                 <h4 className="font-semibold mb-2 text-sm">
                   {isRTL() ? 'بيانات تجريبية:' : 'Demo Credentials:'}
@@ -182,7 +182,7 @@ export default function Login() {
                   <div><strong>{isRTL() ? 'مدير:' : 'Admin:'}</strong> admin@damgcc.com / admin123</div>
                   <div><strong>{isRTL() ? 'مستخدم:' : 'User:'}</strong> user@damgcc.com / user123</div>
                 </div>
-              </div>*/}
+              </div>
             </CardContent>
           </Card>
         </motion.div>

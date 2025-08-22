@@ -120,7 +120,7 @@ const generateMockOrders = (): Order[] => {
     'Jessica Chen', 'Khalid Al Zaabi', 'Maria Garcia', 'Abdullah Al Shamsi', 'Anna Petrov'
   ];
 
-  return Array.from({ length: 200 }, (_, i) => {
+  return Array.from({ length: 50 }, (_, i) => {
     const orderDate = new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000);
     const itemCount = Math.floor(Math.random() * 5) + 1;
     const totalUsd = Math.floor(Math.random() * 2000) + 100;
