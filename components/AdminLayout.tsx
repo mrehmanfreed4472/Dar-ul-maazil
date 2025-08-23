@@ -149,7 +149,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               </Button>
               
               {/* Company Logo */}
-              <Link href="/admin" className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
                 <DAMLogo
                   size="md"
                   withText={true}
@@ -164,7 +164,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                     {isRTL() ? 'لوحة التحكم' : 'Control Panel'}
                   </span>
                 </div>
-              </Link>
+              </div>
             </div>
 
             <div className="flex items-center gap-6">

@@ -125,129 +125,158 @@ export default function HierarchicalProducts() {
   const MainProductCard = ({ product }: { product: MainProduct }) => {
     const isExpanded = expandedProducts[product.id];
     const priceRange = getPriceRange(product.subProducts);
+    const firstProductImage = product.subProducts[0]?.image;
 
     return (
       <motion.div variants={itemVariants}>
-        <Card className="glass-effect border-border/30 hover:border-primary/40 transition-all duration-300 premium-shadow">
-          <CardHeader className="pb-4">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">{product.icon}</div>
-                <div>
-                  <CardTitle className="text-lg font-bold text-foreground mb-1">
-                    {product.name[language]}
-                  </CardTitle>
-                  <CardDescription className="text-sm">
-                    {product.description[language]}
-                  </CardDescription>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                {product.featured && (
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                    <Star className="h-3 w-3 mr-1" />
-                    {isRTL() ? 'مميز' : 'Featured'}
-                  </Badge>
-                )}
-                <Badge variant="outline" className="text-xs">
-                  {product.subProducts.length} {isRTL() ? 'خيار' : 'Options'}
-                </Badge>
-              </div>
-            </div>
-          </CardHeader>
-
-          <CardContent className="space-y-4">
-            {/* Overview */}
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {product.overview[language]}
-            </p>
-
-            {/* Features & Applications */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1">
-                  <Award className="h-4 w-4" />
-                  {isRTL() ? 'المميزات' : 'Features'}
-                </h4>
-                <ul className="text-xs text-muted-foreground space-y-1">
-                  {product.features[language].slice(0, 3).map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1">
-                  <Package className="h-4 w-4" />
-                  {isRTL() ? 'التطبيقات' : 'Applications'}
-                </h4>
-                <ul className="text-xs text-muted-foreground space-y-1">
-                  {product.applications[language].slice(0, 3).map((application, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                      {application}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Price Range & Action */}
-            <div className="flex items-center justify-between pt-4 border-t border-border/30">
-              <div>
-                <p className="text-sm text-muted-foreground">
-                  {isRTL() ? 'نطاق السعر' : 'Price Range'}
-                </p>
-                <p className="text-lg font-bold text-primary">{priceRange}</p>
-              </div>
-              <Button
-                variant="outline"
-                className="gradient-hover"
-                onClick={() => toggleProductExpansion(product.id)}
-              >
-                {isExpanded ? (
-                  <>
-                    <ChevronDown className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'إخفاء الخيارات' : 'Hide Options'}
-                  </>
-                ) : (
-                  <>
-                    <ChevronRight className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'عرض الخيارات' : 'See Options'}
-                  </>
-                )}
-              </Button>
-            </div>
-
-            {/* Sub Products */}
-            <AnimatePresence>
-              {isExpanded && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-3 pt-4 border-t border-border/30"
-                >
-                  <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                    <Layers className="h-4 w-4" />
-                    {isRTL() ? 'الخيا��ات المتاحة' : 'Available Options'}
-                  </h4>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                    {product.subProducts.map((subProduct) => (
-                      <SubProductCard 
-                        key={subProduct.id} 
-                        subProduct={subProduct} 
-                        mainProduct={product}
-                      />
-                    ))}
+        <Card className="glass-effect border-border/30 hover:border-primary/40 transition-all duration-300 premium-shadow overflow-hidden">
+          <div className="flex">
+            {/* Product Image Section */}
+            <div className="flex-shrink-0 w-48 bg-gray-50">
+              <div className="h-full p-6 flex items-center justify-center">
+                {firstProductImage ? (
+                  <div className="w-32 h-32 bg-white rounded-lg shadow-sm overflow-hidden border border-border/20">
+                    <img
+                      src={firstProductImage}
+                      alt={product.name[language]}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/placeholder.svg';
+                      }}
+                    />
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </CardContent>
+                ) : (
+                  <div className="w-32 h-32 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <div className="text-4xl">{product.icon}</div>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Content Section */}
+            <div className="flex-1">
+              <CardHeader className="pb-4">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="text-2xl">{product.icon}</div>
+                    <div>
+                      <CardTitle className="text-lg font-bold text-foreground mb-1">
+                        {product.name[language]}
+                      </CardTitle>
+                      <CardDescription className="text-sm">
+                        {product.description[language]}
+                      </CardDescription>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {product.featured && (
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                        <Star className="h-3 w-3 mr-1" />
+                        {isRTL() ? 'مميز' : 'Featured'}
+                      </Badge>
+                    )}
+                    <Badge variant="outline" className="text-xs">
+                      {product.subProducts.length} {isRTL() ? 'خيار' : 'Options'}
+                    </Badge>
+                  </div>
+                </div>
+              </CardHeader>
+
+              <CardContent className="space-y-4">
+                {/* Overview */}
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {product.overview[language]}
+                </p>
+
+                {/* Features & Applications */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1">
+                      <Award className="h-4 w-4" />
+                      {isRTL() ? 'المميزات' : 'Features'}
+                    </h4>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      {product.features[language].slice(0, 3).map((feature, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1">
+                      <Package className="h-4 w-4" />
+                      {isRTL() ? 'التطبيقات' : 'Applications'}
+                    </h4>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      {product.applications[language].slice(0, 3).map((application, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                          {application}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Price Range & Action */}
+                <div className="flex items-center justify-between pt-4 border-t border-border/30">
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      {isRTL() ? 'نطاق السعر' : 'Price Range'}
+                    </p>
+                    <p className="text-lg font-bold text-primary">{priceRange}</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="gradient-hover"
+                    onClick={() => toggleProductExpansion(product.id)}
+                  >
+                    {isExpanded ? (
+                      <>
+                        <ChevronDown className="h-4 w-4 mr-2" />
+                        {isRTL() ? 'إخفاء الخيارات' : 'Hide Options'}
+                      </>
+                    ) : (
+                      <>
+                        <ChevronRight className="h-4 w-4 mr-2" />
+                        {isRTL() ? 'عرض الخيارات' : 'See Options'}
+                      </>
+                    )}
+                  </Button>
+                </div>
+
+                {/* Sub Products */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-3 pt-4 border-t border-border/30"
+                    >
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                        <Layers className="h-4 w-4" />
+                        {isRTL() ? 'الخيا��ات المتاحة' : 'Available Options'}
+                      </h4>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        {product.subProducts.map((subProduct) => (
+                          <SubProductCard 
+                            key={subProduct.id} 
+                            subProduct={subProduct} 
+                            mainProduct={product}
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </CardContent>
+            </div>
+          </div>
         </Card>
       </motion.div>
     );
@@ -260,12 +289,28 @@ export default function HierarchicalProducts() {
     return (
       <Card className="border border-border/20 bg-background/50 hover:bg-background/80 transition-all duration-200">
         <CardContent className="p-4">
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex-1">
+          <div className="flex gap-3 mb-3">
+            {/* Product Image */}
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden border border-border/20">
+                <img
+                  src={subProduct.image}
+                  alt={subProduct.name[language]}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/placeholder.svg';
+                  }}
+                />
+              </div>
+            </div>
+            
+            {/* Product Info */}
+            <div className="flex-1 min-w-0">
               <h5 className="font-semibold text-sm text-foreground mb-1">
                 {subProduct.name[language]}
               </h5>
-              <p className="text-xs text-muted-foreground mb-2">
+              <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
                 {subProduct.description[language]}
               </p>
 
@@ -292,7 +337,9 @@ export default function HierarchicalProducts() {
                 )}
               </div>
             </div>
-            <div className="text-right">
+            
+            {/* Price Section */}
+            <div className="text-right flex-shrink-0">
               <p className="text-lg font-bold text-primary">${subProduct.pricing.usd}</p>
               <p className="text-xs text-muted-foreground">AED {subProduct.pricing.aed}</p>
               {subProduct.sizes && subProduct.sizes[0] && (

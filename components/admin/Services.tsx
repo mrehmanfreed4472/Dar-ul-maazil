@@ -676,7 +676,7 @@ export default function AdminServices() {
                   <Filter className="h-5 w-5" />
                   {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
                 </div>
-                <DAMLogo size="sm" href="" />
+                <DAMLogo size="sm" />
               </CardTitle>
             </CardHeader>
             <CardContent>

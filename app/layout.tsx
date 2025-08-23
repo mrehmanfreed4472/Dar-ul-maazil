@@ -7,6 +7,7 @@ import { AdminProvider } from '@/contexts/AdminContext'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 import { RootLayoutClient } from '@/components/RootLayoutClient'
+import { WarningSuppressionProvider } from '@/components/WarningSuppressionProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,28 +29,30 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <AuthProvider>
-            <AdminProvider>
-              <CartProvider>
-                <RootLayoutClient>
-                  {children}
-                  <Toaster
-                    position="top-right"
-                    toastOptions={{
-                      duration: 3000,
-                    }}
-                  />
-                </RootLayoutClient>
-              </CartProvider>
-            </AdminProvider>
-          </AuthProvider>
-        </ThemeProvider>
+        <WarningSuppressionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <AuthProvider>
+              <AdminProvider>
+                <CartProvider>
+                  <RootLayoutClient>
+                    {children}
+                    <Toaster
+                      position="top-right"
+                      toastOptions={{
+                        duration: 3000,
+                      }}
+                    />
+                  </RootLayoutClient>
+                </CartProvider>
+              </AdminProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        </WarningSuppressionProvider>
       </body>
     </html>
   )

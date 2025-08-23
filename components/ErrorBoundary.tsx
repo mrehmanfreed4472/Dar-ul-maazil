@@ -1,10 +1,8 @@
 'use client'
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AlertTriangle, RefreshCw } from 'lucide-react';
 
 interface Props {
   children: ReactNode;
@@ -14,30 +12,28 @@ interface Props {
 interface State {
   hasError: boolean;
   error?: Error;
-  errorInfo?: ErrorInfo;
 }
 
 export class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  public state: State = {
+    hasError: false
+  };
 
   public static getDerivedStateFromError(error: Error): State {
+    // Update state so the next render will show the fallback UI
     return { hasError: true, error };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    this.setState({ error, errorInfo });
   }
 
-  private handleRefresh = () => {
-    window.location.reload();
+  private handleReset = () => {
+    this.setState({ hasError: false, error: undefined });
   };
 
-  private handleGoHome = () => {
-    window.location.href = '/';
+  private handleReload = () => {
+    window.location.reload();
   };
 
   public render() {
@@ -47,71 +43,65 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-background">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-md"
-          >
-            <Card className="border-destructive/20 bg-destructive/5">
-              <CardHeader className="text-center">
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1] 
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="mx-auto w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-4"
-                >
-                  <AlertTriangle className="h-8 w-8 text-destructive" />
-                </motion.div>
-                <CardTitle className="text-destructive">Something went wrong</CardTitle>
-                <CardDescription>
-                  An unexpected error occurred. This might be a temporary issue with the development server.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {process.env.NODE_ENV === 'development' && this.state.error && (
-                  <div className="p-3 bg-muted rounded-md">
-                    <p className="text-sm text-muted-foreground font-mono">
-                      {this.state.error.message}
-                    </p>
-                  </div>
-                )}
-                
-                <div className="flex gap-2">
-                  <Button
-                    onClick={this.handleRefresh}
-                    className="flex-1 gap-2"
-                    variant="outline"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                    Refresh Page
-                  </Button>
-                  <Button
-                    onClick={this.handleGoHome}
-                    className="flex-1 gap-2"
-                  >
-                    <Home className="h-4 w-4" />
-                    Go Home
-                  </Button>
-                </div>
-                
-                <p className="text-xs text-muted-foreground text-center">
-                  If this problem persists, try refreshing the page or check the browser console for more details.
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <AlertTriangle className="h-8 w-8 text-red-600" />
+            </div>
+            
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+              Something went wrong
+            </h2>
+            
+            <p className="text-gray-600 mb-6">
+              We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.
+            </p>
+
+            {process.env.NODE_ENV === 'development' && this.state.error && (
+              <div className="bg-gray-100 rounded p-3 mb-4 text-left">
+                <p className="text-xs font-mono text-gray-700">
+                  {this.state.error.message}
                 </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+              </div>
+            )}
+            
+            <div className="flex gap-3 justify-center">
+              <Button 
+                variant="outline" 
+                onClick={this.handleReset}
+                className="flex items-center gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Try Again
+              </Button>
+              
+              <Button 
+                onClick={this.handleReload}
+                className="flex items-center gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Reload Page
+              </Button>
+            </div>
+          </div>
         </div>
       );
     }
 
     return this.props.children;
   }
+}
+
+// React Error Boundary Hook version for functional components
+export function withErrorBoundary<P extends object>(
+  Component: React.ComponentType<P>,
+  fallback?: ReactNode
+) {
+  return function WrappedComponent(props: P) {
+    return (
+      <ErrorBoundary fallback={fallback}>
+        <Component {...props} />
+      </ErrorBoundary>
+    );
+  };
 }

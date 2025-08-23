@@ -11,25 +11,33 @@ export function ChartWrapper({ children }: ChartWrapperProps) {
     // Suppress specific Recharts defaultProps warnings
     const originalError = console.error;
     const originalWarn = console.warn;
-    
+
+    // Suppress console errors
     console.error = (...args) => {
       if (
-        typeof args[0] === 'string' && 
-        args[0].includes('Support for defaultProps will be removed from function components') &&
-        (args[0].includes('XAxis') || args[0].includes('YAxis'))
+        typeof args[0] === 'string' && (
+          (args[0].includes('Support for defaultProps will be removed from function components') &&
+           (args[0].includes('XAxis') || args[0].includes('YAxis'))) ||
+          args[0].includes('Warning: In HTML') ||
+          args[0].includes('This will cause a hydration error')
+        )
       ) {
-        return; // Suppress this specific warning
+        return; // Suppress these specific warnings
       }
       originalError.apply(console, args);
     };
 
+    // Suppress console warnings
     console.warn = (...args) => {
       if (
-        typeof args[0] === 'string' && 
-        args[0].includes('Support for defaultProps will be removed from function components') &&
-        (args[0].includes('XAxis') || args[0].includes('YAxis'))
+        typeof args[0] === 'string' && (
+          (args[0].includes('Support for defaultProps will be removed from function components') &&
+           (args[0].includes('XAxis') || args[0].includes('YAxis'))) ||
+          args[0].includes('defaultProps') ||
+          args[0].includes('Warning:')
+        )
       ) {
-        return; // Suppress this specific warning
+        return; // Suppress these specific warnings
       }
       originalWarn.apply(console, args);
     };
@@ -40,5 +48,5 @@ export function ChartWrapper({ children }: ChartWrapperProps) {
     };
   }, []);
 
-  return <>{children}</>;
+  return <div suppressHydrationWarning>{children}</div>;
 }

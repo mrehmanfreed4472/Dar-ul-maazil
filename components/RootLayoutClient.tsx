@@ -7,6 +7,7 @@ import { HeaderEnhanced } from '@/components/HeaderEnhanced'
 import { Footer } from '@/components/Footer'
 import { WhatsAppFloat } from '@/components/WhatsAppFloat'
 import { ChatBot } from '@/components/ChatBot'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
 interface RootLayoutClientProps {
   children: React.ReactNode
@@ -29,21 +30,25 @@ export function RootLayoutClient({ children }: RootLayoutClientProps) {
   // For admin pages, don't render HeaderEnhanced and Footer as AdminLayout handles its own layout
   if (isAdminPage) {
     return (
-      <div className={`min-h-screen ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
-        {children}
-      </div>
+      <ErrorBoundary>
+        <div className={`min-h-screen ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
+          {children}
+        </div>
+      </ErrorBoundary>
     )
   }
 
   return (
-    <div className={`min-h-screen flex flex-col ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
-      <HeaderEnhanced />
-      <main className="flex-1">
-        {children}
-      </main>
-      <Footer />
-      <WhatsAppFloat />
-      <ChatBot />
-    </div>
+    <ErrorBoundary>
+      <div className={`min-h-screen flex flex-col ${isRTL() ? 'rtl font-arabic' : 'ltr'}`}>
+        <HeaderEnhanced />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppFloat />
+        <ChatBot />
+      </div>
+    </ErrorBoundary>
   )
 }

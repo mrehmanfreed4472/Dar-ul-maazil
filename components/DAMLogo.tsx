@@ -54,7 +54,7 @@ export function DAMLogo({
     </div>
   )
 
-  if (href) {
+  if (href && href !== '') {
     return (
       <Link href={href} className="inline-block transition-opacity duration-300 hover:opacity-90">
         {logoElement}

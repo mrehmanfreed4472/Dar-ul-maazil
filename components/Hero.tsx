@@ -125,13 +125,13 @@ export function Hero() {
             className="relative"
           >
             <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden shadow-2xl">
-              {/* Professional background image */}
+              {/* Professional construction worker image */}
               <img
-                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80"
-                alt="DAM Construction & Insulation Work"
-                className="w-full h-full object-cover opacity-20"
+                src="https://cdn.builder.io/api/v1/image/assets%2F71579200f3ac4307afa5688963f86641%2Fef4ad4348a0c4526a0ec6f9f39e56b20?format=webp&width=800"
+                alt="Professional Construction Worker - DAM House of Insulation"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/30"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-transparent to-accent/40"></div>
 
               {/* Company Logo */}
               <div className="absolute inset-0 flex items-center justify-center">

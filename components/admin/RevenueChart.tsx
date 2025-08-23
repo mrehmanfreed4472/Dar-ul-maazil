@@ -97,6 +97,9 @@ export default function RevenueChart() {
               tick={{ fontSize: 12 }}
               interval="preserveStartEnd"
               orientation="bottom"
+              type="category"
+              allowDuplicatedCategory={false}
+              domain={['dataMin', 'dataMax']}
             />
             <YAxis
               stroke="#64748b"
@@ -107,6 +110,9 @@ export default function RevenueChart() {
               tick={{ fontSize: 12 }}
               orientation="left"
               width={80}
+              type="number"
+              domain={['dataMin', 'dataMax']}
+              allowDataOverflow={false}
             />
             <Tooltip content={<CustomTooltip />} />
             <Area

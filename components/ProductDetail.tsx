@@ -114,24 +114,26 @@ export default function ProductDetail() {
             transition={{ duration: 0.6 }}
             className="space-y-4"
           >
-            <div className="relative bg-gray-100 rounded-2xl overflow-hidden aspect-square">
+            <div className="relative bg-gray-100 rounded-2xl overflow-hidden aspect-square shadow-lg">
               <img
                 src={product.image}
                 alt={product.name[language]}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 loading="lazy"
                 onError={handleImageError}
                 width={500}
                 height={500}
               />
               {product.featured && (
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-orange-500 text-white flex items-center gap-1">
-                    <Star className="w-3 h-3" />
+                <div className="absolute top-4 left-4 z-10">
+                  <Badge className="bg-orange-500 text-white flex items-center gap-1 shadow-lg">
+                    <Star className="w-3 h-3 fill-white" />
                     {isRTL() ? 'مميز' : 'Featured'}
                   </Badge>
                 </div>
               )}
+              {/* Image overlay for better visibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
             </div>
             
             {/* Trust Badges */}
