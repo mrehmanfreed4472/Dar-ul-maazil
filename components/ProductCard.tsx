@@ -10,6 +10,7 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { Product } from '@/data/products';
+import { handleImageError } from '@/lib/imageUtils';
 
 interface ProductCardProps {
   product: Product;
@@ -51,6 +52,10 @@ export function ProductCard({ product }: ProductCardProps) {
             src={product.image}
             alt={product.name[language]}
             className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            onError={handleImageError}
+            width={320}
+            height={192}
           />
           {product.featured && (
             <div className="absolute top-3 left-3">

@@ -25,6 +25,7 @@ import { useTranslation } from '@/hooks/use-translation';
 import { hierarchicalProducts, MainProduct, SubProduct } from '@/data/products-hierarchy';
 import { productCategories } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
+import { getTechExplanation, friendlySpec, getInstallationDifficulty, getRecommendedUse } from '@/lib/productTerms';
 
 interface ExpandedProducts {
   [key: string]: boolean;
@@ -149,7 +150,7 @@ export default function HierarchicalProducts() {
                   </Badge>
                 )}
                 <Badge variant="outline" className="text-xs">
-                  {product.subProducts.length} {isRTL() ? 'منتج' : 'Products'}
+                  {product.subProducts.length} {isRTL() ? 'خيار' : 'Options'}
                 </Badge>
               </div>
             </div>
@@ -209,12 +210,12 @@ export default function HierarchicalProducts() {
                 {isExpanded ? (
                   <>
                     <ChevronDown className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'إخفاء المنتجات' : 'Hide Products'}
+                    {isRTL() ? 'إخفاء الخيارات' : 'Hide Options'}
                   </>
                 ) : (
                   <>
                     <ChevronRight className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'عرض المنتجات' : 'View Products'}
+                    {isRTL() ? 'عرض الخيارات' : 'See Options'}
                   </>
                 )}
               </Button>
@@ -232,7 +233,7 @@ export default function HierarchicalProducts() {
                 >
                   <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
                     <Layers className="h-4 w-4" />
-                    {isRTL() ? 'المنتجات الفرعية' : 'Sub Products'}
+                    {isRTL() ? 'الخيا��ات المتاحة' : 'Available Options'}
                   </h4>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                     {product.subProducts.map((subProduct) => (
@@ -253,6 +254,9 @@ export default function HierarchicalProducts() {
   };
 
   const SubProductCard = ({ subProduct, mainProduct }: { subProduct: SubProduct; mainProduct: MainProduct }) => {
+    const difficulty = getInstallationDifficulty(subProduct.specifications);
+    const recommendedUse = getRecommendedUse(mainProduct.applications[language], language);
+
     return (
       <Card className="border border-border/20 bg-background/50 hover:bg-background/80 transition-all duration-200">
         <CardContent className="p-4">
@@ -264,32 +268,59 @@ export default function HierarchicalProducts() {
               <p className="text-xs text-muted-foreground mb-2">
                 {subProduct.description[language]}
               </p>
-              <div className="flex items-center gap-2 mb-2">
-                <Badge 
+
+              {/* User-friendly info */}
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                <Badge
                   variant={subProduct.availability === 'in_stock' ? 'default' : 'secondary'}
                   className="text-xs"
                 >
-                  {subProduct.availability === 'in_stock' 
+                  {subProduct.availability === 'in_stock'
                     ? (isRTL() ? 'متوفر' : 'In Stock')
                     : (isRTL() ? 'غير متوفر' : 'Out of Stock')
                   }
                 </Badge>
+
+                <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                  {difficulty.label[language]}
+                </Badge>
+
+                {recommendedUse.length > 0 && (
+                  <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                    {isRTL() ? 'مناسب للـ' : 'Good for'}: {recommendedUse[0]}
+                  </Badge>
+                )}
               </div>
             </div>
             <div className="text-right">
               <p className="text-lg font-bold text-primary">${subProduct.pricing.usd}</p>
               <p className="text-xs text-muted-foreground">AED {subProduct.pricing.aed}</p>
+              {subProduct.sizes && subProduct.sizes[0] && (
+                <p className="text-xs text-muted-foreground mt-1">
+                  {isRTL() ? 'الحجم' : 'Size'}: {subProduct.sizes[0]}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Specifications */}
+          {/* User-friendly specifications */}
           <div className="mb-3">
             <div className="flex flex-wrap gap-1">
-              {subProduct.specifications.slice(0, 2).map((spec, index) => (
-                <Badge key={index} variant="outline" className="text-xs">
-                  {spec}
-                </Badge>
-              ))}
+              {subProduct.specifications.slice(0, 2).map((spec, index) => {
+                const explanation = getTechExplanation(spec, language);
+                const friendlySpecText = friendlySpec(spec, language);
+
+                return (
+                  <Badge
+                    key={index}
+                    variant="outline"
+                    className="text-xs cursor-help"
+                    title={explanation || undefined}
+                  >
+                    {friendlySpecText}
+                  </Badge>
+                );
+              })}
             </div>
           </div>
 
@@ -305,7 +336,13 @@ export default function HierarchicalProducts() {
               <ShoppingCart className="h-3 w-3 mr-1" />
               {isRTL() ? 'أضف للسلة' : 'Add to Cart'}
             </Button>
-            <Button size="sm" variant="ghost" className="px-3">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="px-3"
+              aria-label={isRTL() ? 'عرض التفاصيل' : 'View details'}
+              title={isRTL() ? 'عرض التفاصيل' : 'View details'}
+            >
               <Eye className="h-3 w-3" />
             </Button>
           </div>
@@ -328,9 +365,9 @@ export default function HierarchicalProducts() {
             {t('nav.products')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            {isRTL() 
-              ? 'اكتشف مجموعتنا المهنية من منتجات العزل والبناء عالية الجودة مع نظام التصنيف الهيراركي المتقدم'
-              : 'Discover our professional collection of premium insulation and construction products with advanced hierarchical categorization'
+            {isRTL()
+              ? 'اعثر على منتجات العزل والعزل المائي المناسبة لمشروعك بسهولة — قارن الخيارات واطلب بثقة'
+              : 'Find the right insulation and waterproofing products for your project — compare options and buy with confidence'
             }
           </p>
         </motion.div>
@@ -345,9 +382,9 @@ export default function HierarchicalProducts() {
           {/* Search Header */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              {isRTL() ? 'البحث والتصفية المتقدمة' : 'Advanced Search & Filter'}
-            </h3>
+            <Filter className="h-5 w-5" />
+            {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
+          </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -355,7 +392,7 @@ export default function HierarchicalProducts() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
-                placeholder={isRTL() ? 'البحث في المنتجات والفئات...' : 'Search products and categories...'}
+                placeholder={isRTL() ? 'البحث في المنتجات والفئ��ت...' : 'Search products and categories...'}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -424,9 +461,9 @@ export default function HierarchicalProducts() {
           {/* Results count */}
           <div className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
             <Package className="h-4 w-4" />
-            {isRTL() 
-              ? `عرض ${filteredProducts.length} من ${hierarchicalProducts.length} مجموعة منتج`
-              : `Showing ${filteredProducts.length} of ${hierarchicalProducts.length} product series`
+            {isRTL()
+              ? `عرض ${filteredProducts.length} من ${hierarchicalProducts.length} خط منتج`
+              : `Showing ${filteredProducts.length} of ${hierarchicalProducts.length} product lines`
             }
           </div>
         </motion.div>

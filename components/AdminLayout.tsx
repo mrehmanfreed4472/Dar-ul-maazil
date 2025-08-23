@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTranslation } from '@/hooks/use-translation';
+import { DAMLogo } from '@/components/DAMLogo';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -147,50 +148,20 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
               
-              {/* Enhanced Logo */}
+              {/* Company Logo */}
               <Link href="/admin" className="flex items-center gap-4">
-                <motion.div
-                  whileHover={{
-                    rotate: 360,
-                    scale: 1.1,
-                    boxShadow: "0 0 30px rgba(34, 197, 94, 0.5)"
-                  }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="w-12 h-12 bg-gradient-to-br from-green-500 via-emerald-500 to-green-600 rounded-2xl flex items-center justify-center relative overflow-hidden"
-                >
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute inset-0 bg-white/20 rounded-2xl"
-                  />
-                  <span className="text-white font-bold text-xl relative z-10">دم</span>
-                </motion.div>
+                <DAMLogo
+                  size="md"
+                  withText={true}
+                  href="/admin"
+                  className="hover:scale-105 transition-transform duration-300"
+                />
                 <div className="flex flex-col">
-                  <motion.span
-                    className="font-bold text-2xl bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 bg-clip-text text-transparent"
-                    animate={{
-                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    style={{
-                      backgroundSize: "200% 100%"
-                    }}
-                  >
+                  <span className="font-bold text-xl text-primary">
                     Admin Panel
-                  </motion.span>
+                  </span>
                   <span className="text-sm text-gray-600 font-medium">
-                    {isRTL() ? 'دار المعازل' : 'Dar Al Muaazil'}
+                    {isRTL() ? 'لوحة التحكم' : 'Control Panel'}
                   </span>
                 </div>
               </Link>

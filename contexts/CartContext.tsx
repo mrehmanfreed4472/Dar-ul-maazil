@@ -49,20 +49,36 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Save cart to localStorage whenever items change
   useEffect(() => {
-    localStorage.setItem('damgcc_cart', JSON.stringify(items));
+    try {
+      localStorage.setItem('damgcc_cart', JSON.stringify(items));
+    } catch (error) {
+      console.error('Failed to save cart to localStorage:', error);
+    }
   }, [items]);
 
   const addToCart = (newItem: Omit<CartItem, 'quantity'>) => {
     setItems(currentItems => {
-      const existingItem = currentItems.find(
-        item => item.id === newItem.id && 
-                item.type === newItem.type && 
-                (newItem.type === 'service' ? item.urgency === newItem.urgency : true)
-      );
+      // Find existing item with exact same options
+      const existingItem = currentItems.find(item => {
+        if (item.id !== newItem.id || item.type !== newItem.type) return false;
+
+        if (newItem.type === 'service') {
+          // For services: compare urgency, scheduledDate, and specialRequirements
+          return item.urgency === newItem.urgency &&
+                 item.scheduledDate === newItem.scheduledDate &&
+                 item.specialRequirements === newItem.specialRequirements;
+        } else {
+          // For products: compare selectedSize and laborServices
+          const newProduct = newItem as any;
+          return item.selectedSize === newProduct.selectedSize &&
+                 !!item.laborServices === !!newProduct.laborServices;
+        }
+      });
 
       if (existingItem) {
+        // Update quantity for the exact matching item
         return currentItems.map(item =>
-          item.id === newItem.id && item.type === newItem.type
+          item === existingItem
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );

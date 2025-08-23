@@ -103,7 +103,7 @@ export function FeaturedProducts() {
                   />
                   <motion.div
                     className="absolute top-4 left-4"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={{ scale: 1.1 }}
                   >
                     <Badge variant="secondary" className="bg-primary/20 text-primary border-0 backdrop-blur-sm animate-pulse-glow">
                       {isRTL() ? 'مميز' : 'Featured'}
@@ -197,18 +197,7 @@ export function FeaturedProducts() {
                               ease: "easeInOut"
                             }}
                           />
-                          <motion.div
-                            animate={{
-                              rotate: [0, 5, -5, 0]
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <ShoppingCart className="h-4 w-4" />
-                          </motion.div>
+                          <ShoppingCart className="h-4 w-4" />
                           {isRTL() ? 'طلب' : 'Order'}
                         </Link>
                       </Button>

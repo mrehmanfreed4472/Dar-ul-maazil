@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import Link from 'next/link';
+import { handleImageError } from '@/lib/imageUtils';
 
 export default function Cart() {
   const { language, isRTL, getCurrency } = useTranslation();
@@ -109,14 +110,25 @@ export default function Cart() {
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-6">
             <AnimatePresence>
-              {items.map((item, index) => (
-                <motion.div
-                  key={`${item.type}-${item.id}-${item.urgency || 'default'}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
+              {items.map((item, index) => {
+                // Create unique key including all distinguishing options
+                const itemKey = [
+                  item.type,
+                  item.id,
+                  item.urgency || 'na',
+                  item.selectedSize || 'nosize',
+                  item.laborServices ? 'lab' : 'nolab',
+                  item.specialRequirements ? encodeURIComponent(item.specialRequirements) : 'noreq'
+                ].join('-');
+
+                return (
+                  <motion.div
+                    key={itemKey}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
                   <Card className="glass-card border-border/30 premium-shadow hover:premium-shadow-lg transition-all duration-300">
                     <CardContent className="p-6">
                       <div className="flex gap-4">
@@ -126,6 +138,10 @@ export default function Cart() {
                             src={item.image}
                             alt={item.name}
                             className="w-full h-full object-cover"
+                            loading="lazy"
+                            onError={handleImageError}
+                            width={96}
+                            height={96}
                           />
                           <div className="absolute top-2 left-2">
                             <Badge className={`text-xs ${
@@ -250,8 +266,9 @@ export default function Cart() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </AnimatePresence>
 
             {/* Clear Cart */}

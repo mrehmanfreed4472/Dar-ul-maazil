@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { handleImageError } from '@/lib/imageUtils';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 
@@ -25,6 +26,12 @@ export function ImageUpload({
   const [preview, setPreview] = useState<string>(value || '');
   const [isUrl, setIsUrl] = useState(!!value);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Sync preview with prop value changes (important for edit modal)
+  useEffect(() => {
+    setPreview(value || '');
+    setIsUrl(!!value);
+  }, [value]);
 
   const handleFileChange = (file: File) => {
     if (file && file.type.startsWith('image/')) {
@@ -127,6 +134,8 @@ export function ImageUpload({
               src={preview}
               alt="Preview"
               className="w-full h-48 object-cover rounded-lg"
+              loading="lazy"
+              onError={handleImageError}
             />
             <Button
               type="button"

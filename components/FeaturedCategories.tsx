@@ -89,7 +89,6 @@ export function FeaturedCategories() {
                         className="w-14 h-14 gradient-primary rounded-xl flex items-center justify-center premium-shadow relative overflow-hidden"
                         whileHover={{
                           scale: 1.15,
-                          rotateZ: 10,
                           boxShadow: "0 10px 30px rgba(34, 197, 94, 0.4)"
                         }}
                         transition={{ duration: 0.3 }}
@@ -106,18 +105,7 @@ export function FeaturedCategories() {
                             ease: "easeInOut"
                           }}
                         />
-                        <motion.div
-                          animate={{
-                            rotateY: [0, 360]
-                          }}
-                          transition={{
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: "linear"
-                          }}
-                        >
-                          <IconComponent className="h-7 w-7 text-white" />
-                        </motion.div>
+                        <IconComponent className="h-7 w-7 text-white" />
                       </motion.div>
                       <div>
                         <motion.div

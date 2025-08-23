@@ -41,6 +41,7 @@ import { Product, productCategories } from '@/data/products';
 import { ImageUpload } from '@/components/ui/image-upload';
 import { DAMLogo } from '@/components/DAMLogo';
 import { PersistenceNotification } from './PersistenceNotification';
+import { handleImageError } from '@/lib/imageUtils';
 
 interface ExtendedProduct extends Omit<Product, 'availability'> {
   availability?: 'in_stock' | 'low_stock' | 'out_of_stock';
@@ -676,6 +677,10 @@ export default function AdminProducts() {
                       src={product.image}
                       alt={product.name.en}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      onError={handleImageError}
+                      width={320}
+                      height={192}
                     />
                     {product.featured && (
                       <div className="absolute top-2 left-2">
@@ -802,7 +807,7 @@ export default function AdminProducts() {
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <Edit className="h-5 w-5" />
-                {isRTL() ? 'تحرير المنتج' : 'Edit Product'}
+                {isRTL() ? 'تحر��ر المنتج' : 'Edit Product'}
               </DialogTitle>
               <DialogDescription>
                 {isRTL() ? 'تحرير معلومات المنتج' : 'Edit product information'}

@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation'
 import { useTranslation } from '@/hooks/use-translation'
 import { HeaderEnhanced } from '@/components/HeaderEnhanced'
 import { Footer } from '@/components/Footer'
+import { WhatsAppFloat } from '@/components/WhatsAppFloat'
+import { ChatBot } from '@/components/ChatBot'
 
 interface RootLayoutClientProps {
   children: React.ReactNode
@@ -40,6 +42,8 @@ export function RootLayoutClient({ children }: RootLayoutClientProps) {
         {children}
       </main>
       <Footer />
+      <WhatsAppFloat />
+      <ChatBot />
     </div>
   )
 }

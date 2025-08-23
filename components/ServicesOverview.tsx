@@ -150,7 +150,7 @@ export function ServicesOverview() {
                   
                   <CardHeader className="pb-4">
                     <motion.div
-                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                       className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 mx-auto relative`}
                     >
@@ -243,7 +243,7 @@ export function ServicesOverview() {
                 className="text-center"
               >
                 <motion.div
-                  whileHover={{ rotate: 360 }}
+                  whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                   className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mx-auto mb-4"
                 >

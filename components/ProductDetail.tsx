@@ -17,6 +17,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getProductById } from '@/data/products';
 import { useAdmin } from '@/contexts/AdminContext';
+import { handleImageError } from '@/lib/imageUtils';
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
@@ -118,6 +119,10 @@ export default function ProductDetail() {
                 src={product.image}
                 alt={product.name[language]}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                onError={handleImageError}
+                width={500}
+                height={500}
               />
               {product.featured && (
                 <div className="absolute top-4 left-4">
