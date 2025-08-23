@@ -1,5 +1,6 @@
 'use client'
 
+// Updated for admin product integration
 import { Hero } from '@/components/Hero'
 import { StatsSection } from '@/components/StatsSection'
 import { FeaturedCategories } from '@/components/FeaturedCategories'

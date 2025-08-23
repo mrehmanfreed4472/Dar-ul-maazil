@@ -42,12 +42,7 @@ import { ImageUpload } from '@/components/ui/image-upload';
 import { DAMLogo } from '@/components/DAMLogo';
 import { PersistenceNotification } from './PersistenceNotification';
 import { handleImageError } from '@/lib/imageUtils';
-
-interface ExtendedProduct extends Omit<Product, 'availability'> {
-  availability?: 'in_stock' | 'low_stock' | 'out_of_stock';
-  stockQuantity?: number;
-  minStockLevel?: number;
-}
+import type { ExtendedProduct } from '@/lib/productManager';
 
 interface ProductFormData {
   name: { en: string; ar: string };
@@ -58,9 +53,13 @@ interface ProductFormData {
   featured: boolean;
   specifications?: string[];
   sizes?: string[];
-  availability: 'in_stock' | 'low_stock' | 'out_of_stock';
+  availability: 'in_stock' | 'out_of_stock' | 'limited' | 'low_stock';
   stockQuantity: number;
   minStockLevel: number;
+  isMainProduct?: boolean;
+  parentProductId?: string;
+  applications?: string[];
+  features?: string[];
 }
 
 export default function AdminProducts() {
@@ -73,7 +72,7 @@ export default function AdminProducts() {
   const [availabilityFilter, setAvailabilityFilter] = useState<string>('all');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ExtendedProduct | null>(null);
   
   const [formData, setFormData] = useState<ProductFormData>({
     name: { en: '', ar: '' },
@@ -86,7 +85,11 @@ export default function AdminProducts() {
     sizes: [],
     availability: 'in_stock',
     stockQuantity: 0,
-    minStockLevel: 10
+    minStockLevel: 10,
+    isMainProduct: false,
+    parentProductId: undefined,
+    applications: [],
+    features: []
   });
 
   const filteredProducts = products.filter(product => {
@@ -114,7 +117,11 @@ export default function AdminProducts() {
       sizes: [],
       availability: 'in_stock',
       stockQuantity: 0,
-      minStockLevel: 10
+      minStockLevel: 10,
+      isMainProduct: false,
+      parentProductId: undefined,
+      applications: [],
+      features: []
     });
   };
 
@@ -128,7 +135,7 @@ export default function AdminProducts() {
       return;
     }
 
-    const newProduct: Omit<Product, 'id'> = {
+    const newProduct: Omit<ExtendedProduct, 'id'> = {
       name: formData.name,
       description: formData.description,
       category: formData.category,
@@ -136,7 +143,14 @@ export default function AdminProducts() {
       image: formData.image || 'https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg',
       featured: formData.featured,
       specifications: formData.specifications?.filter(spec => spec.trim() !== ''),
-      sizes: formData.sizes?.filter(size => size.trim() !== '')
+      sizes: formData.sizes?.filter(size => size.trim() !== ''),
+      availability: formData.availability,
+      stockQuantity: formData.stockQuantity,
+      minStockLevel: formData.minStockLevel,
+      isMainProduct: formData.isMainProduct,
+      parentProductId: formData.parentProductId,
+      applications: formData.applications?.filter(app => app.trim() !== ''),
+      features: formData.features?.filter(feature => feature.trim() !== '')
     };
 
     addProduct(newProduct);
@@ -159,7 +173,7 @@ export default function AdminProducts() {
       return;
     }
 
-    const updates: Partial<Product> = {
+    const updates: Partial<ExtendedProduct> = {
       name: formData.name,
       description: formData.description,
       category: formData.category,
@@ -167,7 +181,14 @@ export default function AdminProducts() {
       image: formData.image || selectedProduct.image,
       featured: formData.featured,
       specifications: formData.specifications?.filter(spec => spec.trim() !== ''),
-      sizes: formData.sizes?.filter(size => size.trim() !== '')
+      sizes: formData.sizes?.filter(size => size.trim() !== ''),
+      availability: formData.availability,
+      stockQuantity: formData.stockQuantity,
+      minStockLevel: formData.minStockLevel,
+      isMainProduct: formData.isMainProduct,
+      parentProductId: formData.parentProductId,
+      applications: formData.applications?.filter(app => app.trim() !== ''),
+      features: formData.features?.filter(feature => feature.trim() !== '')
     };
 
     updateProduct(selectedProduct.id, updates);
@@ -189,7 +210,7 @@ export default function AdminProducts() {
     });
   };
 
-  const openEditModal = (product: Product) => {
+  const openEditModal = (product: ExtendedProduct) => {
     setSelectedProduct(product);
     setFormData({
       name: product.name,
@@ -200,9 +221,13 @@ export default function AdminProducts() {
       featured: product.featured,
       specifications: product.specifications || [],
       sizes: product.sizes || [],
-      availability: (product as ExtendedProduct).availability || 'in_stock',
-      stockQuantity: (product as ExtendedProduct).stockQuantity || 0,
-      minStockLevel: (product as ExtendedProduct).minStockLevel || 10
+      availability: product.availability || 'in_stock',
+      stockQuantity: product.stockQuantity || 0,
+      minStockLevel: product.minStockLevel || 10,
+      isMainProduct: product.isMainProduct || false,
+      parentProductId: product.parentProductId,
+      applications: product.applications || [],
+      features: product.features || []
     });
     setIsEditModalOpen(true);
   };
@@ -258,6 +283,48 @@ export default function AdminProducts() {
     }));
   };
 
+  const addApplication = () => {
+    setFormData(prev => ({
+      ...prev,
+      applications: [...(prev.applications || []), '']
+    }));
+  };
+
+  const updateApplication = (index: number, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      applications: prev.applications?.map((app, i) => i === index ? value : app) || []
+    }));
+  };
+
+  const removeApplication = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      applications: prev.applications?.filter((_, i) => i !== index) || []
+    }));
+  };
+
+  const addFeature = () => {
+    setFormData(prev => ({
+      ...prev,
+      features: [...(prev.features || []), '']
+    }));
+  };
+
+  const updateFeature = (index: number, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      features: prev.features?.map((feature, i) => i === index ? value : feature) || []
+    }));
+  };
+
+  const removeFeature = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      features: prev.features?.filter((_, i) => i !== index) || []
+    }));
+  };
+
   // Calculate summary stats
   const summaryStats = {
     total: products.length,
@@ -269,10 +336,11 @@ export default function AdminProducts() {
   const ProductFormFields = () => (
     <div className="space-y-6">
       <Tabs defaultValue="basic" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="basic">Basic Info</TabsTrigger>
           <TabsTrigger value="pricing">Pricing & Stock</TabsTrigger>
           <TabsTrigger value="details">Details</TabsTrigger>
+          <TabsTrigger value="hierarchy">Structure</TabsTrigger>
         </TabsList>
 
         <TabsContent value="basic" className="space-y-4">
@@ -430,6 +498,7 @@ export default function AdminProducts() {
               <SelectContent>
                 <SelectItem value="in_stock">In Stock</SelectItem>
                 <SelectItem value="low_stock">Low Stock</SelectItem>
+                <SelectItem value="limited">Limited Stock</SelectItem>
                 <SelectItem value="out_of_stock">Out of Stock</SelectItem>
               </SelectContent>
             </Select>
@@ -501,6 +570,113 @@ export default function AdminProducts() {
               ))}
             </div>
           </div>
+        </TabsContent>
+
+        <TabsContent value="hierarchy" className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="isMainProduct">Product Type</Label>
+              <Select
+                value={formData.isMainProduct ? 'main' : 'sub'}
+                onValueChange={(value) => setFormData(prev => ({
+                  ...prev,
+                  isMainProduct: value === 'main'
+                }))}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select product type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="main">Main Product (Product Line)</SelectItem>
+                  <SelectItem value="sub">Sub Product (Variant)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {!formData.isMainProduct && (
+              <div>
+                <Label htmlFor="parentProductId">Parent Product</Label>
+                <Select
+                  value={formData.parentProductId || ''}
+                  onValueChange={(value) => setFormData(prev => ({
+                    ...prev,
+                    parentProductId: value || undefined
+                  }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select parent product" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {products.filter(p => p.isMainProduct).map((product) => (
+                      <SelectItem key={product.id} value={product.id}>
+                        {product.name.en}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
+
+          {formData.isMainProduct && (
+            <>
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <Label>Applications</Label>
+                  <Button variant="outline" size="sm" onClick={addApplication}>
+                    <Plus className="h-4 w-4 mr-1" />
+                    Add Application
+                  </Button>
+                </div>
+                <div className="space-y-2">
+                  {formData.applications?.map((app, index) => (
+                    <div key={index} className="flex gap-2">
+                      <Input
+                        value={app}
+                        onChange={(e) => updateApplication(index, e.target.value)}
+                        placeholder="Enter application"
+                      />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => removeApplication(index)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <Label>Features</Label>
+                  <Button variant="outline" size="sm" onClick={addFeature}>
+                    <Plus className="h-4 w-4 mr-1" />
+                    Add Feature
+                  </Button>
+                </div>
+                <div className="space-y-2">
+                  {formData.features?.map((feature, index) => (
+                    <div key={index} className="flex gap-2">
+                      <Input
+                        value={feature}
+                        onChange={(e) => updateFeature(index, e.target.value)}
+                        placeholder="Enter feature"
+                      />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => removeFeature(index)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </TabsContent>
       </Tabs>
     </div>
@@ -641,7 +817,7 @@ export default function AdminProducts() {
                     <SelectItem value="all">{isRTL() ? 'جميع المنتجات' : 'All Products'}</SelectItem>
                     <SelectItem value="in_stock">{isRTL() ? 'متوفر' : 'In Stock'}</SelectItem>
                     <SelectItem value="low_stock">{isRTL() ? 'مخزون منخفض' : 'Low Stock'}</SelectItem>
-                    <SelectItem value="out_of_stock">{isRTL() ? 'غير متوفر' : 'Out of Stock'}</SelectItem>
+                    <SelectItem value="out_of_stock">{isRTL() ? 'غ��ر متوفر' : 'Out of Stock'}</SelectItem>
                   </SelectContent>
                 </Select>
 

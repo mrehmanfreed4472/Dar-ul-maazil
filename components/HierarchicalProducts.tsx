@@ -22,9 +22,11 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from '@/hooks/use-translation';
-import { hierarchicalProducts, MainProduct, SubProduct } from '@/data/products-hierarchy';
+import { hierarchicalProducts } from '@/data/products-hierarchy';
+import type { MainProduct, SubProduct } from '@/data/products-hierarchy';
 import { productCategories } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
+import { useAdmin } from '@/contexts/AdminContext';
 import { getTechExplanation, friendlySpec, getInstallationDifficulty, getRecommendedUse } from '@/lib/productTerms';
 
 interface ExpandedProducts {
@@ -34,16 +36,20 @@ interface ExpandedProducts {
 export default function HierarchicalProducts() {
   const { t, language, isRTL } = useTranslation();
   const { addToCart } = useCart();
+  const { getHierarchicalProducts } = useAdmin();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'name' | 'price-low' | 'price-high'>('name');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [expandedProducts, setExpandedProducts] = useState<ExpandedProducts>({});
 
+  // Get products from admin context instead of static data
+  const hierarchicalProductsData = getHierarchicalProducts();
+
   const filteredProducts = useMemo(() => {
     let filteredProducts = selectedCategory === 'all'
-      ? hierarchicalProducts
-      : hierarchicalProducts.filter(product => product.category === selectedCategory);
+      ? hierarchicalProductsData
+      : hierarchicalProductsData.filter(product => product.category === selectedCategory);
 
     // Search filter
     if (searchQuery) {
@@ -75,7 +81,7 @@ export default function HierarchicalProducts() {
     });
 
     return filteredProducts;
-  }, [selectedCategory, searchQuery, sortBy, language]);
+  }, [selectedCategory, searchQuery, sortBy, language, hierarchicalProductsData]);
 
   const toggleProductExpansion = (productId: string) => {
     setExpandedProducts(prev => ({
@@ -477,7 +483,7 @@ export default function HierarchicalProducts() {
                   {isRTL() ? 'السعر: منخفض إلى مرتفع' : 'Price: Low to High'}
                 </SelectItem>
                 <SelectItem value="price-high">
-                  {isRTL() ? 'السعر: مرتفع إلى منخفض' : 'Price: High to Low'}
+                  {isRTL() ? 'السع��: مرتفع إلى منخفض' : 'Price: High to Low'}
                 </SelectItem>
               </SelectContent>
             </Select>
@@ -509,8 +515,8 @@ export default function HierarchicalProducts() {
           <div className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
             <Package className="h-4 w-4" />
             {isRTL()
-              ? `عرض ${filteredProducts.length} من ${hierarchicalProducts.length} خط منتج`
-              : `Showing ${filteredProducts.length} of ${hierarchicalProducts.length} product lines`
+              ? `عرض ${filteredProducts.length} من ${hierarchicalProductsData.length} خط منتج`
+              : `Showing ${filteredProducts.length} of ${hierarchicalProductsData.length} product lines`
             }
           </div>
         </motion.div>

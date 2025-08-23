@@ -10,10 +10,11 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { Product } from '@/data/products';
+import type { ExtendedProduct } from '@/lib/productManager';
 import { handleImageError } from '@/lib/imageUtils';
 
 interface ProductCardProps {
-  product: Product;
+  product: Product | ExtendedProduct;
 }
 
 export function ProductCard({ product }: ProductCardProps) {

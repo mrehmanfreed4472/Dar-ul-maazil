@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product, getAllProducts } from '@/data/products';
 import { Service, getAllServices } from '@/data/services';
+import ProductManagerService from '@/lib/productManager';
+import type { ExtendedProduct } from '@/lib/productManager';
 
 export interface Order {
   id: string;
@@ -79,10 +81,12 @@ interface AdminContextType {
   getOrderById: (id: string) => Order | undefined;
   
   // Products
-  products: Product[];
-  addProduct: (product: Omit<Product, 'id'>) => void;
-  updateProduct: (id: string, updates: Partial<Product>) => void;
+  products: ExtendedProduct[];
+  addProduct: (product: Omit<ExtendedProduct, 'id'>) => void;
+  updateProduct: (id: string, updates: Partial<ExtendedProduct>) => void;
   deleteProduct: (id: string) => void;
+  getHierarchicalProducts: () => any[];
+  initializeComprehensiveProducts: () => void;
   
   // Services
   services: Service[];
@@ -187,7 +191,7 @@ const generateMockCustomers = (): Customer[] => {
 
 export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [orders, setOrders] = useState<Order[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ExtendedProduct[]>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [stats, setStats] = useState<AdminStats>({
@@ -226,13 +230,23 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('admin_customers', JSON.stringify(mockCustomers));
     }
 
-    // Load products from localStorage if available, otherwise use default data
+    // Load products from localStorage if available, otherwise initialize comprehensive data
     if (savedProducts) {
-      setProducts(JSON.parse(savedProducts));
+      const parsedProducts = JSON.parse(savedProducts);
+      // Check if products have hierarchical metadata, if not, reinitialize
+      const hasHierarchicalData = parsedProducts.some((p: any) => p.hasOwnProperty('isMainProduct'));
+
+      if (hasHierarchicalData) {
+        setProducts(parsedProducts);
+      } else {
+        // Migrate to comprehensive data
+        const comprehensiveProducts = ProductManagerService.initializeComprehensiveData();
+        setProducts(comprehensiveProducts);
+      }
     } else {
-      const defaultProducts = getAllProducts();
-      setProducts(defaultProducts);
-      localStorage.setItem('admin_products', JSON.stringify(defaultProducts));
+      // Initialize with comprehensive product data
+      const comprehensiveProducts = ProductManagerService.initializeComprehensiveData();
+      setProducts(comprehensiveProducts);
     }
 
     // Load services from localStorage if available, otherwise use default data
@@ -349,22 +363,39 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   };
 
   // Product management
-  const addProduct = (productData: Omit<Product, 'id'>) => {
-    const newProduct: Product = {
+  const addProduct = (productData: Omit<ExtendedProduct, 'id'>) => {
+    const newProduct: ExtendedProduct = {
       ...productData,
-      id: `product-${Date.now()}`
+      id: `product-${Date.now()}`,
+      lastUpdated: new Date().toISOString(),
+      stockQuantity: productData.stockQuantity || 50,
+      minStockLevel: productData.minStockLevel || 5,
+      isMainProduct: productData.isMainProduct || false
     };
     setProducts(prev => [...prev, newProduct]);
   };
 
-  const updateProduct = (id: string, updates: Partial<Product>) => {
-    setProducts(prev => prev.map(product => 
-      product.id === id ? { ...product, ...updates } : product
+  const updateProduct = (id: string, updates: Partial<ExtendedProduct>) => {
+    setProducts(prev => prev.map(product =>
+      product.id === id
+        ? { ...product, ...updates, lastUpdated: new Date().toISOString() }
+        : product
     ));
   };
 
   const deleteProduct = (id: string) => {
     setProducts(prev => prev.filter(product => product.id !== id));
+  };
+
+  // Get products in hierarchical format for display
+  const getHierarchicalProducts = () => {
+    return ProductManagerService.flatToHierarchical(products);
+  };
+
+  // Initialize comprehensive products (for manual refresh)
+  const initializeComprehensiveProducts = () => {
+    const comprehensiveProducts = ProductManagerService.initializeComprehensiveData();
+    setProducts(comprehensiveProducts);
   };
 
   // Service management
@@ -449,9 +480,8 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
 
   const resetData = (type: 'products' | 'services') => {
     if (type === 'products') {
-      const defaultProducts = getAllProducts();
-      setProducts(defaultProducts);
-      localStorage.setItem('admin_products', JSON.stringify(defaultProducts));
+      const comprehensiveProducts = ProductManagerService.initializeComprehensiveData();
+      setProducts(comprehensiveProducts);
     } else if (type === 'services') {
       const defaultServices = getAllServices();
       setServices(defaultServices);
@@ -470,6 +500,8 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       addProduct,
       updateProduct,
       deleteProduct,
+      getHierarchicalProducts,
+      initializeComprehensiveProducts,
       services,
       addService,
       updateService,

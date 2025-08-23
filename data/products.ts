@@ -17,7 +17,7 @@ export interface Product {
   sizes?: string[];
   image: string;
   featured?: boolean;
-  availability?: 'in_stock' | 'out_of_stock' | 'limited';
+  availability?: 'in_stock' | 'out_of_stock' | 'limited' | 'low_stock';
 }
 
 export interface ProductCategory {
@@ -559,7 +559,7 @@ export const allProducts: Product[] = [
   {
     id: 'dam-plus-al-4200',
     category: 'membranes',
-    name: { en: 'Dam Plus AL 4200', ar: 'دام بلس AL 4200' },
+    name: { en: 'Dam Plus AL 4200', ar: 'دام ب��س AL 4200' },
     description: {
       en: 'Aluminum Faced Modified Bitumen Membrane with enhanced durability',
       ar: 'غشاء بيتومين معدل بوجه الألومنيوم بمتانة محسنة'
@@ -1972,7 +1972,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Rep Mortar', ar: 'دام ريب مورتار' },
     description: {
       en: 'Surface Leveling & Repair Mortar for concrete restoration',
-      ar: 'مونة تسوية وإصلاح السطح لترميم الخرسانة'
+      ar: 'مونة تسوية وإصلاح ال��طح لترميم الخرسانة'
     },
     pricing: { usd: 28, aed: 103 },
     specifications: ['Polymer modified', 'High adhesion', 'Crack resistant', 'Easy application'],

@@ -15,7 +15,7 @@ export interface SubProduct {
   specifications: string[];
   sizes: string[];
   image: string;
-  availability: 'in_stock' | 'out_of_stock' | 'limited';
+  availability: 'in_stock' | 'out_of_stock' | 'limited' | 'low_stock';
 }
 
 export interface MainProduct {
@@ -62,7 +62,7 @@ export const hierarchicalProducts: MainProduct[] = [
     },
     overview: {
       en: 'Our premium primer series offers comprehensive solutions for surface preparation across all waterproofing applications. Each variant is engineered for specific conditions and requirements.',
-      ar: 'توفر سلسلة البرايمر الممتازة حلولاً شاملة لتحضير السطح عبر جميع تطبيقات العزل المائي. كل نوع مصمم للظروف والمتطلبات المحددة.'
+      ar: 'توفر سلسلة البرايمر الممتازة حلولاً شاملة لتحضير السطح عبر جميع تطبيقات العزل المائي. كل نوع مصمم للظر��ف والمتطلبات المحددة.'
     },
     icon: '🎨',
     image: 'https://images.pexels.com/photos/6474294/pexels-photo-6474294.jpeg',
