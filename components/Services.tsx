@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, Droplets, Thermometer, Layers, Wrench, Crown, Star, Clock, Zap, AlertTriangle, ShoppingCart } from 'lucide-react';
+import { Search, Filter, Droplets, Layers, Building, Settings, Zap, Palette, Shield, Crown, Star, Clock, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,25 +14,26 @@ import { useToast } from '@/hooks/use-toast';
 import { getAllServices, getServicesByCategory, serviceCategories, Service } from '@/data/services';
 import { useAdmin } from '@/contexts/AdminContext';
 import Link from 'next/link';
-import { DAMLogo } from '@/components/DAMLogo';
 
 const iconMap = {
   Droplets,
-  Thermometer,
   Layers,
-  Wrench
+  Building,
+  Settings,
+  Zap,
+  Palette,
+  Shield
 };
 
 export default function Services() {
   const { language, isRTL } = useTranslation();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const { services } = useAdmin(); // Use admin services data
+  const { services } = useAdmin();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('featured');
 
-  // Use admin services if available, fallback to static data
   const allServices = services.length > 0 ? services : getAllServices();
 
   const filteredServices = allServices.filter(service => {
@@ -65,75 +66,37 @@ export default function Services() {
     }
   };
 
-  const handleQuickAddService = (service: Service) => {
-    const cartItem = {
-      type: 'service' as const,
-      id: service.id,
-      name: service.name[language],
-      price: service.pricing.normal, // Default to normal priority
-      image: service.image,
-      urgency: 'normal' as const
-    };
-
-    addToCart(cartItem);
-
-    toast({
-      title: isRTL() ? 'تم إضافة الخدمة' : 'Service Added',
-      description: isRTL()
-        ? 'تم إضافة الخدمة بأولوية عادية. يمكنك تعديل الخيارات في السل��.'
-        : 'Service added with normal priority. You can modify options in cart.'
-    });
-  };
-
-  const getUrgencyColor = (urgency: string) => {
-    switch (urgency) {
-      case 'emergency': return 'gradient-error text-white';
-      case 'urgent': return 'gradient-warning text-white';
-      default: return 'gradient-success text-white';
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-green-100">
+    <div className="min-h-screen bg-slate-50">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <motion.h1 
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4 floating-animation"
-          >
-            <Crown className="inline-block w-12 h-12 mr-4 text-accent" />
-            {isRTL() ? 'خدماتنا المتخصصة' : 'Our Professional Services'}
-          </motion.h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <Crown className="inline-block w-12 h-12 mr-4 text-primary" />
+            {isRTL() ? 'خدم��تنا المتخصصة' : 'Our Professional Services'}
+          </h1>
           
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg text-muted-foreground max-w-3xl mx-auto"
-          >
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             {isRTL() 
-              ? 'نقدم خدمات تركيب وصيانة العزل المائي والحراري بأعلى م��ايير الجودة مع خيارات الأولوية المختلفة'
+              ? 'نقدم خدمات تركيب وصيانة العزل المائي والحراري بأعلى معايير الجودة مع خيارات الأولوية المختلفة'
               : 'We provide installation and maintenance services for waterproofing and thermal insulation with the highest quality standards and various priority options'
             }
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Service Categories */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-12"
         >
-          <h2 className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold text-center mb-8 text-primary">
             {isRTL() ? 'فئات الخدمات' : 'Service Categories'}
           </h2>
           
@@ -145,22 +108,16 @@ export default function Services() {
                   key={category.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
                 >
                   <Card 
-                    className="glass-card border-primary/20 premium-shadow hover:premium-shadow-lg transition-all duration-300 cursor-pointer group"
+                    className="border border-primary/20 shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
                     onClick={() => setSelectedCategory(category.id)}
                   >
                     <CardHeader className="text-center">
-                      <motion.div 
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                        className="w-16 h-16 premium-gradient rounded-xl flex items-center justify-center mx-auto mb-4 pulse-glow"
-                      >
+                      <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
                         <Icon className="h-8 w-8 text-white" />
-                      </motion.div>
+                      </div>
                       <CardTitle className="text-lg group-hover:text-primary transition-colors">
                         {category.name[language]}
                       </CardTitle>
@@ -179,10 +136,10 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="mb-8"
         >
-          <Card className="glass-card border-accent/20 premium-shadow">
+          <Card className="border border-accent/20 shadow-md">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Filter className="h-5 w-5" />
@@ -245,7 +202,7 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {filteredServices.map((service, index) => (
@@ -253,19 +210,18 @@ export default function Services() {
               key={service.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 + (index * 0.1) }}
-              whileHover={{ y: -5 }}
+              transition={{ duration: 0.5, delay: 0.5 + (index * 0.05) }}
             >
-              <Card className="group glass-card hover:premium-shadow-lg transition-all duration-300 border-border/30 hover:border-primary/30 h-full overflow-hidden">
+              <Card className="group border shadow-md hover:shadow-lg transition-shadow duration-300 h-full overflow-hidden">
                 <div className="relative">
                   <img
                     src={service.image}
                     alt={service.name[language]}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover"
                   />
                   {service.featured && (
                     <div className="absolute top-3 left-3">
-                      <Badge className="gradient-accent text-white status-badge">
+                      <Badge className="bg-primary text-white">
                         <Star className="w-3 h-3 mr-1" />
                         {isRTL() ? 'مميز' : 'Featured'}
                       </Badge>
@@ -319,7 +275,7 @@ export default function Services() {
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="flex-1 group-hover:border-primary/50 transition-colors"
+                      className="flex-1 hover:border-primary/50 transition-colors"
                       asChild
                     >
                       <Link href={`/services/${service.id}`}>
@@ -328,7 +284,7 @@ export default function Services() {
                     </Button>
                     <Button
                       size="sm"
-                      className="gap-2 gradient-primary text-white font-medium hover:scale-105 transition-all duration-300"
+                      className="gap-2 bg-primary hover:bg-primary/90 text-white font-medium transition-colors"
                       asChild
                     >
                       <Link href={`/services/${service.id}`}>

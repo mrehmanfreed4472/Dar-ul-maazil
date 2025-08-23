@@ -259,7 +259,7 @@ export default function CustomerLocationMap() {
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
-                    whileHover={{ scale: 1.02, shadow: "0 8px 25px rgba(0,0,0,0.1)" }}
+                    whileHover={{ scale: 1.02 }}
                     className="group relative p-4 bg-gradient-to-r from-white to-slate-50 rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
                   >
                     <div className="flex items-center justify-between">

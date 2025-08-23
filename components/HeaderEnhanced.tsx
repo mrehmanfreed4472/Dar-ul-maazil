@@ -30,46 +30,34 @@ export function HeaderEnhanced() {
     { href: '/contact', label: t('nav.contact'), icon: Mail },
   ];
 
-
   const isActivePage = (href: string) => {
     return pathname === href;
   };
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200 ${isRTL() ? 'rtl' : 'ltr'}`}
-    >
+    <header className={`sticky top-0 z-50 bg-white shadow-md border-b border-gray-200 ${isRTL() ? 'rtl' : 'ltr'}`}>
       {/* Top bar with contact info */}
-      <div className="navbar-gradient text-white">
+      <div className="bg-primary text-white">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-6">
-              <motion.a
+              <a
                 href="https://wa.me/971502342218"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 cursor-pointer group"
+                className="flex items-center gap-2 hover:opacity-90 transition-opacity"
               >
-                <Phone className="h-4 w-4 text-orange-200 animate-pulse" />
-                <span className="font-medium group-hover:text-orange-100 transition-colors">
-                  +971502342218
-                </span>
-              </motion.a>
+                <Phone className="h-4 w-4" />
+                <span className="font-medium">+971502342218</span>
+              </a>
 
-              <motion.a
+              <a
                 href="mailto:info@damgcc.com"
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 cursor-pointer group"
+                className="flex items-center gap-2 hover:opacity-90 transition-opacity"
               >
-                <Mail className="h-4 w-4 text-green-200 animate-pulse" />
-                <span className="font-medium group-hover:text-green-100 transition-colors">
-                  info@damgcc.com
-                </span>
-              </motion.a>
+                <Mail className="h-4 w-4" />
+                <span className="font-medium">info@damgcc.com</span>
+              </a>
             </div>
 
             <LanguageToggle />
@@ -83,39 +71,28 @@ export function HeaderEnhanced() {
           {/* Logo */}
           <DAMLogo
             size="lg"
-            animated={true}
-            interactive={true}
             href="/"
           />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {navigation.map((item, index) => {
+            {navigation.map((item) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <Link
                   key={item.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + (index * 0.1) }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  href={item.href}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
+                    isActivePage(item.href)
+                      ? 'bg-primary text-white shadow-md'
+                      : 'text-gray-700 hover:text-primary hover:bg-primary/10'
+                  }`}
                 >
-                  <Link
-                    href={item.href}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
-                      isActivePage(item.href)
-                        ? 'gradient-orange-green text-white shadow-md neon-orange-green'
-                        : 'text-gray-700 hover:text-green-600 hover:bg-green-50'
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span>{item.label}</span>
-                  </Link>
-                </motion.div>
+                  <Icon className="h-4 w-4" />
+                  <span>{item.label}</span>
+                </Link>
               );
             })}
-
           </nav>
 
           {/* Desktop Actions */}
@@ -124,17 +101,15 @@ export function HeaderEnhanced() {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <motion.div whileHover={{ scale: 1.05 }}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-gray-300 hover:border-blue-400 hover:bg-blue-50"
-                    >
-                      <User className="h-4 w-4 mr-2" />
-                      {user.name}
-                      {isAdmin() && <Crown className="h-4 w-4 ml-2 text-yellow-500" />}
-                    </Button>
-                  </motion.div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-gray-300 hover:border-primary hover:bg-primary/10"
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    {user.name}
+                    {isAdmin() && <Crown className="h-4 w-4 ml-2 text-yellow-500" />}
+                  </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="border-gray-200">
                   {isAdmin() && (
@@ -142,7 +117,7 @@ export function HeaderEnhanced() {
                       <DropdownMenuItem>
                         <Link href="/admin" className="flex items-center">
                           <Settings className="h-4 w-4 mr-2" />
-                          {isRTL() ? '��وحة الإدارة' : 'Admin Panel'}
+                          {isRTL() ? 'لوحة الإدارة' : 'Admin Panel'}
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -155,71 +130,59 @@ export function HeaderEnhanced() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <motion.div whileHover={{ scale: 1.05 }}>
-                <Link href="/login">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="button-green border-green-300 text-white hover:text-white transition-colors shadow-md"
-                  >
-                    <User className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'تسجيل الدخول' : 'Login'}
-                  </Button>
-                </Link>
-              </motion.div>
+              <Link href="/login">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  {isRTL() ? 'تسجيل الدخول' : 'Login'}
+                </Button>
+              </Link>
             )}
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2">
               {/* Cart Button */}
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/cart">
-                  <Button 
-                    size="sm"
-                    className="button-green text-white shadow-md animate-green-glow neon-green"
-                  >
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'السلة' : 'Cart'}
-                    {cartCount > 0 && (
-                      <Badge className="ml-2 bg-orange-500 text-white text-xs">
-                        {cartCount}
-                      </Badge>
-                    )}
-                  </Button>
-                </Link>
-              </motion.div>
+              <Link href="/cart">
+                <Button 
+                  size="sm"
+                  className="bg-primary hover:bg-primary/90 text-white"
+                >
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  {isRTL() ? 'السلة' : 'Cart'}
+                  {cartCount > 0 && (
+                    <Badge className="ml-2 bg-accent text-white text-xs">
+                      {cartCount}
+                    </Badge>
+                  )}
+                </Button>
+              </Link>
 
               {/* Order Button */}
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/order">
-                  <Button
-                    size="sm"
-                    className="button-green hover:gradient-green text-white shadow-md animate-green-glow"
-                  >
-                    <FileText className="h-4 w-4 mr-2" />
-                    {isRTL() ? 'طلب' : 'Order'}
-                  </Button>
-                </Link>
-              </motion.div>
+              <Link href="/order">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-white"
+                >
+                  <FileText className="h-4 w-4 mr-2" />
+                  {isRTL() ? 'طلب' : 'Order'}
+                </Button>
+              </Link>
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Button
-              variant="outline"
-              size="sm"
-              className="md:hidden border-gray-300 hover:border-green-400 hover:bg-green-50"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <motion.div
-                animate={{ rotate: isMenuOpen ? 90 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </motion.div>
-            </Button>
-          </motion.div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="md:hidden border-gray-300 hover:border-primary hover:bg-primary/10"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
 
         {/* Mobile Navigation */}
@@ -233,31 +196,24 @@ export function HeaderEnhanced() {
               className="md:hidden border-t border-gray-200 py-4 bg-gray-50"
             >
               <nav className="flex flex-col gap-2">
-                {navigation.map((item, index) => {
+                {navigation.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div
+                    <Link
                       key={item.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      href={item.href}
+                      className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg font-medium text-sm transition-all duration-200 ${
+                        isActivePage(item.href)
+                          ? 'bg-primary text-white'
+                          : 'text-gray-700 hover:text-primary hover:bg-primary/10'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
                     >
-                      <Link
-                        href={item.href}
-                        className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg font-medium text-sm transition-all duration-200 ${
-                          isActivePage(item.href)
-                            ? 'gradient-orange-green text-white shadow-md neon-orange-green'
-                            : 'text-gray-700 hover:text-green-400 hover:bg-green-50'
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <Icon className="h-4 w-4" />
-                        <span>{item.label}</span>
-                      </Link>
-                    </motion.div>
+                      <Icon className="h-4 w-4" />
+                      <span>{item.label}</span>
+                    </Link>
                   );
                 })}
-
 
                 <div className="px-2 pt-4 space-y-2">
                   {user ? (
@@ -278,7 +234,7 @@ export function HeaderEnhanced() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full button-green border-green-300 text-white hover:text-white shadow-md"
+                        className="w-full border-primary text-primary hover:bg-primary hover:text-white"
                       >
                         <User className="h-4 w-4 mr-2" />
                         {isRTL() ? 'دخول' : 'Login'}
@@ -287,11 +243,11 @@ export function HeaderEnhanced() {
                   )}
                   
                   <Link href="/cart" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full button-green text-white animate-green-glow neon-green">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       {isRTL() ? 'السلة' : 'Cart'}
                       {cartCount > 0 && (
-                        <Badge className="ml-2 bg-orange-500 text-white">
+                        <Badge className="ml-2 bg-accent text-white">
                           {cartCount}
                         </Badge>
                       )}
@@ -299,7 +255,10 @@ export function HeaderEnhanced() {
                   </Link>
 
                   <Link href="/order" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full button-green hover:gradient-green text-white animate-green-glow">
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                    >
                       <FileText className="h-4 w-4 mr-2" />
                       {isRTL() ? 'طلب مخصص' : 'Custom Order'}
                     </Button>
@@ -310,6 +269,6 @@ export function HeaderEnhanced() {
           )}
         </AnimatePresence>
       </div>
-    </motion.header>
+    </header>
   );
 }

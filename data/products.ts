@@ -77,27 +77,27 @@ export const productCategories: ProductCategory[] = [
   },
   {
     id: 'coatings',
-    name: { en: 'Coatings', ar: 'الطلاءات الواقية' },
+    name: { en: 'Waterproof Coatings', ar: 'الطلاءات المقاومة للماء' },
     description: { 
-      en: 'Protective coatings for various applications',
-      ar: 'طلاءات واقية لتطبيقات مختلفة'
+      en: 'Advanced waterproof and floor coatings for all applications',
+      ar: 'طلاءات مقاومة للماء والأرضيات المتقدمة لجميع التطبيقات'
     },
     icon: '✨',
     featured: true
   },
   {
     id: 'sealants',
-    name: { en: 'Sealants', ar: 'المواد المانعة للتسرب' },
+    name: { en: 'Sealants & Silicon', ar: 'المواد المانعة للتسرب والسيليكون' },
     description: { 
-      en: 'Professional sealants for joints and gaps',
-      ar: 'مواد منع التسرب المهنية للمفاصل والفجوات'
+      en: 'Professional sealants and silicon for joints and gaps',
+      ar: 'مواد منع التسرب والسيليكون المهنية للمفاصل والفجوات'
     },
     icon: '🔧',
     featured: true
   },
   {
     id: 'concrete-repair',
-    name: { en: 'Concrete Repair', ar: 'إصلاح الخرسانة' },
+    name: { en: 'Concrete Repair & Crack Injection', ar: '��صلاح الخرسانة وحقن الشقوق' },
     description: { 
       en: 'Concrete repair and crack injection solutions',
       ar: 'حلول إصلاح الخرسانة وحقن الشقوق'
@@ -109,38 +109,28 @@ export const productCategories: ProductCategory[] = [
     id: 'grp-lining',
     name: { en: 'GRP Lining', ar: 'بطانة الألياف الزجاجية' },
     description: { 
-      en: 'Glass Reinforced Plastic lining systems',
-      ar: 'أنظمة بطانة البلاستيك المقوى بالألياف الزجاجية'
+      en: 'Glass Reinforced Plastic lining systems and materials',
+      ar: 'أنظمة ومواد بطانة البلاستيك المقوى بالألياف الزجاجية'
     },
     icon: '🛡️',
     featured: false
   },
   {
     id: 'repair-mortars',
-    name: { en: 'Repair Mortars', ar: 'مونة الإصلاح' },
+    name: { en: 'Repair Mortars & Plugging', ar: 'مونة الإصلاح والسد' },
     description: { 
-      en: 'Specialized mortars for structural repairs',
-      ar: 'مونة متخصصة لإصلاحات الهياكل'
+      en: 'Specialized mortars and plugging compounds for structural repairs',
+      ar: 'مونة متخصصة ومركبات السد لإصلاحات الهياكل'
     },
     icon: '🏗️',
     featured: false
   },
   {
-    id: 'insulation-finishing',
-    name: { en: 'Insulation & Finishing', ar: 'العزل والتشطيب' },
-    description: { 
-      en: 'Insulation materials and finishing solutions',
-      ar: 'مواد العزل وحلول التشطيب'
-    },
-    icon: '🏠',
-    featured: false
-  },
-  {
     id: 'geotextiles',
-    name: { en: 'Geotextiles', ar: 'الجيوتكستايل' },
+    name: { en: 'Geotextiles & Fabrics', ar: 'الجيوتكستايل والأقمشة' },
     description: { 
-      en: 'Geotextile fabrics for civil engineering applications',
-      ar: 'أقمشة الجيوتكستايل لتطبيقات الهندسة المدنية'
+      en: 'Geotextile fabrics and meshes for civil engineering applications',
+      ar: 'أقمشة الجيوتكستايل والشبكات لتطبيقات الهندسة المدنية'
     },
     icon: '🧵',
     featured: false
@@ -149,8 +139,8 @@ export const productCategories: ProductCategory[] = [
     id: 'thermal-insulation',
     name: { en: 'Thermal Insulation', ar: 'العزل الحراري' },
     description: { 
-      en: 'Thermal insulation materials for energy efficiency',
-      ar: 'مواد العزل الحراري لكفاءة الطاقة'
+      en: 'Thermal insulation materials and joint fillers for energy efficiency',
+      ar: 'مواد العزل الحراري وحشوات المفاصل لكفاءة الطاقة'
     },
     icon: '🌡️',
     featured: false
@@ -159,8 +149,8 @@ export const productCategories: ProductCategory[] = [
     id: 'aluminum-flashing',
     name: { en: 'Aluminum Flashing', ar: 'الألومنيوم الوامض' },
     description: { 
-      en: 'Aluminum flashing for waterproofing details',
-      ar: 'الألومنيوم الوامض لتفاصيل العزل المائي'
+      en: 'Aluminum flashing for waterproofing details and protection',
+      ar: 'الألومنيوم الوامض لتفاصيل العزل المائي والحماية'
     },
     icon: '⚡',
     featured: false
@@ -169,48 +159,58 @@ export const productCategories: ProductCategory[] = [
     id: 'sandwich-panels',
     name: { en: 'Sandwich Panels', ar: 'الألواح الساندويتش' },
     description: { 
-      en: 'Insulated sandwich panels for construction',
-      ar: 'ألواح ساندويتش معزولة للبناء'
+      en: 'Insulated sandwich panels, GI sheets and skylights for construction',
+      ar: 'ألواح ساندويتش معزولة وألواح GI ونوافذ السقف للبناء'
     },
     icon: '🥪',
     featured: false
   },
   {
     id: 'concrete-grouts',
-    name: { en: 'Concrete/Grouts', ar: 'الخرسانة/الجراوت' },
+    name: { en: 'Concrete & Grouts', ar: 'الخرسانة والجراوت' },
     description: { 
-      en: 'Specialized concrete and grout products',
-      ar: 'منتجات خرسانة وجراوت متخصصة'
+      en: 'Specialized concrete and grout products for construction',
+      ar: 'منتجات خرسانة وجراوت متخصصة للبناء'
     },
     icon: '🏗️',
     featured: false
   },
   {
-    id: 'tiles-marble',
-    name: { en: 'Tiles & Marble', ar: 'البلاط والرخام' },
+    id: 'tiles',
+    name: { en: 'Tiles', ar: 'البلاط' },
     description: { 
-      en: 'Tiles and marble installation materials',
-      ar: 'مواد تركيب البلاط والرخام'
+      en: 'Tiles and related installation materials',
+      ar: 'البلاط ومواد التركيب ذات الصلة'
     },
     icon: '🔷',
     featured: false
   },
   {
-    id: 'landscaping',
-    name: { en: 'Landscaping', ar: 'تنسيق الحدائق' },
+    id: 'gravel',
+    name: { en: 'Gravel', ar: 'الحصى' },
     description: { 
-      en: 'Landscaping and garden materials',
-      ar: 'مواد تنسيق الحدائق'
+      en: 'Various gravel types for construction and landscaping',
+      ar: 'أنواع مختلفة من الحصى للبناء وتنسيق الحدائق'
+    },
+    icon: '🪨',
+    featured: false
+  },
+  {
+    id: 'landscaping',
+    name: { en: 'Landscaping Products', ar: 'منتجات تنسيق الحدائق' },
+    description: { 
+      en: 'Landscaping and garden materials for outdoor projects',
+      ar: 'مواد تنسيق الحدائق للمشاريع الخارجية'
     },
     icon: '🌿',
     featured: false
   },
   {
     id: 'tools-accessories',
-    name: { en: 'Tools & Accessories', ar: 'الأ��وات والملحقات' },
+    name: { en: 'Tools & Miscellaneous', ar: 'الأدوات والمتنوعات' },
     description: { 
-      en: 'Professional tools and accessories',
-      ar: 'أدوات وملحقات مهنية'
+      en: 'Professional tools and miscellaneous installation items',
+      ar: 'أدوات مهنية وعناصر تركي�� متنوعة'
     },
     icon: '🔧',
     featured: false
@@ -263,7 +263,7 @@ export const allProducts: Product[] = [
     availability: 'in_stock'
   },
 
-  // MEMBRANES
+  // MEMBRANES - Dam Plus S Series
   {
     id: 'dam-plus-s-4180',
     category: 'membranes',
@@ -313,7 +313,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Plus S 5180', ar: 'دام بلس S 5180' },
     description: {
       en: 'Heavy-duty Bituminous Membrane for extreme applications',
-      ar: 'غشاء بيتوميني للخدمة الشاقة للتطبيقات القاسية'
+      ar: 'غشاء بيتوميني ��لخدمة الشاقة للتطبيقات القاسية'
     },
     pricing: { usd: 220, aed: 808 },
     specifications: ['Thickness: 5mm', 'GSM: 180', 'Heavy duty'],
@@ -349,6 +349,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // SBS Modified Bitumen Membrane
   {
     id: 'sbs-modified-membrane',
     category: 'membranes',
@@ -364,6 +366,8 @@ export const allProducts: Product[] = [
     featured: true,
     availability: 'in_stock'
   },
+
+  // Dam Plus APP Series
   {
     id: 'dam-plus-app-4180',
     category: 'membranes',
@@ -448,6 +452,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Plus M Series (Mineral Modified)
   {
     id: 'dam-plus-m-4180',
     category: 'membranes',
@@ -490,6 +496,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Plus AR Series (Anti-Root)
   {
     id: 'dam-plus-ar-4180',
     category: 'membranes',
@@ -532,6 +540,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Plus AL Series (Aluminum Faced)
   {
     id: 'dam-plus-al-4180',
     category: 'membranes',
@@ -560,6 +570,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Stick Series (Self-Adhesive)
   {
     id: 'dam-stick-15',
     category: 'membranes',
@@ -594,7 +606,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Stick 2.0mm', ar: 'دام ستيك 2.0 مم' },
     description: {
       en: 'Heavy-duty Self-Adhesive Modified Bitumen Membrane',
-      ar: 'غشاء بيتومين معدل ذاتي اللصق للخدمة الشاقة'
+      ar: 'غشاء بيتومين معدل ذاتي اللصق للخدمة الشاق��'
     },
     pricing: { usd: 290, aed: 1066 },
     specifications: ['Self-adhesive', 'Heavy duty', 'No torch required', 'Thickness: 2.0mm'],
@@ -602,6 +614,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Shield Series (DPC)
   {
     id: 'dam-shield-15',
     category: 'membranes',
@@ -630,6 +644,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Stick CL Series (Cross Laminated)
   {
     id: 'dam-stick-cl-16',
     category: 'membranes',
@@ -650,7 +666,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Stick CL 2.1mm', ar: 'دام ستيك CL 2.1 مم' },
     description: {
       en: 'Heavy-duty Self-Adhesive Cross Laminated Membrane',
-      ar: 'غشاء متقاطع ذاتي اللصق للخدمة الشاق��'
+      ar: 'غشاء متقاطع ذاتي اللصق للخدمة الشاقة'
     },
     pricing: { usd: 300, aed: 1102 },
     specifications: ['Self-adhesive', 'Cross laminated', 'Heavy duty', 'Thickness: 2.1mm'],
@@ -658,6 +674,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Shield SA Series (Self-Adhesive DPC)
   {
     id: 'dam-shield-sa-15',
     category: 'membranes',
@@ -686,6 +704,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Stick AL Series (Self-Adhesive Aluminum)
   {
     id: 'dam-stick-al-15',
     category: 'membranes',
@@ -728,6 +748,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // Dam Shield HD Series (High Density DPC)
   {
     id: 'dam-shield-hd-15',
     category: 'membranes',
@@ -756,13 +778,15 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // EPDM Membranes
   {
     id: 'dam-epdm-12',
     category: 'membranes',
     name: { en: 'Dam EPDM 1.2mm', ar: 'دام EPDM 1.2 مم' },
     description: {
       en: 'Ethylene Propylene Diene Monomer Membrane for superior durability',
-      ar: 'غشاء EPDM لمتانة فائقة'
+      ar: 'غشاء EPDM لم��انة فائقة'
     },
     pricing: { usd: 320, aed: 1176 },
     specifications: ['EPDM rubber', 'Excellent durability', 'Weather resistant', 'Thickness: 1.2mm'],
@@ -776,7 +800,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam EPDM 1.5mm', ar: 'دام EPDM 1.5 مم' },
     description: {
       en: 'Enhanced EPDM Membrane with increased thickness',
-      ar: 'غشاء EPDM محسن بسماكة متزايدة'
+      ar: 'غشاء EPDM محسن بسماكة متزايد��'
     },
     pricing: { usd: 340, aed: 1250 },
     specifications: ['EPDM rubber', 'Enhanced thickness', 'Weather resistant', 'Thickness: 1.5mm'],
@@ -812,6 +836,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // PVC Membranes
   {
     id: 'dam-pvc-12',
     category: 'membranes',
@@ -868,6 +894,8 @@ export const allProducts: Product[] = [
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
+
+  // HDPE Membranes
   {
     id: 'dam-hdpe-075',
     category: 'membranes',
@@ -878,7 +906,7 @@ export const allProducts: Product[] = [
     },
     pricing: { usd: 150, aed: 551 },
     specifications: ['HDPE material', 'Chemical resistant', 'High strength', 'Thickness: 0.75mm'],
-    sizes: ['6m X 280m', '6.30m X 210m', '7m X 140m'],
+    sizes: ['Various sizes available'],
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
@@ -892,7 +920,7 @@ export const allProducts: Product[] = [
     },
     pricing: { usd: 170, aed: 625 },
     specifications: ['HDPE material', 'Standard thickness', 'Chemical resistant', 'Thickness: 1.0mm'],
-    sizes: ['6m X 280m', '6.30m X 210m', '7m X 140m', '7.5m X 105m'],
+    sizes: ['Various sizes available'],
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
@@ -906,7 +934,7 @@ export const allProducts: Product[] = [
     },
     pricing: { usd: 190, aed: 698 },
     specifications: ['HDPE material', 'Enhanced durability', 'Chemical resistant', 'Thickness: 1.5mm'],
-    sizes: ['6m X 280m', '6.30m X 210m', '7m X 140m', '7.5m X 105m'],
+    sizes: ['Various sizes available'],
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
@@ -920,7 +948,7 @@ export const allProducts: Product[] = [
     },
     pricing: { usd: 220, aed: 808 },
     specifications: ['HDPE material', 'Heavy duty', 'Superior strength', 'Thickness: 2.0mm'],
-    sizes: ['6m X 280m', '6.30m X 210m', '7m X 140m', '7.5m X 105m', '8m X 84m'],
+    sizes: ['Various sizes available'],
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
@@ -934,7 +962,7 @@ export const allProducts: Product[] = [
     },
     pricing: { usd: 250, aed: 918 },
     specifications: ['HDPE material', 'Premium quality', 'Maximum strength', 'Thickness: 3.0mm'],
-    sizes: ['6m X 280m', '6.30m X 210m', '7m X 140m', '7.5m X 105m', '8m X 84m', '9m X 70m'],
+    sizes: ['Various sizes available'],
     image: 'https://images.pexels.com/photos/31188734/pexels-photo-31188734.jpeg',
     availability: 'in_stock'
   },
@@ -1028,7 +1056,7 @@ export const allProducts: Product[] = [
   {
     id: 'dam-pp-board-3',
     category: 'protection-boards',
-    name: { en: 'Dam PP Board 3mm', ar: 'دام PP بورد 3 مم' },
+    name: { en: 'Dam PP Board 3mm', ar: '��ام PP بورد 3 مم' },
     description: {
       en: 'Standard Polypropylene Protection Board',
       ar: 'لوح حماية البولي بروبيلين القياسي'
@@ -1159,7 +1187,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Stop ECJ 3mm-300mm', ar: 'دام ستوب ECJ 3مم-300مم' },
     description: {
       en: 'PVC Water Stopper for External Construction Joints - Wide',
-      ar: 'موقف مياه PVC للمفاصل الإنشائية الخارجية - عريض'
+      ar: 'موقف مياه PVC للمفاصل الإنشائية ال��ارجية - عريض'
     },
     pricing: { usd: 15, aed: 55 },
     specifications: ['External construction joint', 'PVC material', 'Thickness: 3mm', 'Width: 300mm'],
@@ -1327,7 +1355,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Stop HP 10mm x 20mm', ar: 'دام ستوب HP 10مم × 20مم' },
     description: {
       en: 'Hydrophilic Swellable Joint Sealing Profile - Medium',
-      ar: 'ملف إغلاق المفاصل القابل للانتفاخ ا��محب للماء - متوسط'
+      ar: 'ملف إغلاق المفاصل القابل للانتفاخ المحب للماء - متوسط'
     },
     pricing: { usd: 30, aed: 110 },
     specifications: ['Hydrophilic', 'Swellable', 'Medium size', 'Size: 10mm x 20mm'],
@@ -1456,7 +1484,7 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Coat PUTC', ar: 'دام كوت PUTC' },
     description: {
       en: 'Polyurethane Top Coat for finishing',
-      ar: 'طلاء البولي يور��ثان النهائي للتشطيب'
+      ar: 'طلاء البولي يوريثان النهائي للتشطيب'
     },
     pricing: { usd: 60, aed: 220 },
     specifications: ['Top coat', 'UV resistant', 'High gloss', 'Decorative finish'],
@@ -1500,8 +1528,8 @@ export const allProducts: Product[] = [
       en: 'Elastomeric Coating for flexible waterproofing',
       ar: 'طلاء مرن للعزل المائي المرن'
     },
-    pricing: { usd: 42, aed: 154 },
-    specifications: ['Elastomeric', 'Flexible', 'Crack bridging', 'Weather resistant'],
+    pricing: { usd: 48, aed: 176 },
+    specifications: ['Elastomeric', 'Flexible', 'Weather resistant', 'Easy application'],
     sizes: ['20 Kg Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
     availability: 'in_stock'
@@ -1512,9 +1540,9 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Coat PC', ar: 'دام كوت PC' },
     description: {
       en: 'Powder Coating for machine application',
-      ar: 'طلاء مسحوق للتطبيق بالآلة'
+      ar: 'طلاء مسحوق للتطبيق الآلي'
     },
-    pricing: { usd: 38, aed: 140 },
+    pricing: { usd: 52, aed: 191 },
     specifications: ['Powder coating', 'Machine applied', 'High performance', 'Durable finish'],
     sizes: ['20 Kg Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
@@ -1525,12 +1553,12 @@ export const allProducts: Product[] = [
     category: 'coatings',
     name: { en: 'Dam Coat S', ar: 'دام كوت S' },
     description: {
-      en: 'Silicone-based Coating for superior performance',
-      ar: 'طلاء أساسه السيليكون للأداء الفائق'
+      en: 'Silicone-based Coating for superior protection',
+      ar: 'طلاء أساسه السيليكون للحماية الفائقة'
     },
     pricing: { usd: 65, aed: 239 },
-    specifications: ['Silicone based', 'Weather resistant', 'Self-cleaning', 'Long lasting'],
-    sizes: ['20 Kg Pail'],
+    specifications: ['Silicone based', 'UV resistant', 'Breathable', 'Self-cleaning'],
+    sizes: ['20 Ltr Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
     availability: 'in_stock'
   },
@@ -1542,8 +1570,8 @@ export const allProducts: Product[] = [
       en: 'Epoxy Coating for chemical resistance',
       ar: 'طلاء إيبوكسي لمقاومة المواد الكيميائية'
     },
-    pricing: { usd: 52, aed: 191 },
-    specifications: ['Epoxy coating', 'Chemical resistant', 'High strength', 'Durable finish'],
+    pricing: { usd: 58, aed: 213 },
+    specifications: ['Epoxy coating', 'Chemical resistant', 'High strength', 'Industrial grade'],
     sizes: ['20 Kg Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
     availability: 'in_stock'
@@ -1554,10 +1582,10 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Coat CCWT', ar: 'دام كوت CCWT' },
     description: {
       en: 'Crystal Clear Waterproofing Transparent Coating',
-      ar: 'طلاء شفاف مقاوم للماء كريستالي شفاف'
+      ar: 'طلاء شفاف واضح البلور للعزل المائي'
     },
-    pricing: { usd: 48, aed: 176 },
-    specifications: ['Crystal clear', 'Transparent', 'Waterproofing', 'UV resistant'],
+    pricing: { usd: 70, aed: 257 },
+    specifications: ['Crystal clear', 'Transparent', 'UV resistant', 'Decorative finish'],
     sizes: ['20 Kg Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
     availability: 'in_stock'
@@ -1570,9 +1598,9 @@ export const allProducts: Product[] = [
       en: 'Heat Resistant Hybrid Urethane Coating',
       ar: 'طلاء يوريثان هجين مقاوم للحرارة'
     },
-    pricing: { usd: 58, aed: 213 },
-    specifications: ['Heat resistant', 'Hybrid urethane', 'High temperature', 'Industrial grade'],
-    sizes: ['20 Kg Pail'],
+    pricing: { usd: 75, aed: 275 },
+    specifications: ['Heat resistant', 'Hybrid urethane', 'High temperature', 'Industrial use'],
+    sizes: ['20 Ltr Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
     availability: 'in_stock'
   },
@@ -1584,9 +1612,9 @@ export const allProducts: Product[] = [
       en: 'High Strength Hybrid Urethane Coating',
       ar: 'طلاء يوريثان هجين عالي القوة'
     },
-    pricing: { usd: 62, aed: 228 },
-    specifications: ['High strength', 'Hybrid urethane', 'Superior performance', 'Industrial grade'],
-    sizes: ['20 Kg Pail'],
+    pricing: { usd: 80, aed: 294 },
+    specifications: ['High strength', 'Hybrid urethane', 'Superior performance', 'Premium grade'],
+    sizes: ['20 Ltr Pail'],
     image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
     availability: 'in_stock'
   },
@@ -1597,13 +1625,13 @@ export const allProducts: Product[] = [
     category: 'sealants',
     name: { en: 'Dam Seal PU', ar: 'دام سيل PU' },
     description: {
-      en: 'Single Component Polyurethane Sealant for joints and expansion sealing',
-      ar: 'مانع تسرب البولي يوريثان أحادي المكون للمفاصل وختم التوسع'
+      en: 'Single Component Polyurethane Sealant for joints',
+      ar: 'مانع تسرب البولي يوريثان أحادي المكون للمفاصل'
     },
-    pricing: { usd: 35, aed: 129 },
-    specifications: ['Single component', 'Paintable', 'Weather resistant', 'Flexible'],
+    pricing: { usd: 8, aed: 29 },
+    specifications: ['Single component', 'Polyurethane', 'Flexible', 'Weather resistant'],
     sizes: ['600ml sausage', '20pcs/Carton'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691661/pexels-photo-5691661.jpeg',
     featured: true,
     availability: 'in_stock'
   },
@@ -1612,13 +1640,13 @@ export const allProducts: Product[] = [
     category: 'sealants',
     name: { en: 'Dam Seal Mastic', ar: 'دام سيل ماستيك' },
     description: {
-      en: 'Rubberized Bitumen Mastic Sealant for waterproofing',
-      ar: 'مانع تسرب ماستيك بيتومين مطاطي للعزل المائي'
+      en: 'Rubberized Bitumen Mastic Sealant for joints',
+      ar: 'مانع تسرب ماستيك بيتومين مطاطي للمفاصل'
     },
-    pricing: { usd: 30, aed: 110 },
-    specifications: ['Rubberized bitumen', 'Mastic consistency', 'Waterproof', 'Cold applied'],
+    pricing: { usd: 25, aed: 92 },
+    specifications: ['Rubberized bitumen', 'Mastic consistency', 'Permanent seal', 'Easy application'],
     sizes: ['20 Kg Pail'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691661/pexels-photo-5691661.jpeg',
     availability: 'in_stock'
   },
   {
@@ -1626,13 +1654,13 @@ export const allProducts: Product[] = [
     category: 'sealants',
     name: { en: 'Dam Seal PS (2C)', ar: 'دام سيل PS (2C)' },
     description: {
-      en: 'Two Component Polysulphide Sealant for structural glazing',
-      ar: 'مانع تسرب البولي سلفايد ثنائي المكون للزجاج الهيكلي'
+      en: 'Two Component Polysulphide Sealant for structural joints',
+      ar: 'مانع تسرب البولي سلفيد ثنائي المكون للمفاصل الهيكلية'
     },
-    pricing: { usd: 85, aed: 312 },
-    specifications: ['Two component', 'Polysulphide', 'Structural glazing', 'Chemical resistant'],
+    pricing: { usd: 45, aed: 165 },
+    specifications: ['Two component', 'Polysulphide', 'Structural grade', 'Chemical resistant'],
     sizes: ['4.5 Ltr Kit'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691661/pexels-photo-5691661.jpeg',
     availability: 'in_stock'
   },
   {
@@ -1641,12 +1669,12 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Seal AM', ar: 'دام سيل AM' },
     description: {
       en: 'Acrylic Joint Mastic Sealant for interior applications',
-      ar: 'مانع تسرب ماستيك أكريليك للمفاصل للتطبيقات الداخلية'
+      ar: 'مانع تسرب أكريليك ماستيك للتطبيقات الداخلية'
     },
-    pricing: { usd: 28, aed: 103 },
-    specifications: ['Acrylic mastic', 'Interior use', 'Paintable', 'Easy application'],
+    pricing: { usd: 22, aed: 80 },
+    specifications: ['Acrylic mastic', 'Interior use', 'Paintable', 'Easy clean-up'],
     sizes: ['20 Kg Pail'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691661/pexels-photo-5691661.jpeg',
     availability: 'in_stock'
   },
   {
@@ -1654,13 +1682,13 @@ export const allProducts: Product[] = [
     category: 'sealants',
     name: { en: 'Dam Seal FS', ar: 'دام سيل FS' },
     description: {
-      en: 'Fire Rated Acrylic Joint Sealant for fire protection',
-      ar: 'مانع تسرب أكريليك مقاوم للحريق للحماية من الحريق'
+      en: 'Fire Rated Acrylic Joint Sealant for fire barriers',
+      ar: 'مانع تسرب أكريليك مقاوم للحريق لحواجز الحريق'
     },
-    pricing: { usd: 40, aed: 147 },
-    specifications: ['Fire rated', 'Acrylic', 'Fire protection', 'Joint sealing'],
+    pricing: { usd: 12, aed: 44 },
+    specifications: ['Fire rated', 'Acrylic', 'Fire barrier', 'Intumescent'],
     sizes: ['280ml sausage', '310ml sausage'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691661/pexels-photo-5691661.jpeg',
     availability: 'in_stock'
   },
   {
@@ -1668,13 +1696,13 @@ export const allProducts: Product[] = [
     category: 'sealants',
     name: { en: 'Dam Seal WS', ar: 'دام سيل WS' },
     description: {
-      en: 'Polyurethane Weather Sealant for exterior applications',
-      ar: 'مانع تسرب البولي يوريثان للطقس للتطبيقات الخارجية'
+      en: 'Polyurethane Weather Sealant for exterior joints',
+      ar: 'مانع تسرب البولي يوريثان للطقس للمفاصل الخارجية'
     },
-    pricing: { usd: 38, aed: 140 },
-    specifications: ['Weather sealant', 'Exterior use', 'UV resistant', 'Long lasting'],
+    pricing: { usd: 10, aed: 37 },
+    specifications: ['Weather sealant', 'Polyurethane', 'UV resistant', 'Exterior use'],
     sizes: ['600ml sausage', '20pcs/Carton'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691661/pexels-photo-5691661.jpeg',
     availability: 'in_stock'
   },
 
@@ -1687,10 +1715,11 @@ export const allProducts: Product[] = [
       en: 'Polyurethane Based Elastomeric Resin for crack injection',
       ar: 'راتنج مرن أساسه البولي يوريثان لحقن الشقوق'
     },
-    pricing: { usd: 75, aed: 276 },
-    specifications: ['Polyurethane based', 'Elastomeric', 'Crack injection', 'Waterproof'],
+    pricing: { usd: 65, aed: 239 },
+    specifications: ['Polyurethane resin', 'Elastomeric', 'Crack injection', 'Flexible cure'],
     sizes: ['5 Ltr Can'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691662/pexels-photo-5691662.jpeg',
+    featured: true,
     availability: 'in_stock'
   },
   {
@@ -1698,13 +1727,13 @@ export const allProducts: Product[] = [
     category: 'concrete-repair',
     name: { en: 'Dam Inject PUIF', ar: 'دام إنجكت PUIF' },
     description: {
-      en: 'Fast Foaming Polyurethane Injection Foam for leak sealing',
-      ar: 'رغوة حقن البولي يوريثان سريعة الرغوة لإغلاق التسريبات'
+      en: 'Fast Foaming Polyurethane Injection Foam for water stopping',
+      ar: 'رغوة حقن البولي يوريثان سريعة الرغوة لإيقاف المياه'
     },
-    pricing: { usd: 80, aed: 294 },
-    specifications: ['Fast foaming', 'Polyurethane', 'Injection foam', 'Leak sealing'],
+    pricing: { usd: 70, aed: 257 },
+    specifications: ['Fast foaming', 'Polyurethane', 'Water stopping', 'Expanding foam'],
     sizes: ['5 Ltr Can'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691662/pexels-photo-5691662.jpeg',
     availability: 'in_stock'
   },
   {
@@ -1715,10 +1744,10 @@ export const allProducts: Product[] = [
       en: 'Acrylic Based Injection Resin for crack sealing',
       ar: 'راتنج حقن أساسه الأكريليك لإغلاق الشقوق'
     },
-    pricing: { usd: 70, aed: 257 },
-    specifications: ['Acrylic based', 'Injection resin', 'Crack sealing', 'Low viscosity'],
+    pricing: { usd: 55, aed: 202 },
+    specifications: ['Acrylic resin', 'Low viscosity', 'Deep penetration', 'Flexible'],
     sizes: ['5 Ltr Can'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691662/pexels-photo-5691662.jpeg',
     availability: 'in_stock'
   },
   {
@@ -1729,194 +1758,195 @@ export const allProducts: Product[] = [
       en: 'Epoxy Injection Resin for structural crack repair',
       ar: 'راتنج حقن إيبوكسي لإصلاح الشقوق الهيكلية'
     },
-    pricing: { usd: 85, aed: 312 },
-    specifications: ['Epoxy resin', 'Structural repair', 'High strength', 'Chemical resistant'],
+    pricing: { usd: 75, aed: 275 },
+    specifications: ['Epoxy resin', 'High strength', 'Structural repair', 'Low viscosity'],
     sizes: ['5 Ltr Can'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691662/pexels-photo-5691662.jpeg',
     availability: 'in_stock'
   },
 
-  // GRP LINING
+  // GRP LINING MATERIALS
   {
     id: 'dam-lining-upr',
     category: 'grp-lining',
-    name: { en: 'Dam Lining UPR', ar: 'دام لاينيج UPR' },
+    name: { en: 'Dam Lining UPR', ar: 'دام لاينينغ UPR' },
     description: {
       en: 'Unsaturated Polyester Resin for GRP lining systems',
-      ar: 'راتنج البوليستر غير المشبع لأنظمة بطانة GRP'
+      ar: 'راتنج البولي إستر غير المشبع لأنظمة بطانة GRP'
     },
-    pricing: { usd: 120, aed: 441 },
-    specifications: ['Unsaturated polyester', 'Chemical resistant', 'High strength', 'Versatile'],
+    pricing: { usd: 85, aed: 312 },
+    specifications: ['Unsaturated polyester', 'Chemical resistant', 'High strength', 'Corrosion protection'],
     sizes: ['20 Kg Pail', '220Kg Drum'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
+    featured: true,
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-vre',
     category: 'grp-lining',
-    name: { en: 'Dam Lining VRE', ar: 'دام لاينيج VRE' },
+    name: { en: 'Dam Lining VRE', ar: 'دام لاينينغ VRE' },
     description: {
-      en: 'Vinyl Ester Resin for high-performance GRP lining',
-      ar: 'راتنج الفينيل إستر لبطانة GRP عالية الأداء'
+      en: 'Vinyl Ester Resin for superior chemical resistance',
+      ar: 'راتنج الفينيل إستر لمقاومة كيميائية فائقة'
     },
-    pricing: { usd: 140, aed: 514 },
-    specifications: ['Vinyl ester', 'High performance', 'Corrosion resistant', 'Chemical resistant'],
+    pricing: { usd: 125, aed: 459 },
+    specifications: ['Vinyl ester', 'Superior chemical resistance', 'High performance', 'Corrosion protection'],
     sizes: ['20 Kg Pail', '220Kg Drum'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-ep',
     category: 'grp-lining',
-    name: { en: 'Dam Lining EP', ar: 'دام لاينيج EP' },
+    name: { en: 'Dam Lining EP', ar: 'دام لاينينغ EP' },
     description: {
-      en: 'Epoxy Resin for premium GRP lining applications',
-      ar: 'راتنج إيبوكسي لتطبيقات بطانة GRP الممتازة'
+      en: 'Epoxy Resin for high strength GRP applications',
+      ar: 'راتنج إيبوكسي لتطبيقات GRP عالية القوة'
     },
-    pricing: { usd: 160, aed: 588 },
-    specifications: ['Epoxy resin', 'Premium quality', 'Superior adhesion', 'Chemical resistant'],
+    pricing: { usd: 95, aed: 349 },
+    specifications: ['Epoxy resin', 'High strength', 'Chemical resistant', 'Low shrinkage'],
     sizes: ['20 Kg Pail', '220Kg Drum'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-csm',
     category: 'grp-lining',
-    name: { en: 'Dam Lining CSM', ar: 'دام لاينيج CSM' },
+    name: { en: 'Dam Lining CSM', ar: 'دام لاينينغ CSM' },
     description: {
       en: 'Chopped Strand Mat for GRP reinforcement',
-      ar: 'حصيرة خيوط مقطعة لتقوية GRP'
+      ar: 'حصيرة خيوط مقطعة لتعزيز GRP'
     },
     pricing: { usd: 45, aed: 165 },
-    specifications: ['Chopped strand mat', 'Glass fiber', 'Reinforcement', 'Easy handling'],
+    specifications: ['Chopped strand mat', 'E-glass fibers', 'Uniform distribution', 'Easy handling'],
     sizes: ['30Kg Roll', '46Kg Roll'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-wr',
     category: 'grp-lining',
-    name: { en: 'Dam Lining WR', ar: 'دام لاينيج WR' },
+    name: { en: 'Dam Lining WR', ar: 'دام لاينينغ WR' },
     description: {
-      en: 'Woven Roving for high-strength GRP applications',
-      ar: 'نسج محاك لتطبيقات GRP عالية القوة'
+      en: 'Woven Roving for high strength GRP laminates',
+      ar: 'نسيج منسوج للصفائح GRP عالية القوة'
     },
     pricing: { usd: 55, aed: 202 },
-    specifications: ['Woven roving', 'High strength', 'Directional reinforcement', 'Quality fabric'],
+    specifications: ['Woven roving', 'High strength', 'Bidirectional', 'E-glass fibers'],
     sizes: ['46 Kg Roll'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-tm-sv',
     category: 'grp-lining',
-    name: { en: 'Dam Lining TM/SV', ar: 'دام لاينيج TM/SV' },
+    name: { en: 'Dam Lining TM/SV', ar: 'دام لاينينغ TM/SV' },
     description: {
-      en: 'Tissue Mat / Surface Veil for smooth GRP finishes',
-      ar: 'حصيرة نسيج / حجاب سطحي للتشطيبات الناعمة لـ GRP'
+      en: 'Tissue Mat / Surface Veil for smooth finish',
+      ar: 'حصيرة نسيجية / قناع سطحي للحصول على تشطيب ناعم'
     },
     pricing: { usd: 35, aed: 129 },
-    specifications: ['Tissue mat', 'Surface veil', 'Smooth finish', 'Lightweight'],
+    specifications: ['Tissue mat', 'Surface veil', 'Smooth finish', 'Chemical barrier'],
     sizes: ['20 Kg Roll'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-gc',
     category: 'grp-lining',
-    name: { en: 'Dam Lining GC', ar: 'دام لاينيج GC' },
+    name: { en: 'Dam Lining GC', ar: 'دام لاينينغ GC' },
     description: {
-      en: 'Gelcoat Resin for protective GRP surface coating',
-      ar: 'راتنج جيل كوت لطلاء سطح GRP الواقي'
+      en: 'Gelcoat Resin for protective surface coating',
+      ar: 'راتنج الجيل كوت للطلاء السطحي الواقي'
     },
-    pricing: { usd: 95, aed: 349 },
-    specifications: ['Gelcoat resin', 'Surface protection', 'Weather resistant', 'Decorative'],
+    pricing: { usd: 75, aed: 275 },
+    specifications: ['Gelcoat resin', 'UV resistant', 'Chemical barrier', 'Decorative finish'],
     sizes: ['20 Kg Pail', '250Kg Drum'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-m60',
     category: 'grp-lining',
-    name: { en: 'Dam Lining M60', ar: 'دام لاينيج M60' },
+    name: { en: 'Dam Lining M60', ar: 'دام لاينينغ M60' },
     description: {
-      en: 'Hardener for resin curing systems',
-      ar: 'مصلب لأنظمة تصليب الراتنج'
+      en: 'Hardener for polyester and vinyl ester resins',
+      ar: 'مقوي للراتنجات البولي إستر والفينيل إستر'
     },
-    pricing: { usd: 65, aed: 239 },
-    specifications: ['Hardener', 'Resin curing', 'MEKP catalyst', 'Professional grade'],
+    pricing: { usd: 25, aed: 92 },
+    specifications: ['MEKP hardener', 'Room temperature cure', 'Controlled gel time', 'Professional grade'],
     sizes: ['30 Kg Pail'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-td',
     category: 'grp-lining',
-    name: { en: 'Dam Lining TD', ar: 'دام لاينيج TD' },
+    name: { en: 'Dam Lining TD', ar: 'دام لاينينغ TD' },
     description: {
       en: 'Titanium Dioxide Rutile for pigmentation',
-      ar: 'ثاني أكسيد التيتانيوم الروتيل للتصبغ'
+      ar: 'ثاني أكسيد التيتانيوم روتيل للتلوين'
     },
-    pricing: { usd: 85, aed: 312 },
-    specifications: ['Titanium dioxide', 'Rutile grade', 'White pigment', 'UV protection'],
+    pricing: { usd: 35, aed: 129 },
+    specifications: ['Titanium dioxide', 'Rutile grade', 'High opacity', 'Color pigment'],
     sizes: ['50 Kg Bag'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-fs',
     category: 'grp-lining',
-    name: { en: 'Dam Lining FS', ar: 'دام لاينيج FS' },
+    name: { en: 'Dam Lining FS', ar: 'دام لاينينغ FS' },
     description: {
       en: 'Fumed Silica for thixotropic properties',
-      ar: 'سيليكا مدخنة للخصائص التيكسوتروبية'
+      ar: 'سيليكا مدخنة للخصائص الثيكسوتروبية'
     },
     pricing: { usd: 45, aed: 165 },
-    specifications: ['Fumed silica', 'Thixotropic additive', 'Rheology modifier', 'Anti-sag'],
+    specifications: ['Fumed silica', 'Thixotropic agent', 'Anti-settling', 'Rheology modifier'],
     sizes: ['10 Kg Bag'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-filler',
     category: 'grp-lining',
-    name: { en: 'Dam Lining Filler', ar: 'دام لاينيج فيلر' },
+    name: { en: 'Dam Lining Filler', ar: 'دام لاينينغ فيلر' },
     description: {
-      en: 'Flexible Filler for gap filling applications',
-      ar: 'حشو مرن لتطبيقات ملء الفجوات'
+      en: 'Flexible Filler for gap filling and repairs',
+      ar: 'حشو مرن لملء الفجوات والإصلاحات'
     },
-    pricing: { usd: 40, aed: 147 },
-    specifications: ['Flexible filler', 'Gap filling', 'Easy sanding', 'Primer compatible'],
+    pricing: { usd: 35, aed: 129 },
+    specifications: ['Flexible filler', 'Gap filling', 'Easy sanding', 'Repair compound'],
     sizes: ['5 Kg Can'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-lining-wax',
     category: 'grp-lining',
-    name: { en: 'Dam Lining Wax 10%', ar: 'دام لاينيج شمع 10%' },
+    name: { en: 'Dam Lining Wax 10%', ar: 'دام لاينينغ واكس 10%' },
     description: {
-      en: 'Liquid Wax Surface Additive for air exclusion',
-      ar: 'إضافة سطح شمع سائل لاستبعاد الهواء'
+      en: 'Surface Additive for air inhibition',
+      ar: 'إضافة سطحية لمنع الهواء'
     },
-    pricing: { usd: 25, aed: 92 },
-    specifications: ['Surface additive', 'Air exclusion', 'Liquid wax', '10% solution'],
-    sizes: ['1 Ltr Can'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    pricing: { usd: 15, aed: 55 },
+    specifications: ['Wax solution', 'Air inhibition', 'Surface additive', '10% concentration'],
+    sizes: ['Liquid form'],
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
   {
-    id: 'methyl-acetate-thinner',
+    id: 'methyl-acetate-acetone',
     category: 'grp-lining',
-    name: { en: 'Methyl Acetate / Acetone', ar: 'ميثيل أسيتات / أسيتون' },
+    name: { en: 'Methyl Acetate / Acetone', ar: 'أسيتات الميثيل / الأسيتون' },
     description: {
-      en: 'Thinner for GRP resin systems',
-      ar: 'مذيب لأنظمة راتنج GRP'
+      en: 'Thinner for resin viscosity adjustment',
+      ar: 'مخفف لضبط لزوجة الراتنج'
     },
-    pricing: { usd: 30, aed: 110 },
-    specifications: ['Solvent thinner', 'Resin compatible', 'Fast evaporation', 'Cleaning agent'],
+    pricing: { usd: 25, aed: 92 },
+    specifications: ['Solvent thinner', 'Viscosity reducer', 'Clean up solvent', 'High purity'],
     sizes: ['20 Kg Pail', '200 Ltr Drum'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691663/pexels-photo-5691663.jpeg',
     availability: 'in_stock'
   },
 
@@ -1924,15 +1954,16 @@ export const allProducts: Product[] = [
   {
     id: 'dam-set-wp',
     category: 'repair-mortars',
-    name: { en: 'Dam Set WP', ar: 'دام سيت WP' },
+    name: { en: 'Dam Set WP', ar: 'د��م سيت WP' },
     description: {
-      en: 'Instant Leak Plug / Rapid Setting Waterproof Plug for emergency repairs',
-      ar: 'سدادة تسرب فورية / سدادة م��اومة للماء سريعة التصلب للإصلاحات الطارئة'
+      en: 'Instant Leak Plug / Rapid Setting Waterproof Plug',
+      ar: 'سدادة تسرب فورية / سدادة مقاومة للماء سريعة التصلب'
     },
     pricing: { usd: 35, aed: 129 },
-    specifications: ['Instant setting', 'Waterproof plug', 'Emergency repair', 'Expanding cement'],
+    specifications: ['Instant setting', 'Waterproof', 'Hydraulic cement', 'Emergency repair'],
     sizes: ['25 Kg Bag'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691664/pexels-photo-5691664.jpeg',
+    featured: true,
     availability: 'in_stock'
   },
   {
@@ -1941,337 +1972,407 @@ export const allProducts: Product[] = [
     name: { en: 'Dam Rep Mortar', ar: 'دام ريب مورتار' },
     description: {
       en: 'Surface Leveling & Repair Mortar for concrete restoration',
-      ar: 'مونة تسوية وإصلاح السطح لاستعادة الخرسانة'
+      ar: 'مونة تسوية وإصلاح السطح لترميم الخرسانة'
     },
-    pricing: { usd: 40, aed: 147 },
-    specifications: ['Surface leveling', 'Repair mortar', 'Polymer modified', 'High adhesion'],
+    pricing: { usd: 28, aed: 103 },
+    specifications: ['Polymer modified', 'High adhesion', 'Crack resistant', 'Easy application'],
     sizes: ['25 Kg Bag'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691664/pexels-photo-5691664.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'dam-fairing-coat',
     category: 'repair-mortars',
-    name: { en: 'Dam Fairing Coat', ar: 'دام فيرينج كوت' },
+    name: { en: 'Dam Fairing Coat', ar: 'دام فيرينغ كوت' },
     description: {
-      en: 'Surface Smoothing compound before waterproofing application',
-      ar: 'مركب تنعيم السطح قبل تطبيق العزل المائي'
+      en: 'Surface Smoothing compound before waterproofing',
+      ar: 'مركب تنعيم السطح قبل العزل المائي'
     },
-    pricing: { usd: 32, aed: 118 },
-    specifications: ['Surface smoothing', 'Pre-waterproofing', 'Easy application', 'Fast setting'],
+    pricing: { usd: 32, aed: 117 },
+    specifications: ['Surface smoothing', 'Pre-waterproofing', 'Easy application', 'Quick drying'],
     sizes: ['25 Kg Bag'],
-    image: 'https://images.pexels.com/photos/5691660/pexels-photo-5691660.jpeg',
+    image: 'https://images.pexels.com/photos/5691664/pexels-photo-5691664.jpeg',
     availability: 'in_stock'
   },
 
-  // Add more categories with sample products to demonstrate structure
-  // INSULATION & FINISHING
+  // GEOTEXTILES & FABRICS
   {
     id: 'geotextile-woven',
     category: 'geotextiles',
-    name: { en: 'Geotextile Woven Fabric', ar: 'قماش جيوتكستايل منسوج' },
+    name: { en: 'Geotextile Woven', ar: 'جيوتكستايل منسوج' },
     description: {
-      en: 'Woven Geotextile Fabric for civil engineering applications',
-      ar: 'قماش جيوتكستايل منسوج لتطبيقات الهندسة المدنية'
+      en: 'Woven Geotextile for separation and reinforcement',
+      ar: 'جيوتكستايل منسوج للفصل والتعزيز'
     },
     pricing: { usd: 25, aed: 92 },
-    specifications: ['Woven fabric', 'High strength', 'Filtration', 'Separation'],
-    sizes: ['4m x 100m', '6m x 100m'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    specifications: ['Woven polypropylene', 'High strength', 'Separation', 'Reinforcement'],
+    sizes: ['Various widths and lengths'],
+    image: 'https://images.pexels.com/photos/5691665/pexels-photo-5691665.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'geotextile-non-woven',
     category: 'geotextiles',
-    name: { en: 'Geotextile Non-Woven Fabric', ar: 'قماش جيوتكستايل غير منسوج' },
+    name: { en: 'Geotextile Non-Woven', ar: 'جيوتكستايل غير منسوج' },
     description: {
-      en: 'Non-Woven Geotextile Fabric for drainage and filtration',
-      ar: 'قماش جيوتكستايل غير منسوج للصرف والترشيح'
+      en: 'Non-Woven Geotextile for filtration and drainage',
+      ar: 'جيوتكستايل غير منسوج للترشيح والصرف'
     },
-    pricing: { usd: 20, aed: 74 },
-    specifications: ['Non-woven fabric', 'Drainage', 'Filtration', 'Cushioning'],
-    sizes: ['4m x 100m', '6m x 100m'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    pricing: { usd: 20, aed: 73 },
+    specifications: ['Non-woven polyester', 'Filtration', 'Drainage', 'Needle-punched'],
+    sizes: ['Various widths and lengths'],
+    image: 'https://images.pexels.com/photos/5691665/pexels-photo-5691665.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'protection-fabric',
+    category: 'geotextiles',
+    name: { en: 'Protection Fabric', ar: 'قماش الحماية' },
+    description: {
+      en: 'Protection Fabric for membrane safeguarding',
+      ar: 'قماش الحماية لحماية الغشاء'
+    },
+    pricing: { usd: 15, aed: 55 },
+    specifications: ['Protective fabric', 'Cushioning', 'Puncture resistant', 'Easy installation'],
+    sizes: ['Roll form'],
+    image: 'https://images.pexels.com/photos/5691665/pexels-photo-5691665.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'reinforcement-mesh',
+    category: 'geotextiles',
+    name: { en: 'Reinforcement Mesh', ar: 'شبكة التعزيز' },
+    description: {
+      en: 'Reinforcement Mesh for structural applications',
+      ar: 'شبكة التعزيز للتطبيقات الهيكلية'
+    },
+    pricing: { usd: 30, aed: 110 },
+    specifications: ['High tensile strength', 'Corrosion resistant', 'Easy handling', 'Structural grade'],
+    sizes: ['Various mesh sizes'],
+    image: 'https://images.pexels.com/photos/5691665/pexels-photo-5691665.jpeg',
     availability: 'in_stock'
   },
 
-  // THERMAL INSULATION
+  // THERMAL INSULATION & JOINT FILLERS
   {
-    id: 'thermal-insulation-board',
+    id: 'thermal-insulation-boards',
     category: 'thermal-insulation',
-    name: { en: 'Thermal Insulation Board', ar: 'لوح العزل الحراري' },
+    name: { en: 'Thermal Insulation Boards', ar: 'ألواح العزل الحراري' },
     description: {
-      en: 'High-performance thermal insulation board for energy efficiency',
-      ar: 'لوح عزل حراري عالي الأداء لكفاءة الطاقة'
+      en: 'High performance thermal insulation boards',
+      ar: 'ألواح عزل حراري عالية الأداء'
     },
     pricing: { usd: 45, aed: 165 },
-    specifications: ['High R-value', 'Fire resistant', 'Moisture resistant', 'Easy installation'],
-    sizes: ['1200mm x 600mm x 50mm', '1200mm x 600mm x 100mm'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    specifications: ['High R-value', 'Moisture resistant', 'Fire retardant', 'Easy cutting'],
+    sizes: ['Various thicknesses'],
+    image: 'https://images.pexels.com/photos/5691666/pexels-photo-5691666.jpeg',
+    featured: true,
     availability: 'in_stock'
   },
   {
-    id: 'joint-filler',
+    id: 'joint-fillers',
     category: 'thermal-insulation',
-    name: { en: 'Joint Filler', ar: 'حشو المفاصل' },
+    name: { en: 'Joint Fillers', ar: 'حشوات المفاصل' },
     description: {
-      en: 'Thermal insulation joint filler for gap sealing',
-      ar: 'حشو مفاصل العزل الحراري لإغلاق الفجوات'
+      en: 'Thermal joint fillers for expansion joints',
+      ar: 'حشوات مفاصل حرارية لمفاصل التمدد'
     },
-    pricing: { usd: 15, aed: 55 },
-    specifications: ['Thermal barrier', 'Gap sealing', 'Compressible', 'Weather resistant'],
-    sizes: ['10mm x 10mm x 5m', '20mm x 20mm x 5m'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    pricing: { usd: 25, aed: 92 },
+    specifications: ['Compressible', 'Thermal resistant', 'Easy installation', 'Various densities'],
+    sizes: ['Different widths available'],
+    image: 'https://images.pexels.com/photos/5691666/pexels-photo-5691666.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'reflective-insulation',
+    category: 'thermal-insulation',
+    name: { en: 'Reflective Insulation', ar: 'عزل عاكس' },
+    description: {
+      en: 'Reflective insulation for radiant heat control',
+      ar: 'عزل عاكس للتحكم في الحرارة المشعة'
+    },
+    pricing: { usd: 35, aed: 129 },
+    specifications: ['Radiant barrier', 'Aluminum foil', 'Lightweight', 'Easy installation'],
+    sizes: ['Roll form'],
+    image: 'https://images.pexels.com/photos/5691666/pexels-photo-5691666.jpeg',
     availability: 'in_stock'
   },
 
   // ALUMINUM FLASHING
   {
-    id: 'aluminum-flashing-150mm',
+    id: 'aluminum-flashing-basic',
     category: 'aluminum-flashing',
-    name: { en: 'Aluminum Flashing 150mm', ar: 'ألومنيوم وامض 150مم' },
+    name: { en: 'Aluminum Flashing Basic', ar: 'ألومنيوم وامض أساسي' },
     description: {
-      en: 'Aluminum Flashing for waterproofing details and edge protection',
-      ar: 'ألومنيوم وامض لتفاصيل العزل المائي وحماية الحواف'
-    },
-    pricing: { usd: 12, aed: 44 },
-    specifications: ['Corrosion resistant', 'Easy forming', 'Weather resistant', 'Width: 150mm'],
-    sizes: ['25m Roll', '50m Roll'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'aluminum-flashing-200mm',
-    category: 'aluminum-flashing',
-    name: { en: 'Aluminum Flashing 200mm', ar: 'ألومنيوم وامض 200مم' },
-    description: {
-      en: 'Wide Aluminum Flashing for comprehensive waterproofing details',
-      ar: 'ألومنيوم وامض عريض لتفاصيل العزل المائي الشاملة'
+      en: 'Basic aluminum flashing for waterproofing details',
+      ar: 'ألومنيوم وامض أساسي لتفاصيل العزل المائي'
     },
     pricing: { usd: 15, aed: 55 },
-    specifications: ['Corrosion resistant', 'Wide coverage', 'Weather resistant', 'Width: 200mm'],
-    sizes: ['25m Roll', '50m Roll'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-
-  // SANDWICH PANELS
-  {
-    id: 'sandwich-panel-50mm',
-    category: 'sandwich-panels',
-    name: { en: 'Sandwich Panel 50mm', ar: 'لوح ساندويتش 50مم' },
-    description: {
-      en: 'Insulated Sandwich Panel for construction applications',
-      ar: 'لوح ساندويتش معزول لتطبيقات البناء'
-    },
-    pricing: { usd: 35, aed: 129 },
-    specifications: ['Insulated core', 'Steel facings', 'Lightweight', 'Thickness: 50mm'],
-    sizes: ['1000mm x 6000mm', '1200mm x 6000mm'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    specifications: ['Aluminum alloy', 'Corrosion resistant', 'Malleable', 'Standard gauge'],
+    sizes: ['Various widths'],
+    image: 'https://images.pexels.com/photos/5691667/pexels-photo-5691667.jpeg',
     availability: 'in_stock'
   },
   {
-    id: 'gi-sheet',
-    category: 'sandwich-panels',
-    name: { en: 'GI Sheet', ar: 'صفيحة GI' },
+    id: 'aluminum-flashing-premium',
+    category: 'aluminum-flashing',
+    name: { en: 'Aluminum Flashing Premium', ar: 'ألومنيوم وامض ممتاز' },
     description: {
-      en: 'Galvanized Iron Sheet for roofing and cladding',
-      ar: 'صفيحة حديد مجلفن للأسقف والكسوة'
+      en: 'Premium aluminum flashing with protective coating',
+      ar: 'ألومنيوم وامض ممتاز بطلاء واقي'
     },
     pricing: { usd: 25, aed: 92 },
-    specifications: ['Galvanized coating', 'Corrosion resistant', 'Structural grade', 'Various gauges'],
-    sizes: ['1000mm x 2000mm', '1200mm x 2400mm'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    specifications: ['Coated aluminum', 'Enhanced protection', 'Long lasting', 'Professional grade'],
+    sizes: ['Various widths'],
+    image: 'https://images.pexels.com/photos/5691667/pexels-photo-5691667.jpeg',
     availability: 'in_stock'
   },
+
+  // SANDWICH PANELS / GI SHEET / SKY LIGHTS
   {
-    id: 'skylight-panel',
+    id: 'sandwich-panel-pu',
     category: 'sandwich-panels',
-    name: { en: 'Skylight Panel', ar: 'لوح إضاءة طبيعية' },
+    name: { en: 'Sandwich Panel PU', ar: 'لوحة ساندويتش PU' },
     description: {
-      en: 'Translucent Skylight Panel for natural lighting',
-      ar: 'لوح إضاءة طبيعية شفاف للإضاءة الطبيعية'
-    },
-    pricing: { usd: 40, aed: 147 },
-    specifications: ['Translucent', 'UV resistant', 'Impact resistant', 'Natural lighting'],
-    sizes: ['1000mm x 2000mm', '1200mm x 2400mm'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-
-  // CONCRETE/GROUTS
-  {
-    id: 'structural-concrete-mix',
-    category: 'concrete-grouts',
-    name: { en: 'Structural Concrete Mix', ar: 'خليط خرسانة هيكلية' },
-    description: {
-      en: 'High-strength structural concrete mix for construction',
-      ar: 'خليط خرسانة هيكلية عالية القوة للبناء'
-    },
-    pricing: { usd: 25, aed: 92 },
-    specifications: ['High strength', 'Structural grade', 'Quality aggregates', 'Consistent mix'],
-    sizes: ['25 Kg Bag', '50 Kg Bag'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'precision-grout',
-    category: 'concrete-grouts',
-    name: { en: 'Precision Grout', ar: 'جراوت دقيق' },
-    description: {
-      en: 'High-precision grout for machinery and equipment installation',
-      ar: 'جراوت عالي الدقة لتركيب الآلات والمعدات'
-    },
-    pricing: { usd: 30, aed: 110 },
-    specifications: ['High precision', 'Non-shrink', 'High strength', 'Fast setting'],
-    sizes: ['25 Kg Bag'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-
-  // TILES & MARBLE
-  {
-    id: 'tile-adhesive',
-    category: 'tiles-marble',
-    name: { en: 'Tile Adhesive', ar: 'لاصق البلاط' },
-    description: {
-      en: 'High-performance tile adhesive for ceramic and stone installation',
-      ar: 'لاصق بلاط عالي الأداء لتركيب السيراميك والحجر'
-    },
-    pricing: { usd: 20, aed: 74 },
-    specifications: ['High bond strength', 'Water resistant', 'Flexible', 'Easy application'],
-    sizes: ['25 Kg Bag'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'marble-polish',
-    category: 'tiles-marble',
-    name: { en: 'Marble Polish', ar: 'ملمع الرخام' },
-    description: {
-      en: 'Professional marble polish for restoration and maintenance',
-      ar: 'ملمع رخام مهني للاستعادة والصيانة'
-    },
-    pricing: { usd: 35, aed: 129 },
-    specifications: ['High gloss finish', 'Stain resistant', 'Long lasting', 'Easy application'],
-    sizes: ['5 Ltr Can'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'gravel-aggregate',
-    category: 'tiles-marble',
-    name: { en: 'Gravel Aggregate', ar: 'ركام الحصى' },
-    description: {
-      en: 'Quality gravel aggregate for construction applications',
-      ar: 'ركام حصى عالي الجودة لتطبيقات البناء'
-    },
-    pricing: { usd: 15, aed: 55 },
-    specifications: ['Quality aggregate', 'Various sizes', 'Clean material', 'Construction grade'],
-    sizes: ['Per Ton', 'Per Cubic Meter'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-
-  // LANDSCAPING
-  {
-    id: 'landscape-membrane',
-    category: 'landscaping',
-    name: { en: 'Landscape Membrane', ar: 'غشاء تنسيق الحدائق' },
-    description: {
-      en: 'Landscape membrane for garden and landscaping applications',
-      ar: 'غشاء تنسيق الحدائق لتطبيقات الحدائق وتنسيق المناظر الطبيعية'
-    },
-    pricing: { usd: 18, aed: 66 },
-    specifications: ['UV resistant', 'Permeable', 'Weed control', 'Long lasting'],
-    sizes: ['2m x 50m', '4m x 25m'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'drainage-gravel',
-    category: 'landscaping',
-    name: { en: 'Drainage Gravel', ar: 'حصى الصرف' },
-    description: {
-      en: 'Drainage gravel for landscaping and garden drainage systems',
-      ar: 'حصى الصرف لأنظمة الصرف في تنسيق الحدائق'
-    },
-    pricing: { usd: 20, aed: 74 },
-    specifications: ['Clean graded', 'Free draining', 'Various sizes', 'Landscape grade'],
-    sizes: ['Per Ton', 'Per Cubic Meter'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-
-  // TOOLS & ACCESSORIES
-  {
-    id: 'waterproofing-brush',
-    category: 'tools-accessories',
-    name: { en: 'Waterproofing Brush', ar: 'فرشاة العزل المائي' },
-    description: {
-      en: 'Professional waterproofing brush for coating applications',
-      ar: 'فرشاة عزل مائي مهنية لتطبيقات الطلاء'
-    },
-    pricing: { usd: 12, aed: 44 },
-    specifications: ['Professional grade', 'Durable bristles', 'Easy cleaning', 'Various sizes'],
-    sizes: ['2", 3", 4"'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'membrane-roller',
-    category: 'tools-accessories',
-    name: { en: 'Membrane Roller', ar: 'أسطوانة الغشاء' },
-    description: {
-      en: 'Membrane roller for proper membrane installation and bonding',
-      ar: 'أسطوانة غشاء لتركيب وربط الغشاء بشكل صحيح'
-    },
-    pricing: { usd: 25, aed: 92 },
-    specifications: ['Proper bonding', 'Air bubble removal', 'Professional tool', 'Durable construction'],
-    sizes: ['150mm', '200mm'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
-    availability: 'in_stock'
-  },
-  {
-    id: 'injection-gun',
-    category: 'tools-accessories',
-    name: { en: 'Injection Gun', ar: 'مسدس الحقن' },
-    description: {
-      en: 'Professional injection gun for crack injection applications',
-      ar: 'مسدس حقن مهني لتطبيقات حقن الشقوق'
+      en: 'Polyurethane core sandwich panels for insulation',
+      ar: 'ألواح ساندويتش بقلب البولي يوريثان للعزل'
     },
     pricing: { usd: 85, aed: 312 },
-    specifications: ['Professional grade', 'Precise control', 'Durable construction', 'Easy maintenance'],
-    sizes: ['Standard', 'Heavy Duty'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    specifications: ['PU core', 'High insulation', 'Lightweight', 'Fire retardant'],
+    sizes: ['Various thicknesses'],
+    image: 'https://images.pexels.com/photos/5691668/pexels-photo-5691668.jpeg',
+    featured: true,
+    availability: 'in_stock'
+  },
+  {
+    id: 'gi-sheet-standard',
+    category: 'sandwich-panels',
+    name: { en: 'GI Sheet Standard', ar: 'لوح GI قياسي' },
+    description: {
+      en: 'Galvanized Iron sheets for roofing and cladding',
+      ar: 'ألواح حديد مجلفن للأسقف والكسوة'
+    },
+    pricing: { usd: 35, aed: 129 },
+    specifications: ['Galvanized coating', 'Corrosion resistant', 'Standard gauge', 'Easy installation'],
+    sizes: ['Various sizes'],
+    image: 'https://images.pexels.com/photos/5691668/pexels-photo-5691668.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'skylight-panels',
+    category: 'sandwich-panels',
+    name: { en: 'Skylight Panels', ar: 'ألواح إضاءة السقف' },
+    description: {
+      en: 'Translucent panels for natural lighting',
+      ar: 'ألواح شفافة للإضاءة الطبيعية'
+    },
+    pricing: { usd: 55, aed: 202 },
+    specifications: ['Translucent', 'UV resistant', 'Impact resistant', 'Natural lighting'],
+    sizes: ['Standard sizes'],
+    image: 'https://images.pexels.com/photos/5691668/pexels-photo-5691668.jpeg',
+    availability: 'in_stock'
+  },
+
+  // CONCRETE & GROUTS
+  {
+    id: 'specialized-concrete',
+    category: 'concrete-grouts',
+    name: { en: 'Specialized Concrete', ar: 'خرسانة متخصصة' },
+    description: {
+      en: 'High performance specialized concrete mixes',
+      ar: 'خلطات خرسانة متخصصة عالية الأداء'
+    },
+    pricing: { usd: 65, aed: 239 },
+    specifications: ['High strength', 'Rapid setting', 'Specialized mix', 'Quality assured'],
+    sizes: ['Bulk supply'],
+    image: 'https://images.pexels.com/photos/5691669/pexels-photo-5691669.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'injection-grout',
+    category: 'concrete-grouts',
+    name: { en: 'Injection Grout', ar: 'جراوت الحقن' },
+    description: {
+      en: 'High flow injection grout for structural repairs',
+      ar: 'جراوت حقن عالي التدفق للإصلاحات الهيكلية'
+    },
+    pricing: { usd: 45, aed: 165 },
+    specifications: ['High flow', 'Non-shrink', 'High strength', 'Structural grade'],
+    sizes: ['25 Kg Bag'],
+    image: 'https://images.pexels.com/photos/5691669/pexels-photo-5691669.jpeg',
+    availability: 'in_stock'
+  },
+
+  // TILES
+  {
+    id: 'tile-adhesive',
+    category: 'tiles',
+    name: { en: 'Tile Adhesive', ar: 'لاصق البلاط' },
+    description: {
+      en: 'High performance tile adhesive for all applications',
+      ar: 'لاصق بلاط عالي الأداء لجميع التطبيقات'
+    },
+    pricing: { usd: 25, aed: 92 },
+    specifications: ['Polymer modified', 'Water resistant', 'High bond strength', 'Easy mixing'],
+    sizes: ['25 Kg Bag'],
+    image: 'https://images.pexels.com/photos/5691670/pexels-photo-5691670.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'tile-grout',
+    category: 'tiles',
+    name: { en: 'Tile Grout', ar: 'جراوت البلاط' },
+    description: {
+      en: 'Premium tile grout for joint filling',
+      ar: 'جراوت بلاط ممتاز لملء المفاصل'
+    },
+    pricing: { usd: 15, aed: 55 },
+    specifications: ['Stain resistant', 'Color stable', 'Easy application', 'Durable finish'],
+    sizes: ['5 Kg Bag'],
+    image: 'https://images.pexels.com/photos/5691670/pexels-photo-5691670.jpeg',
+    availability: 'in_stock'
+  },
+
+  // GRAVEL
+  {
+    id: 'drainage-gravel',
+    category: 'gravel',
+    name: { en: 'Drainage Gravel', ar: 'حصى الصرف' },
+    description: {
+      en: 'Graded gravel for drainage applications',
+      ar: 'حصى مدرج لتطبيقات الصرف'
+    },
+    pricing: { usd: 35, aed: 129 },
+    specifications: ['Graded sizes', 'Clean washed', 'Free draining', 'Angular stones'],
+    sizes: ['Per cubic meter'],
+    image: 'https://images.pexels.com/photos/5691671/pexels-photo-5691671.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'decorative-gravel',
+    category: 'gravel',
+    name: { en: 'Decorative Gravel', ar: 'حصى زخرفي' },
+    description: {
+      en: 'Decorative gravel for landscaping',
+      ar: 'حصى زخرفي لتنسيق الحدائق'
+    },
+    pricing: { usd: 45, aed: 165 },
+    specifications: ['Various colors', 'Uniform size', 'Decorative', 'Low maintenance'],
+    sizes: ['Per cubic meter'],
+    image: 'https://images.pexels.com/photos/5691671/pexels-photo-5691671.jpeg',
+    availability: 'in_stock'
+  },
+
+  // LANDSCAPING PRODUCTS
+  {
+    id: 'landscape-fabric',
+    category: 'landscaping',
+    name: { en: 'Landscape Fabric', ar: 'قماش تنسيق الحدائق' },
+    description: {
+      en: 'Landscape fabric for weed control',
+      ar: 'قماش تنسيق الحدائق لمكافحة الأعشاب'
+    },
+    pricing: { usd: 25, aed: 92 },
+    specifications: ['Weed barrier', 'Water permeable', 'UV resistant', 'Easy installation'],
+    sizes: ['Roll form'],
+    image: 'https://images.pexels.com/photos/5691672/pexels-photo-5691672.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'drainage-pipes',
+    category: 'landscaping',
+    name: { en: 'Drainage Pipes', ar: 'أنابيب الصرف' },
+    description: {
+      en: 'Perforated drainage pipes for landscaping',
+      ar: 'أنابيب صرف مثقبة لتنسيق الحدائق'
+    },
+    pricing: { usd: 15, aed: 55 },
+    specifications: ['Perforated', 'Flexible', 'Corrosion resistant', 'Easy installation'],
+    sizes: ['Various diameters'],
+    image: 'https://images.pexels.com/photos/5691672/pexels-photo-5691672.jpeg',
+    availability: 'in_stock'
+  },
+
+  // TOOLS & MISCELLANEOUS ITEMS
+  {
+    id: 'application-tools',
+    category: 'tools-accessories',
+    name: { en: 'Application Tools', ar: 'أدوات التطبيق' },
+    description: {
+      en: 'Professional tools for waterproofing application',
+      ar: 'أدوات مهنية لتطبيق العزل المائي'
+    },
+    pricing: { usd: 45, aed: 165 },
+    specifications: ['Professional grade', 'Durable construction', 'Easy handling', 'Complete set'],
+    sizes: ['Tool set'],
+    image: 'https://images.pexels.com/photos/5691673/pexels-photo-5691673.jpeg',
     availability: 'in_stock'
   },
   {
     id: 'safety-equipment',
     category: 'tools-accessories',
-    name: { en: 'Safety Equipment Set', ar: 'مجموعة معدات السلامة' },
+    name: { en: 'Safety Equipment', ar: 'معدات السلامة' },
     description: {
-      en: 'Complete safety equipment set for waterproofing work',
-      ar: 'مجموعة كاملة من معدات السلامة لأعمال العزل المائي'
+      en: 'Safety equipment for construction work',
+      ar: 'معدات السلامة لأعمال البناء'
     },
-    pricing: { usd: 45, aed: 165 },
-    specifications: ['Complete set', 'Safety compliance', 'Comfortable fit', 'Professional grade'],
-    sizes: ['S, M, L, XL'],
-    image: 'https://images.pexels.com/photos/3615710/pexels-photo-3615710.jpeg',
+    pricing: { usd: 35, aed: 129 },
+    specifications: ['Safety certified', 'High visibility', 'Comfortable fit', 'Durable materials'],
+    sizes: ['Various sizes'],
+    image: 'https://images.pexels.com/photos/5691673/pexels-photo-5691673.jpeg',
+    availability: 'in_stock'
+  },
+  {
+    id: 'measuring-instruments',
+    category: 'tools-accessories',
+    name: { en: 'Measuring Instruments', ar: 'أدوات القياس' },
+    description: {
+      en: 'Precision measuring instruments for construction',
+      ar: 'أدوات قياس دقيقة للبناء'
+    },
+    pricing: { usd: 55, aed: 202 },
+    specifications: ['High precision', 'Digital display', 'Calibrated', 'Professional grade'],
+    sizes: ['Instrument set'],
+    image: 'https://images.pexels.com/photos/5691673/pexels-photo-5691673.jpeg',
     availability: 'in_stock'
   }
 ];
 
-export const featuredProducts = allProducts.filter(product => product.featured);
+// Export featured products as a constant for compatibility
+export const featuredProducts = allProducts.filter(product => product.featured === true);
 
-export const getAllProducts = (): Product[] => {
+// Helper functions
+export function getAllProducts(): Product[] {
   return allProducts;
-};
+}
 
-export const getProductsByCategory = (categoryId: string): Product[] => {
+export function getProductsByCategory(categoryId: string): Product[] {
   return allProducts.filter(product => product.category === categoryId);
-};
+}
 
-export const getProductById = (id: string): Product | undefined => {
+export function getFeaturedProducts(): Product[] {
+  return allProducts.filter(product => product.featured === true);
+}
+
+export function getProductById(id: string): Product | undefined {
   return allProducts.find(product => product.id === id);
-};
+}
+
+export function getProductCategories(): ProductCategory[] {
+  return productCategories;
+}
+
+export function getCategoryById(id: string): ProductCategory | undefined {
+  return productCategories.find(category => category.id === id);
+}
+
+export function searchProducts(query: string): Product[] {
+  const lowercaseQuery = query.toLowerCase();
+  return allProducts.filter(product => 
+    product.name.en.toLowerCase().includes(lowercaseQuery) ||
+    product.name.ar.includes(lowercaseQuery) ||
+    product.description.en.toLowerCase().includes(lowercaseQuery) ||
+    product.description.ar.includes(lowercaseQuery) ||
+    product.specifications?.some(spec => spec.toLowerCase().includes(lowercaseQuery))
+  );
+}

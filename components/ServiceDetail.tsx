@@ -88,7 +88,6 @@ export default function ServiceDetail() {
   };
 
   return (
-    <Layout>
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <motion.div
@@ -100,7 +99,7 @@ export default function ServiceDetail() {
           <Button variant="outline" asChild className="gap-2">
             <Link href="/services">
               <ArrowLeft className="h-4 w-4" />
-              {isRTL() ? 'العودة للخدمات' : 'Back to Services'}
+              {isRTL() ? 'العودة للخد��ات' : 'Back to Services'}
             </Link>
           </Button>
         </motion.div>
@@ -376,6 +375,5 @@ export default function ServiceDetail() {
           </motion.div>
         </div>
       </div>
-    </Layout>
   );
 }

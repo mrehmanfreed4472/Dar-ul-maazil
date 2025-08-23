@@ -11,12 +11,12 @@ import { RootLayoutClient } from '@/components/RootLayoutClient'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'DAM - The House of Insulation | Premium Insulation Services UAE',
-  description: 'DAM - The House of Insulation | Premium insulation services, thermal solutions, and construction materials in UAE. Professional installation and consultation.',
-  keywords: 'DAM, house of insulation, thermal insulation, UAE insulation, construction materials, Dar Al Muaazil, building insulation, energy efficiency',
+  title: 'DAM - Dar Al Muaazil LLC | Professional Waterproofing & Insulation Solutions',
+  description: 'DAM - Dar Al Muaazil LLC provides professional waterproofing, thermal insulation, and construction materials in UAE. Expert installation and consultation services.',
+  keywords: 'DAM, Dar Al Muaazil, waterproofing, thermal insulation, UAE construction, building materials, professional insulation, energy efficiency',
   icons: {
-    icon: 'https://cdn.builder.io/api/v1/image/assets%2Fbe317009bb644e719e7cd7d209bca9da%2F36ff582146184a53971e36b118d53fc5?format=webp&width=32',
-    apple: 'https://cdn.builder.io/api/v1/image/assets%2Fbe317009bb644e719e7cd7d209bca9da%2F36ff582146184a53971e36b118d53fc5?format=webp&width=180',
+    icon: 'https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F038432f1035b4e15868079ba9991d3e9?format=webp&width=32',
+    apple: 'https://cdn.builder.io/api/v1/image/assets%2F1f92479787d647a5873d822973f760c7%2F038432f1035b4e15868079ba9991d3e9?format=webp&width=180',
   },
 }
 

@@ -245,7 +245,7 @@ export default function AdminOrders() {
                   <Filter className="h-5 w-5" />
                   {isRTL() ? 'البحث والتصفية' : 'Search & Filter'}
                 </div>
-                <DAMLogo size="sm" animated={false} interactive={false} href="" />
+                <DAMLogo size="sm" href="" />
               </CardTitle>
             </CardHeader>
             <CardContent>

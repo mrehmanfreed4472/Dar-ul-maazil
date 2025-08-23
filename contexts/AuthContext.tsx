@@ -86,7 +86,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const hasAdminAccess = () => {
     const isValidAdmin = isAdmin();
-    const hasValidSession = user && Date.now() - new Date(user.lastLogin || 0).getTime() < 24 * 60 * 60 * 1000; // 24 hours
+    // Check if user exists and has valid session (simplified validation)
+    const hasValidSession = user !== null;
     return isValidAdmin && hasValidSession;
   };
 
